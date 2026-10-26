@@ -1,0 +1,6 @@
+id,stade,profil,mesure,valeur_proposee,unite,condition,statut,reference_document
+S01,Prototype P1,a_renseigner,Conformite des cas du sous-ensemble declare,100,pourcent,Tous les cas erreurs et effets inclus; aucun inconnu retire,proposition_non_validee,docs/11-cahier-des-charges-des-spikes.md
+S02,Prototype P1,a_renseigner,Alerte ralentissement compile,5,facteur,Declenche analyse sur charge representative; ne fixe pas acceptabilite production,proposition_non_validee,docs/11-cahier-des-charges-des-spikes.md
+S03,Prototype P5,a_renseigner,Tolerance geometrique proposee,0.5,mm,Zones retenues du prototype; aucun montant texte obligatoire ou code barre altere,proposition_non_validee,docs/11-cahier-des-charges-des-spikes.md
+S04,Recette pilote,a_renseigner,Tolerance geometrique proposee,0.2,mm,Choisir selon usage et imprimante avant recette; ne pas cumuler avec S03,proposition_non_validee,docs/07-plan-realisation-et-risques.md
+S05,Recette pilote,a_renseigner,Latence p95 relative proposee,1.2,facteur,Objectif initial a convenir par scenario sur meme materiel et volume,proposition_non_validee,docs/07-plan-realisation-et-risques.md

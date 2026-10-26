@@ -1,8 +1,8 @@
 {
   "date_recherche": "2026-10-26",
   "nature": "mesures_du_dossier_documentaire_uniquement",
-  "chapitres": 12,
-  "mots_chapitres": 35939,
+  "chapitres": 13,
+  "mots_chapitres": 36921,
   "exigences_fonctionnelles": 517,
   "domaines": 17,
   "url_distinctes_citees": 124,
@@ -16,7 +16,13 @@
     "champs obligatoires",
     "priorités",
     "statuts",
-    "syntaxe JSON"
+    "syntaxe JSON",
+    "references exigences du premier lot",
+    "absence de cycle de dependances",
+    "references et statuts des seuils proposes"
   ],
-  "limite_controles": "Aucun test de moteur WINDEV/WLangage, aucune validation réseau exhaustive des URL."
+  "limite_controles": "Aucun test de moteur WINDEV/WLangage, aucune validation réseau exhaustive des URL.",
+  "taches_premier_lot": 10,
+  "seuils_proposes_non_valides": 5,
+  "exigences_p0_references_precisees": 15
 }

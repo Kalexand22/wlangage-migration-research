@@ -6,9 +6,11 @@
 
 Ce dépôt contient la **recherche et le cahier de conception**, sans compilateur ou migration déjà réalisés. Les choix techniques sont des propositions à éprouver. Aucun projet client, environnement WINDEV ou oracle d'exécution n'a été fourni.
 
-**Contenu : 12 chapitres, 517 exigences fonctionnelles dans 17 domaines, 15 améliorations proposées et 6 prototypes de décision à réaliser.**
+**Contenu : 13 chapitres, 517 exigences fonctionnelles dans 17 domaines, 15 améliorations proposées et 6 prototypes de décision à réaliser.**
 
 ## Lire le dossier
+
+Pour commencer : [améliorations immédiates et premier lot](docs/12-ameliorations-immediates.md), avec dix tâches reliées aux exigences et cinq seuils proposés à arbitrer.
 
 - [Rapport complet dans un seul fichier](RAPPORT_COMPLET.md).
 - [Matrice des exigences fonctionnelles](data/fonctionnalites.csv) : identifiants, domaines, priorités, stratégies, critères d'acceptation et références.
@@ -28,6 +30,7 @@ Ce dépôt contient la **recherche et le cahier de conception**, sans compilateu
 | [09 — Propriété intellectuelle et licences](docs/09-propriete-intellectuelle-et-licences.md) | Droit UE/France, implémentation indépendante, contrats et redistribution |
 | [10 — Pilote et recette](docs/10-protocole-pilote-et-recette.md) | Paquet d'entrée, oracle, tests différentiels, mesures, bascule et retour arrière |
 | [11 — Prototypes de décision](docs/11-cahier-des-charges-des-spikes.md) | Six essais concrets, livrables, charges indicatives et critères go/no-go |
+| [12 — Améliorations immédiates](docs/12-ameliorations-immediates.md) | Références précisées, premier lot, traçabilité et seuils par stade |
 
 ## Ce que signifie « même code source »
 
@@ -61,6 +64,6 @@ python3 tools/assemble_report.py
 python3 tools/check_repository.py
 ```
 
-Le contrôle vérifie les liens locaux, la structure CSV, les identifiants, les statuts et le JSON. Il ne vérifie pas le comportement de WINDEV et n'attribue aucun taux de compatibilité au futur produit.
+Le contrôle vérifie les liens locaux, la structure CSV, les identifiants, les statuts, le JSON et les dépendances du premier lot. Il ne vérifie pas le comportement de WINDEV et n'attribue aucun taux de compatibilité au futur produit.
 
 Pour contribuer, suivre [CONTRIBUTING.md](CONTRIBUTING.md). Les notes de revue datées sont dans `data/revue-*.md` ; elles conservent aussi les constats ensuite corrigés. Les droits et la nature du dossier sont précisés dans [NOTICE.md](NOTICE.md).

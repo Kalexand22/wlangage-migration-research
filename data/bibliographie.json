@@ -8,10 +8,12 @@
       "url": "https://aide.pcsoft.fr/?1410087236=&name=annexe_7_les_procedures",
       "host": "aide.pcsoft.fr",
       "labels": [
-        "Source : procédures, paramètres et références"
+        "Source : procédures, paramètres et références",
+        "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -153,11 +155,13 @@
       "host": "doc.pcsoft.fr",
       "labels": [
         "PC SOFT, opérateurs logiques",
-        "Source : opérateurs logiques"
+        "Source : opérateurs logiques",
+        "Langage"
       ],
       "referenced_in": [
         "docs/01-options-et-solutions-existantes.md",
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -199,10 +203,12 @@
       "url": "https://doc.pcsoft.fr/?3024020=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Sources : manipulation des chaînes"
+        "Sources : manipulation des chaînes",
+        "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -210,10 +216,12 @@
       "url": "https://doc.pcsoft.fr/?3034004=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Source : gestion des erreurs de programmation"
+        "Source : gestion des erreurs de programmation",
+        "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -306,6 +314,7 @@
         "Source : description du projet, onglet Compilation",
         "Description du projet : compilation et autres onglets",
         "Description du projet, compilation",
+        "Import et projet",
         "Langage"
       ],
       "referenced_in": [
@@ -399,10 +408,12 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1000019417=&product=WB",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Source : PremierJourDuMois"
+        "Source : PremierJourDuMois",
+        "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -425,10 +436,12 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1000024314=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Tableau.Supprime"
+        "Tableau.Supprime",
+        "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -460,10 +473,12 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1514088=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Source : portée des variables"
+        "Source : portée des variables",
+        "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1377,10 +1392,12 @@
       "url": "https://www.pcsoft-windev-webdev.com/brochureWD25.pdf",
       "host": "www.pcsoft-windev-webdev.com",
       "labels": [
-        "Sources : brochure WINDEV 25"
+        "Sources : brochure WINDEV 25",
+        "Import et projet"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md"
+        "docs/02-langage-et-import.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },

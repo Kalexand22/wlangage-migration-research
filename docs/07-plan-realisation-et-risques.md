@@ -2,6 +2,8 @@
 
 Date de l'étude : **26 octobre 2026**. Ce chapitre est une **proposition de conduite du programme**, pas le compte rendu d'une implémentation existante. Aucun projet client, installation WINDEV, périphérique ou serveur HFSQL n'a été testé pour cette étude. Les seuils ci-dessous sont des critères de départ à contractualiser avec les pilotes.
 
+Les seuils illustratifs sont rapprochés par stade dans le [registre de décision](../data/seuils-decision.csv). Ils restent non validés jusqu’à leur choix avant un essai sur un profil précis ; voir les [améliorations immédiates](12-ameliorations-immediates.md).
+
 ## 1. Résultat à financer et première décision
 
 Le premier produit doit être un environnement capable d'importer un périmètre documenté, d'exécuter le WLangage d'origine et de signaler chaque incompatibilité. La première décision d'investissement porte sur cette capacité mesurée, pas sur une promesse de remplacement universel de WINDEV, WEBDEV et WINDEV Mobile.

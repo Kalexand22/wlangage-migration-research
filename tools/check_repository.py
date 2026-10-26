@@ -75,12 +75,61 @@ def main():
         except (ValueError, KeyError, TypeError):
             errors.append("Structure bibliographique invalide")
 
+    plan_path = ROOT / "data/premier-lot.csv"
+    plan = []
+    if plan_path.exists():
+        with plan_path.open(encoding="utf-8", newline="") as stream:
+            plan = list(csv.DictReader(stream))
+        plan_ids = {item["id"] for item in plan}
+        requirement_ids = {row["id"] for row in rows}
+        if len(plan_ids) != len(plan):
+            errors.append("Identifiant de lot dupliqué")
+        graph = {}
+        for item in plan:
+            identity = item["id"]
+            dependencies = [x for x in item["dependances"].split(";") if x]
+            graph[identity] = dependencies
+            for dependency in dependencies:
+                if dependency not in plan_ids:
+                    errors.append(f"Prérequis inconnu pour {identity}: {dependency}")
+            for reference in item["exigences_ids"].split(";"):
+                if reference not in requirement_ids:
+                    errors.append(f"Exigence inconnue pour {identity}: {reference}")
+            if item["statut_execution"] != "non exécuté":
+                errors.append(f"Aucune exécution de ce lot n'est démontrée : {identity}")
+        active, finished = set(), set()
+
+        def visit(identity):
+            if identity in active:
+                errors.append(f"Cycle de dépendances dans le lot: {identity}")
+                return
+            if identity in finished:
+                return
+            active.add(identity)
+            for dependency in graph.get(identity, []):
+                visit(dependency)
+            active.remove(identity)
+            finished.add(identity)
+
+        for identity in graph:
+            visit(identity)
+
+    thresholds = ROOT / "data/seuils-decision.csv"
+    if thresholds.exists():
+        with thresholds.open(encoding="utf-8", newline="") as stream:
+            for row in csv.DictReader(stream):
+                if row["statut"] != "proposition_non_validee":
+                    errors.append(f"Seuil présenté validé sans essai : {row['id']}")
+                if not (ROOT / row["reference_document"]).is_file():
+                    errors.append(f"Source locale du seuil absente : {row['id']}")
+
     print(f"Chapitres : {len(list((ROOT / 'docs').glob('*.md')))}")
     print(f"Exigences : {len(rows)}")
     print("Domaines : " + str(len({r.get('domaine') for r in rows})))
     print("Priorités : " + json.dumps(dict(sorted(Counter(r.get('priorite') for r in rows).items())), ensure_ascii=False))
     print(f"Fichiers JSON vérifiés : {len(json_paths)}")
-    print("Contrôle : liens locaux, structure CSV, identifiants, statuts et JSON uniquement.")
+    print(f"Tâches du premier lot : {len(plan)} ; références et absence de cycle vérifiées.")
+    print("Contrôle : structure documentaire, JSON, identifiants, références, seuils proposés et graphe du lot.")
     if errors:
         for error in errors:
             print("ERREUR : " + error, file=sys.stderr)

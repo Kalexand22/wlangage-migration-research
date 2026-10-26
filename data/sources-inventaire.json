@@ -154,6 +154,78 @@
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
       "mode_observation": "Lecture HTTP publique réussie; extrait moteur de recherche consulté"
+    },
+    {
+      "id": "precision-F-0002",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://www.pcsoft-windev-webdev.com/brochureWD25.pdf",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "acquisition texte/hybride et catégories d’éléments; parseur et conservation opaque à démontrer",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0030",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://doc.pcsoft.fr/?1512003=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "conversions logiques documentées; ne couvre pas toutes les conversions implicites",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0032",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1000019417=&product=WB",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "partiel: dates et surcharge PremierJourDuMois; heures et bornes générales non établies",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0034",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://doc.pcsoft.fr/?3024020=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "familles ANSI/OEM/Unicode; longueurs représentations et différences cibles à tester",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0036",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1000024314=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "partiel: suppression indexée et erreur hors taille; ensemble des opérateurs à qualifier",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0043",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1514088=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "portée et visibilité; glocales et captures à documenter et tester séparément",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0046",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://aide.pcsoft.fr/?1410087236=&name=annexe_7_les_procedures",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "référence et LOCAL documentés; expressions et propagation mutations à caractériser",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+    },
+    {
+      "id": "precision-F-0060",
+      "titre": "Référence ciblée issue du chapitre langage",
+      "url": "https://doc.pcsoft.fr/?3034004=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "mécanismes exceptions documentés; pile et correspondances exactes à qualifier",
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
     }
   ],
   "sources_complementaires": [

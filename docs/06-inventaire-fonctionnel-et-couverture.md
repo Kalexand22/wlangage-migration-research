@@ -4,7 +4,7 @@ Date de recherche : 26 octobre 2026. Nature du livrable : cahier des exigences d
 
 ## 1. Ce que contient l'inventaire
 
-Le fichier [fonctionnalites.csv](../data/fonctionnalites.csv) décrit **517 exigences**, réparties en **17 domaines**. Chaque ligne possède un identifiant stable, un périmètre, une priorité, une stratégie et un critère d'acceptation. Il couvre la chaîne complète : reprendre un projet, comprendre son code, générer l'application, conserver les comportements utiles, la qualifier, l'installer et l'exploiter. Le registre [sources-inventaire.json](../data/sources-inventaire.json) distingue les références thématiques des observations ponctuelles et précise le mode d'accès réellement obtenu.
+Le fichier [fonctionnalites.csv](../data/fonctionnalites.csv) décrit **517 exigences**, réparties en **17 domaines**. Chaque ligne possède un identifiant stable, un périmètre, une priorité, une stratégie et un critère d'acceptation. Il couvre la chaîne complète : reprendre un projet, comprendre son code, générer l'application, conserver les comportements utiles, la qualifier, l'installer et l'exploiter. Quinze exigences P0 disposent désormais de références ciblées avec limites explicites ; leur précision documentaire ne prouve aucune conformité d’exécution. Le registre [sources-inventaire.json](../data/sources-inventaire.json) distingue les références thématiques des observations ponctuelles et précise le mode d'accès réellement obtenu.
 
 Cette matrice est une base fonctionnelle étendue, destinée à devenir le backlog de référence. **Elle ne constitue pas une liste certifiée de toutes les fonctions WLangage, surcharges, constantes, propriétés et cibles de toutes les versions PC SOFT.** Les signatures API ne se déduisent pas d'une liste de familles. L'exhaustivité demandée devient une obligation de fermeture du périmètre et de traçabilité, décrite ci-dessous, avant toute promesse de compatibilité complète.
 
@@ -48,7 +48,7 @@ Les domaines se recoupent volontairement aux frontières : « champ TCD » conce
 | `cibles_proposees` | Ambition de la future solution ; ce champ ne décrit pas les disponibilités officielles PC SOFT |
 | `priorite` | Ordre proposé du programme, à recalibrer par les applications pilotes |
 | `strategie` | Voie de réalisation envisagée, sans garantie de faisabilité acquise |
-| `statut_preuve` | Toutes les lignes : exigence proposée avec référence thématique |
+| `statut_preuve` | Exigence proposée ; référence thématique ou ciblée sur un contrat partiel |
 | `critere_acceptation` | Résultat observable à vérifier, puis à transformer en scénarios versionnés |
 | `source_url` | Point de départ documentaire ; son contenu ne prouve pas toutes les combinaisons de cette ligne |
 | `statut_implementation` | Toutes les lignes : `non implémenté` |

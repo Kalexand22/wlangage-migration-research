@@ -1287,7 +1287,7 @@ Date de recherche : 26 octobre 2026. Nature du livrable : cahier des exigences d
 
 ### 1. Ce que contient l'inventaire
 
-Le fichier [fonctionnalites.csv](data/fonctionnalites.csv) décrit **517 exigences**, réparties en **17 domaines**. Chaque ligne possède un identifiant stable, un périmètre, une priorité, une stratégie et un critère d'acceptation. Il couvre la chaîne complète : reprendre un projet, comprendre son code, générer l'application, conserver les comportements utiles, la qualifier, l'installer et l'exploiter. Le registre [sources-inventaire.json](data/sources-inventaire.json) distingue les références thématiques des observations ponctuelles et précise le mode d'accès réellement obtenu.
+Le fichier [fonctionnalites.csv](data/fonctionnalites.csv) décrit **517 exigences**, réparties en **17 domaines**. Chaque ligne possède un identifiant stable, un périmètre, une priorité, une stratégie et un critère d'acceptation. Il couvre la chaîne complète : reprendre un projet, comprendre son code, générer l'application, conserver les comportements utiles, la qualifier, l'installer et l'exploiter. Quinze exigences P0 disposent désormais de références ciblées avec limites explicites ; leur précision documentaire ne prouve aucune conformité d’exécution. Le registre [sources-inventaire.json](data/sources-inventaire.json) distingue les références thématiques des observations ponctuelles et précise le mode d'accès réellement obtenu.
 
 Cette matrice est une base fonctionnelle étendue, destinée à devenir le backlog de référence. **Elle ne constitue pas une liste certifiée de toutes les fonctions WLangage, surcharges, constantes, propriétés et cibles de toutes les versions PC SOFT.** Les signatures API ne se déduisent pas d'une liste de familles. L'exhaustivité demandée devient une obligation de fermeture du périmètre et de traçabilité, décrite ci-dessous, avant toute promesse de compatibilité complète.
 
@@ -1331,7 +1331,7 @@ Les domaines se recoupent volontairement aux frontières : « champ TCD » conce
 | `cibles_proposees` | Ambition de la future solution ; ce champ ne décrit pas les disponibilités officielles PC SOFT |
 | `priorite` | Ordre proposé du programme, à recalibrer par les applications pilotes |
 | `strategie` | Voie de réalisation envisagée, sans garantie de faisabilité acquise |
-| `statut_preuve` | Toutes les lignes : exigence proposée avec référence thématique |
+| `statut_preuve` | Exigence proposée ; référence thématique ou ciblée sur un contrat partiel |
 | `critere_acceptation` | Résultat observable à vérifier, puis à transformer en scénarios versionnés |
 | `source_url` | Point de départ documentaire ; son contenu ne prouve pas toutes les combinaisons de cette ligne |
 | `statut_implementation` | Toutes les lignes : `non implémenté` |
@@ -1468,6 +1468,8 @@ Cette procédure permet une affirmation vérifiable : « cette application, dans
 ## Plan de réalisation, validation et maîtrise des risques
 
 Date de l'étude : **26 octobre 2026**. Ce chapitre est une **proposition de conduite du programme**, pas le compte rendu d'une implémentation existante. Aucun projet client, installation WINDEV, périphérique ou serveur HFSQL n'a été testé pour cette étude. Les seuils ci-dessous sont des critères de départ à contractualiser avec les pilotes.
+
+Les seuils illustratifs sont rapprochés par stade dans le [registre de décision](data/seuils-decision.csv). Ils restent non validés jusqu’à leur choix avant un essai sur un profil précis ; voir les [améliorations immédiates](docs/12-ameliorations-immediates.md).
 
 ### 1. Résultat à financer et première décision
 
@@ -2014,6 +2016,8 @@ Le registre fonctionne pour un pilote, une version de runtime et chaque nouvelle
 
 Date : **26 octobre 2026**. Ces six prototypes sont **à réaliser**. Aucun résultat, fichier de test, mesure ou compatibilité ci-dessous n'est présenté comme déjà obtenu. Ils servent à décider si l'[architecture proposée](docs/05-architecture-cible.md) mérite un investissement plus large.
 
+Les seuils illustratifs sont rapprochés par stade dans le [registre de décision](data/seuils-decision.csv). Ils restent non validés jusqu’à leur choix avant un essai sur un profil précis ; voir les [améliorations immédiates](docs/12-ameliorations-immediates.md).
+
 ### Cadre commun
 
 Les durées sont des **hypothèses de charge en jours-personnes**, pour des ingénieurs expérimentés disposant des outils et des entrées, hors obtention des droits et remise en état du patrimoine. Elles ne constituent ni devis ni calendrier. On fige pour chaque essai : version/build PC SOFT, configuration, options, encodage, cible, architecture, système, polices et données. Les nombres de cas sont des minima de caractérisation du prototype, jamais des preuves d'exhaustivité.
@@ -2104,3 +2108,60 @@ P1 et P2 peuvent commencer en parallèle. P3–P5 consomment leurs contrats stab
 **Mesures et décision.** Les quinze manipulations s'effectuent sans ouvrir le C# généré ; chaque arrêt pointe vers le bon traitement et chaque valeur respecte le type WLangage. Un point non réalisable est indiqué non vérifié, jamais affiché comme actif à tort. Une version source discordante est détectée. Toute erreur de pile ou d'alias critique interdit la certification du débogueur.
 
 **Si échec.** Renforcer le mapping ou fournir temporairement un mode interprété explicitement limité. Si le pilote n'est débogable qu'en langage hôte, la promesse d'expérience familière n'est pas validée.
+
+
+---
+
+## Améliorations immédiates et premier lot
+
+Ce chapitre répond à la question « que peut-on améliorer tout de suite ? ». Il distingue les corrections du dossier déjà faites et les travaux de préparation ou de développement restant à exécuter.
+
+### 1. Deux corrections livrées immédiatement
+
+**Précision des références.** Quinze exigences P0 de la matrice renvoyaient à des références trop générales alors que des pages ciblées avaient été examinées. Leurs URL et leur portée sont désormais précisées : F-0002, F-0004, F-0011, F-0030, F-0032, F-0034, F-0036, F-0038, F-0039, F-0043, F-0046, F-0047, F-0050, F-0051 et F-0060. Les limites restent explicites : une page sur la suppression d'un tableau ne définit pas tous les comportements d'un tableau. Aucun statut d'implémentation ou de compatibilité n'a été augmenté.
+
+**Ordre de travail.** Les 267 exigences P0 ne constituent pas un premier sprint. Le fichier [premier-lot.csv](data/premier-lot.csv) définit dix tâches de préparation, avec dépendances, identifiants d'exigences, rôles et critères de sortie. Leur exécution reste à faire. Le plan permet d'avancer sur les contrats et l'outillage avant d'engager le développement complet du produit.
+
+### 2. Ce qu'il faut améliorer ensuite, par ordre d'utilité
+
+#### A. Fermer un profil pilote
+
+Choisir une cible proposée, puis obtenir les versions/builds et options d'un projet réel. Windows x64 et .NET/WinForms sont des choix initiaux de conception, pas un profil source déjà validé. Les versions du runtime, les options et les dépendances ne doivent jamais être choisies par déduction d'une date commerciale.
+
+**Sortie attendue :** un profil renseigné et une liste des inconnus bloquants, avec leur responsable. Sans ces éléments, le meilleur résultat possible est « prêt à collecter les preuves », pas « compatible ».
+
+#### B. Séparer validité documentaire et préparation d'un essai
+
+Le contrôle actuel du dépôt valide la syntaxe JSON, les liens et la matrice. Il ne garantit pas qu'un profil est prêt à compiler : les exemples comportent volontairement des champs `null` et aucune preuve. Cette distinction est correcte, mais un futur outil de préparation doit pouvoir refuser un profil incomplet.
+
+Définir un schéma pour profil, cas et preuve, puis un contrôle des règles entre fichiers : références existantes, options résolues, oracle disponible, sources correspondant aux empreintes, cas liés aux exigences et absence de blocage ouvert. Les étapes « audit prêt », « génération prête » et « qualification documentée » ont des conditions distinctes. Un schéma conforme ne démontre jamais le comportement du moteur.
+
+#### C. Relier catalogue et preuves
+
+Le prochain registre doit fermer la chaîne : **F-ID → contrat/signature et profil → prototype P1–P6 → cas → exécution → décision**. Un document peut décrire un excellent protocole sans qu'un cas précis le mette en œuvre ; cette liaison doit être contrôlée.
+
+Commencer par les règles qui peuvent modifier silencieusement le métier : court-circuit et effets de bord, paramètres par référence, copie des tableaux, précision monétaire, NULL/vide, événements et curseurs HFSQL. Le détail des signatures reste à relever avant d'annoncer un catalogue API fermé.
+
+#### D. Tester les outils de preuve avant de leur faire confiance
+
+Préparer des observations synthétiques volontairement différentes : un centime d'écart, une valeur NULL remplacée par vide, deux événements inversés, une mutation perdue après passage par référence et une normalisation qui masque un montant. Le comparateur doit les détecter, et expliquer le premier écart utile.
+
+Ces fixtures peuvent être conçues sans projet client. Elles testeront le comparateur lorsqu'il sera réalisé ; elles ne seront jamais présentées comme des résultats de WINDEV. L'oracle original reste nécessaire pour qualifier le futur runtime.
+
+#### E. Centraliser les seuils
+
+Les chapitres 07 et 11 donnent des seuils illustratifs différents selon le stade : prototype, pilote et comparaison de performance. Ils sont des propositions, pas des résultats ni des obligations universelles. Le registre [seuils-decision.csv](data/seuils-decision.csv) les rapproche avec leur contexte et leur statut **non validé**.
+
+Avant un essai, choisir une seule valeur applicable à sa mesure, au profil et au stade. Une alerte de lenteur d'un prototype ne devient pas une tolérance de production. Une tolérance géométrique ne permet jamais de modifier un total, un code-barres ou une information obligatoire. Les arbitrages devront être datés avant les résultats, pour éviter un déplacement des seuils après un échec.
+
+### 3. Ce qui peut démarrer sans sources
+
+Le premier lot porte sur le modèle de profil, les schémas, la traçabilité, les seuils, les fixtures synthétiques et le format des preuves. Les jours J1–J10 du CSV sont un **ordre indicatif de préparation**, pas un engagement de délai ni un programme de construction du compilateur en dix jours. Ils supposent les compétences et la disponibilité nécessaires.
+
+Les essais d'import, l'exécution du WLangage, la compatibilité H*, la fidélité des fenêtres et des états requièrent ensuite un corpus et un environnement de référence autorisé. Le [cahier des prototypes](docs/11-cahier-des-charges-des-spikes.md) reste la référence pour ces développements. Ne pas écrire des résultats attendus imaginés pour remplir des colonnes de preuve.
+
+### 4. Décision recommandée
+
+Engager d'abord ce lot de préparation limité, puis le prototype d'import et le prototype sémantique sur un même profil réel. Poursuivre si les pertes sont toutes identifiées, les traitements originaux restent maintenus en WLangage et les divergences critiques sont résolubles. Réduire le profil ou changer d'approche si la reprise exige une reconstruction manuelle généralisée.
+
+Les meilleurs gains immédiats sont donc la précision, l'ordre d'exécution et la qualité des preuves. Ajouter des familles à la liste restera nécessaire lorsqu'elles seront découvertes ; cela ne remplace pas la démonstration d'une première tranche complète.
