@@ -1,14 +1,40 @@
-# Architecture cible : une chaîne WLangage indépendante et vérifiable
+# Architecture autonome : reprise du WLangage sans composant PC SOFT
 
-Date de recherche : **26 octobre 2026**. Statut : **proposition d’architecture**, sans compilateur, importeur ni compatibilité exécutée dans cette étude. Les choix ci-dessous doivent passer les essais indiqués avant engagement industriel. Les documents [Langage et import](02-langage-et-import.md), [Données et cibles](04-donnees-integrations-et-cibles.md) et [Expérience développeur](03-experience-developpement-et-interface.md) détaillent leurs domaines respectifs.
+Date de recherche : **26 octobre 2026**. Statut : **hypothèses d’architecture à prototyper**, sans compilateur, importeur ni compatibilité exécutée dans cette étude. La priorité est la preuve technique de reprise WLangage par du code original autonome. Aucun avis juridique préalable au développement sans WINDEV ni framework PC SOFT n'est posé comme condition par ce chapitre. Les documents [Langage et import](02-langage-et-import.md), [Données et cibles](04-donnees-integrations-et-cibles.md), [Expérience développeur](03-experience-developpement-et-interface.md) et [Contrats et licences](09-propriete-intellectuelle-et-licences.md) détaillent leurs domaines respectifs.
 
-## 1. Décision proposée
+## 1. Hypothèse technique à éprouver en premier
 
-Construire un **compilateur WLangage indépendant**, un **runtime explicite de compatibilité** et un **modèle d’interface partagé entre concepteur et application**. Commencer par les applications de gestion Windows dont les sources sont accessibles. Garder les données HFSQL dans une première migration lorsque la voie d’accès et les droits le permettent. Reporter le changement de moteur de données à une décision distincte.
+La priorité est **A — compatibilité du code** : conserver le WLangage comme source maintenue par une implémentation indépendante. **L'exclusion de tout outil ou composant PC SOFT est ferme dès l'import, le développement, la construction et les tests, puis en production.** Le code de la plateforme est original ; les outils tiers et leurs dépendances sont non PC SOFT. Cela exclut DLL, framework, SDK, IDE, exporteur/convertisseur, pilote, serveur HFSQL et pont, ainsi que l'exécution d'un original PC SOFT comme oracle, même chez un tiers pour notre workflow. B, conversion/réécriture explicite si A échoue, respecte la même exclusion.
 
-Le premier backend recommandé est **.NET**, avec génération interne de C# puis compilation en IL, et un renderer Windows Forms pour la première cible desktop. Le développeur continue d’écrire et de déboguer son WLangage. Le C# généré est un artefact de construction : aucune modification de ce C# n’est nécessaire ni acceptée comme source durable du projet. Un interprète de la même représentation intermédiaire sert aux évaluations du débogueur, aux constructions dynamiques prises en charge et à la comparaison des exécutions.
+Choisir les premières expériences d'après les contraintes techniques : conservation du WLangage, desktop Windows, types et événements à reproduire, interop effectivement utilisée et ressources de l'équipe. .NET et WinForms peuvent être essayés immédiatement sur ce sous-ensemble original. Le modèle commercial, les pays et la distribution future éclaireront une phase ultérieure ; ils ne conditionnent pas le démarrage du prototype.
 
-Cette recommandation privilégie la vitesse de réalisation d’une compatibilité Windows, la disponibilité de l’interopérabilité .NET et le diagnostic. Elle ne signifie pas que la sémantique WLangage serait celle de C#. La génération doit traduire chaque différence par une opération du runtime. Une simple substitution de noms de fonctions et d’opérateurs serait insuffisante.
+Le [contrat WINDEV publié, article 4](https://doc.pcsoft.fr/fr-FR/?4510001=&name=License_WINDEV), et la [licence du framework, article 3](https://doc.windev.com/fr-FR/?1000019581=&name=licence_framework_windev), visent l'utilisation des produits couverts. Cette utilisation est exclue de notre architecture. Leur applicabilité au code autonome original n'est pas démontrée ; elles ne constituent pas ici un veto au prototype. Les sources, exports, traces et fixtures déjà fournis restent des entrées passives avec provenance ; aucune nouvelle observation par exécution PC SOFT n'est demandée. La diffusion future relève d'une analyse distincte, sans avis préalable imposé au codage autonome.
+
+### 1.1 Ce que signifie « indépendant »
+
+| Dimension | Objectif à vérifier | Ce qui ne suffit pas à le prouver |
+| --- | --- | --- |
+| Langage | Analyseur, compilateur et sémantique implémentés indépendamment | Conserver la syntaxe WLangage ne supprime pas le coût de suivi de ses versions ni les questions sur les actes de développement |
+| Import et construction | Aucun IDE, générateur, exporteur, convertisseur, SDK ou compilateur PC SOFT, local ou délégué | Générer du C# après avoir demandé un export WINDEV pour notre workflow |
+| Exécution et tests | Runtime original, aucun framework PC SOFT ni oracle de ce fournisseur | Appeler une DLL PC SOFT via adaptateur, sous-processus ou pont réseau chez un tiers |
+| Données | PostgreSQL et pilote non PC SOFT ; schémas/exports déjà fournis ou jeux synthétiques | Accéder à HFSQL par SQL, ODBC, API ou service distant |
+| Exploitation et maintenance | Installation, support, mises à jour et restauration réalisables avec les composants retenus | Une exécution réussie sur une machine qui possède encore toutes les dépendances d'origine |
+
+Dans ce chapitre, **runtime de compatibilité** désigne une implémentation originale à développer. Tout module PC SOFT, même isolé ou transitoire, est exclu. Un composant externe contenant transitivement un tel module est également exclu ; un nom renommé ou un accès réseau ne change pas cette décision.
+
+### 1.2 Deux étages de preuve
+
+**Étage 1 : code autonome, inventaire et cas originaux.** Construire frontend, types et premiers moteurs sur des exemples synthétiques et les règles publiques. Lire uniquement les fichiers/exports déjà fournis avec des importeurs originaux. Une portion opaque non résolue est conservée et bloque la fonctionnalité qui en dépend. Aucun IDE n'est appelé pour exporter ou convertir le projet.
+
+**Étage 2 : conformité aux preuves disponibles.** Comparer traitements, imports, événements, données et documents aux spécifications publiques et fixtures/traces déjà fournies, avec provenance. L'absence d'observation laisse un contrat non vérifié, sans exécution de l'application d'origine pour combler le manque. Les deux moteurs originaux peuvent être comparés entre eux, mais leur accord peut partager le même défaut : il ne prouve pas une parité totale avec PC SOFT. Le [plan de réalisation](07-plan-realisation-et-risques.md) publie ces limites.
+
+### 1.3 Branche A : architecture du prototype
+
+**Les sections 2 à 18 détaillent A sous l'exclusion ferme ; la conformité reste à démontrer.** Le prototype étudie un compilateur WLangage indépendant, un runtime explicite et un modèle UI partagé entre concepteur et application. Commencer par constructions originales puis projets de gestion dont les fichiers sont déjà disponibles. PostgreSQL est le moteur proposé ; la couche de contrats `H*` est originale et ne charge aucun composant HFSQL. Les scénarios historiques de conservation de HFSQL ou de pont PC SOFT sont exclus.
+
+Le premier backend candidat de A est **.NET**, avec génération interne de C# puis compilation en IL, et un renderer Windows Forms pour une première cible desktop. Le développeur continuerait d’écrire et de déboguer son WLangage. Le C# généré serait un artefact de construction, sans devenir la source durable du projet. Un interprète de la même représentation intermédiaire servirait aux évaluations du débogueur, aux constructions dynamiques prises en charge et à la comparaison des exécutions.
+
+Cette hypothèse privilégie la réalisation d’une compatibilité Windows, l’interopérabilité .NET et le diagnostic ; aucune vitesse de réalisation n'a été mesurée. Elle ne signifie pas que la sémantique WLangage serait celle de C#. La génération doit traduire chaque différence par une opération du runtime. Une simple substitution de noms de fonctions et d’opérateurs serait insuffisante.
 
 Le deuxième renderer desktop peut utiliser **Avalonia**, après qualification. L’IDE peut lui-même utiliser Avalonia dès le départ, ou rester Windows Forms pendant le premier pilote si l’équipe n’a pas cette compétence. Le renderer navigateur doit être distinct, fondé sur le DOM et sur une séparation explicite client/serveur. La présence de cibles multiples dans un framework ne prouve aucune compatibilité avec WINDEV, WEBDEV ou WINDEV Mobile.
 
@@ -24,7 +50,7 @@ Chaque fonctionnalité reçoit un état parmi : `inconnue`, `spécifiée`, `impl
 
 ```mermaid
 flowchart TD
-    A[Sources originales et ressources autorisées] --> B[Importeurs par version et format]
+    A[Fichiers et exports déjà fournis] --> B[Importeurs originaux par format]
     B --> C[Modèle de projet avec provenance]
     C --> D[CST conservant le texte et AST lié]
     D --> E[Analyse sémantique et registre de compatibilité]
@@ -35,24 +61,28 @@ flowchart TD
     G --> J[Runtime de compatibilité]
     H --> J
     J --> K[Renderer Windows]
-    J --> L[Adaptateurs données et système]
+    J --> L[Adaptateurs originaux et PostgreSQL]
     J --> M[Renderer desktop multiplateforme futur]
     C --> N[IDE et concepteur]
     N <--> O[LSP et DAP]
     O <--> E
     O <--> H
     N <--> P[Prévisualisation isolée du vrai renderer]
+    Q[Spécifications et traces passives avec provenance] --> R[Tests de conformité au contrat documenté]
+    G --> R
+    H --> R
+    R --> S[Gate exclusion SBOM processus modules connexions]
 ```
 
-Le modèle de projet, le compilateur et la ligne de commande ne dépendent pas du processus de l’IDE. Les mêmes commandes doivent fonctionner sur un agent de construction sans écran. Le concepteur dialogue avec un processus de prévisualisation qui exécute le renderer réel, sans donner aux fenêtres importées les droits de l’IDE.
+Le modèle de projet, le compilateur et la ligne de commande ne dépendent pas du processus de notre IDE. Les mêmes commandes fonctionnent sur un agent sans écran et sans installation PC SOFT. Le concepteur dialogue avec une prévisualisation de notre renderer, sans exécuter un élément importé sous un runtime propriétaire.
 
 ## 4. Compilation, transpilation et interprétation
 
 | Approche | Avantage pour cette migration | Difficulté principale | Usage proposé |
 | --- | --- | --- | --- |
-| Réécriture du code en TypeScript, C# ou Java | Écosystème disponible | Le code d’origine cesse d’être la source maintenue ; aller-retour fragile | Export optionnel ultérieur, séparé du mode compatibilité |
+| Réécriture du code en TypeScript, C# ou Java | Écosystème disponible ; voie de sortie B si les dépendances sont remplacées | Le code d’origine cesse d’être la source maintenue ; aller-retour fragile | Trajectoire B à choisir explicitement, sans la compter comme code inchangé |
 | Transpilation textuelle directe | Première démonstration rapide | Portées, conversions, alias, événements, fonctions implicites et erreurs divergent | À exclure comme architecture du produit |
-| Compilateur WLangage vers C# via IR | Backend mature ; interop .NET ; outils Windows | Runtime sémantique et débogage source indispensables | Premier backend recommandé |
+| Compilateur WLangage vers C# via IR | Backend mature ; interop .NET ; outils Windows | Runtime sémantique et débogage source indispensables | Premier backend candidat de la branche A |
 | Compilateur WLangage vers LLVM | Contrôle des types, ABI et optimisations ; sorties natives | GC, exceptions, débogage, bibliothèques et outillage restent à construire | Réévaluer si un profil de charge le justifie |
 | Interprète AST/IR | Introspection, dynamique, instrumentabilité | Débit et consommation à mesurer ; ne règle pas l’UI | Référence interne, dynamique et certains scénarios de test |
 | Bytecode et machine virtuelle dédiés | Contrôle homogène des sémantiques | Coût d’une VM, d’un débogueur et d’un écosystème complet | Alternative si .NET impose des écarts bloquants |
@@ -90,7 +120,7 @@ Chaque opération porte : identifiant source, type, profil, domaine d’exécuti
 
 Le runtime constitue le cœur du produit. Il doit rester utilisable par le backend compilé et l’interprète, sans branche de sémantique indépendante.
 
-| Domaine | Représentation proposée | Ce qu’il faut mesurer contre le profil d’origine |
+| Domaine | Représentation proposée | Contrat public et traces disponibles à vérifier pour le profil |
 | --- | --- | --- |
 | Numérique | Types dédiés ou wrappers sélectionnés par type source | Précision, échelle, saturation/dépassement, division, arrondis, conversions |
 | Monétaire/décimal | Mantisse et échelle explicites ; capacité fixée par profil | Ne pas supposer que `decimal` .NET suffit pour tous les types et versions |
@@ -160,11 +190,13 @@ Pour Android et iOS, le renderer doit ajouter cycle de vie, reprise après suspe
 
 Les interfaces de plateforme proposées sont `IDataProvider`, `IUiHost`, `IPrintService`, `IFileService`, `INativeBridge` et `IIdentityProvider`. Leur interface réelle devra être spécifiée avec erreurs, transactions, annulation, ownership et durée de vie. Les adaptateurs ne peuvent aplatir tous les comportements dans un simple CRUD générique.
 
+`INativeBridge` désigne uniquement l'intégration de composants **non PC SOFT** inventoriés, par exemple une bibliothèque matérielle tierce. Ce n'est pas une ouverture vers un runtime, une DLL, un serveur ou un oracle PC SOFT. Une dépendance transitive interdite bloque l'intégration.
+
 Un pont natif choisit explicitement architecture x86/x64/ARM64, convention d’appel, encodage, alignement des structures, allocation et libération. Un processus x64 ne charge pas directement une bibliothèque x86 : un auxiliaire x86 peut exposer des opérations définies via IPC, mais aucun pointeur brut ne traverse cette frontière. Les callbacks sont convertis en identifiants de session avec règles de thread et de fin de vie.
 
 La prise en charge COM de .NET est spécifique à Windows ; elle ne rend pas l’automatisation Office ou ActiveX portable. Le profil Windows peut préserver ces dépendances tant que versions, architecture et autorisations conviennent. [Interop COM .NET](https://learn.microsoft.com/en-us/dotnet/standard/native-interop/cominterop).
 
-L’accès HFSQL doit rester derrière un adaptateur dont les possibilités sont déclarées. Une passerelle exploitant un exécutable d’origine autorisé peut être une option transitoire à étudier ; elle impose licence, supervision, authentification, gestion des transactions et exploitation de deux runtimes. L’accès SQL ne doit pas être annoncé comme implémentation complète des API H*. Voir le chapitre données pour les conditions précises.
+Le fournisseur de données cible utilise PostgreSQL et un pilote indépendant de PC SOFT. La couche originale `H*` doit spécifier tampon courant, recherche, parcours, filtres, erreurs, verrous et transactions à partir des contrats publics et preuves reçues. Elle ne se réduit pas à renommer des fonctions SQL. Schémas et données proviennent de formats déjà fournis et lisibles indépendamment ; un fichier natif opaque sans lecteur original éprouvé bloque sa reprise. **HFSQL, ses pilotes et tout pont vers l'exécutable d'origine sont exclus**, même en transition. Voir le [chapitre données](04-donnees-integrations-et-cibles.md).
 
 ## 12. Débogueur et langage dans l’IDE
 
@@ -192,6 +224,12 @@ La clé de cache inclut contenu, profil, version du compilateur, runtime, adapta
 
 Chaque livraison produit exécutable ou paquet, symboles, rapport de compatibilité, inventaire des composants, licences, configuration et procédure de retour arrière. CycloneDX est une option standardisée pour représenter composants et dépendances ; SLSA permet de structurer la provenance de construction. Une nomenclature ne prouve pas à elle seule l’absence de vulnérabilités, et la présence d’une attestation ne permet pas d’annoncer un niveau SLSA non vérifié. [CycloneDX](https://cyclonedx.org/specification/overview/), [provenance SLSA](https://slsa.dev/spec/v1.2/provenance).
 
+### 14.1 Gate technique d'exclusion PC SOFT
+
+Ce contrôle est une **exigence à implémenter**, pas une capacité déjà livrée par ce dossier. Chaque chemin d'import/build/test/package/exécution doit fonctionner sur une machine propre sans produit PC SOFT. Produire : inventaire transitif/SBOM et provenance avec empreintes ; liste des outils et processus enfants ; modules natifs et assemblages chargés ; services et connexions nécessaires ; contenu exact du paquet. Utiliser une liste positive de dépendances non PC SOFT et identifier origine/éditeur/empreinte, plutôt que seulement chercher des noms de fichiers `wd*.dll`.
+
+La CI doit refuser toute DLL, assembly, SDK, outil, pilote, serveur, service ou pont PC SOFT détecté ou requis, même fourni par un plugin tiers. Tester aussi la prévisualisation, l'import, le débogage et les chemins d'erreur. Aucun appel délégué au poste client ne contourne la règle. Un composant inconnu est à instruire avant livraison ; il n'est pas implicitement autorisé. Les fichiers métier reçus demeurent des données passives et ne sont jamais lancés comme programme de référence.
+
 La livraison .NET initiale peut être autonome pour ne pas dépendre d’un runtime installé. Le Native AOT reste optionnel : Microsoft documente notamment des limites de génération dynamique, chargement dynamique et COM intégré. La chaîne ne doit pas supprimer une fonctionnalité dynamique du projet pour obtenir seulement un binaire plus petit. [Déploiement Native AOT](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/).
 
 ## 15. Extensions, isolation et observabilité
@@ -206,7 +244,7 @@ Tracer les événements UI, appels de données, transactions et franchissements 
 
 ## 16. Organisation du futur dépôt d’implémentation
 
-Cette arborescence est une **proposition pour le développement ultérieur**, pas un état des fichiers présents dans ce dépôt de recherche.
+Cette arborescence est une **proposition pour développer et éprouver la branche A**, pas un état des fichiers présents dans ce dépôt de recherche. Une réécriture B emploierait une architecture adaptée à la stack choisie, sans exiger un atelier WLangage complet.
 
 ```text
 src/
@@ -218,7 +256,7 @@ src/
   interpreter/            # exécution de l'IR et instrumentation
   runtime-core/           # types, conversions, collections et erreurs
   runtime-platform/       # fichiers, réseau, processus et identité
-  data-providers/         # HFSQL/passerelle, SQL et autres moteurs
+  data-providers/         # contrats H* originaux et fournisseur PostgreSQL
   ui-model/               # description des champs et événements
   ui-winforms/            # premier renderer Windows
   reports/                # bandes, pagination et impression
@@ -240,26 +278,29 @@ Les corpus clients restent privés et séparés de la distribution du produit. L
 
 | ADR | Décision proposée | Alternative considérée | Condition de validation et de réexamen |
 | --- | --- | --- | --- |
-| A01 | WLangage demeure la source maintenue | Migration définitive vers C#/TS | Import et modification d’un projet pilote sans modification du code métier pour le sous-ensemble certifié |
+| A00 | Exclusion de tout logiciel PC SOFT dans toute la chaîne | Outils/framework/HFSQL/pont/oracle PC SOFT : exclus | Provenance, SBOM, outils/processus/modules/services inspectés et tests sur machine propre ; aucune délégation chez un tiers |
+| A01 | WLangage demeure la source maintenue dans A | Conversion ou réécriture B avec code cible maintenu | Import/modification d’un pilote sans réécriture pour le sous-ensemble certifié ; sinon ne pas revendiquer le même code |
 | A02 | IR explicite, indépendante de la cible | Générateur direct WLangage → C# | Tests montrant ordre d’évaluation, références, conversions et événements identiques |
 | A03 | Backend .NET en premier | C++/LLVM, JVM, VM dédiée | Interop, diagnostic et charge pilote satisfaisants ; réexamen si un écart runtime est impossible à corriger proprement |
 | A04 | Interprète partageant runtime et IR | Deux moteurs sans code sémantique commun | Même suite de conformité exécutée en compilé et interprété ; aucun résultat métier divergent accepté |
 | A05 | Windows Forms premier renderer, multiplateforme ensuite | Avalonia ou Qt unique dès le départ | Matrice de champs, impression, modalité et interop validée sur les pilotes Windows |
 | A06 | Modèle UI partagé et vraie prévisualisation isolée | Renderer de designer distinct | Propriétés, navigation et captures concordantes entre conception et exécution |
-| A07 | Format de projet ouvert avec provenance | Réécriture directe des binaires PC SOFT | Cycle import–édition–build déterministe ; aucune propriété inconnue supprimée silencieusement |
+| A07 | Import indépendant des fichiers/exports déjà fournis puis format ouvert | Appel d'IDE/exporteur/convertisseur PC SOFT : exclu | Cycle import–édition–build déterministe ; portions opaques conservées et bloquantes si indispensables |
 | A08 | LSP/DAP et diagnostics en WLangage | IDE et débogueur propriétaires couplés | Points d’arrêt, pile et valeurs justes dans les traitements de champs et procédures |
 | A09 | Adaptateurs de capacités par cible | API universelle qui émule tout | Erreur à la compilation pour une dépendance indisponible ; limitation compréhensible avant déploiement |
 | A10 | Runtime dynamique isolé et AOT optionnel | AOT obligatoire ou plugins illimités | Cas dynamiques qualifiés ; tests d’isolation et de révocation ; décision distincte par plateforme mobile |
 
-## 18. Expériences qui doivent précéder le financement complet
+## 18. Expériences techniques à engager pour la faisabilité
 
-1. **Frontend** : importer un petit projet autorisé comprenant procédure, classe, fenêtre, état, requête et ressource ; produire le graphe de provenance et un rapport de pertes. Vérifier une modification locale sans réécriture globale.
-2. **Sémantique** : exécuter les mêmes cas sur la version PC SOFT de référence et sur les deux moteurs proposés. Couvrir chaînes, décimaux, dates, références, erreurs, indirection et collections ; inclure les cas limites et les effets observables.
+Les essais emploient exclusivement code original et outils non PC SOFT. Les attendus viennent de règles publiques ou de fixtures/traces déjà fournies avec provenance. Les contrats sans preuve restent non vérifiés ; aucun oracle PC SOFT n'est exécuté pour les compléter. Aucun avis juridique préalable n'est imposé au prototype autonome. Les vérifications de diffusion future restent distinctes.
+
+1. **Frontend** : importer des fichiers déjà fournis comprenant procédure, classe, fenêtre, état, requête et ressource ; produire provenance et rapport de pertes sans exporteur PC SOFT. Vérifier une modification locale sans réécriture globale.
+2. **Sémantique** : exécuter les cas dans l'interprète et le backend .NET originaux, comparer aux contrats publics et fixtures passives disponibles. Couvrir chaînes, décimaux, dates, références, erreurs, indirection et collections ; distinguer cohérence des deux moteurs et preuve externe disponible.
 3. **UI** : reprendre un parcours de saisie avec table liée, modalité, validation, FAA, raccourcis, impression et fermeture pendant traitement. Comparer événements et données, puis apparence, DPI, clavier et accessibilité.
-4. **Interop** : tester une dépendance réelle de chaque classe bloquante du parc : DLL, COM/ActiveX, imprimante ou matériel. Démontrer architecture et durée de vie correctes, y compris échec et arrêt brutal de l’auxiliaire.
-5. **Données** : qualifier les opérations réellement utilisées contre HFSQL conservé. Ne lancer un remplacement SQL qu’après définition des contrats de transactions, curseurs et verrouillages, avec stratégie de retour.
+4. **Interop** : tester les dépendances tierces non PC SOFT permises par le contrat d'exclusion : bibliothèque matérielle, COM/ActiveX tiers, imprimante. Vérifier également leur fermeture transitive ; bloquer un composant qui embarque du PC SOFT.
+5. **Données** : tester PostgreSQL et l'adaptateur `H*` original sur schéma/export déjà fourni ou jeu synthétique. Définir transactions, curseurs, verrous et reprise ; aucun serveur HFSQL, pilote ou pont dans les tests.
 6. **Outillage** : poser un point d’arrêt dans le code d’un champ, modifier une variable, suivre une exception et retrouver la source exacte. Aucun passage obligé par le C# généré.
-7. **Industrialisation** : reconstruire le pilote sur un agent propre, installer sur une machine cible vierge, vérifier signature, symboles et retour arrière ; répéter avec les mêmes entrées pour évaluer la reproductibilité.
+7. **Industrialisation** : reconstruire sur agent propre, installer sur machine vierge, vérifier exclusion A00, signature, symboles et retour arrière ; répéter avec les mêmes entrées. L'absence de PC SOFT est requise dans l'agent, les processus, services nécessaires et paquets, pas seulement dans le fichier principal.
 
 Les seuils de temps, mémoire et productivité sont à fixer après mesure du parc. Une cible initiale raisonnable à négocier est l’absence de régression métier critique et l’absence de modification manuelle du code dans le sous-ensemble annoncé ; les budgets de performance doivent ensuite être chiffrés sur des jeux de données représentatifs. Un prototype qui montre seulement un bouton et un calcul ne valide ni un compilateur compatible ni la migration d’une application de gestion.
 
@@ -281,3 +322,4 @@ Les liens ci-dessus étayent les caractéristiques des technologies, pas la fais
 - [OpenTelemetry : signaux](https://opentelemetry.io/docs/concepts/signals/).
 - [CycloneDX : spécification](https://cyclonedx.org/specification/overview/).
 - [SLSA : provenance](https://slsa.dev/spec/v1.2/provenance).
+- [PC SOFT : contrat WINDEV, notamment articles 4 et 5](https://doc.pcsoft.fr/fr-FR/?4510001=&name=License_WINDEV), et [licence du framework, notamment article 3](https://doc.windev.com/fr-FR/?1000019581=&name=licence_framework_windev) : restrictions contractuelles à examiner pour le projet réel, sans conclusion d'autorisation dans ce chapitre.

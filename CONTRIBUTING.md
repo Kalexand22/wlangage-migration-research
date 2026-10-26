@@ -10,9 +10,12 @@
 ```bash
 python3 tools/build_bibliography.py
 python3 tools/assemble_report.py
+python3 tools/update_metrics.py
 python3 tools/check_repository.py
 ```
 
 Ces commandes ne réalisent ni migration, ni comparaison avec WINDEV, ni vérification réseau de toutes les sources. Les pages PC SOFT peuvent évoluer ou avoir des URL équivalentes ; l'index bibliographique compte des URL distinctes, pas des documents indépendants.
 
 Une demande de correction doit indiquer le chapitre ou l'identifiant, l'affirmation concernée, la source ou le cas contradictoire, et la correction proposée. Les revues conservées dans `data/revue-*.md` sont des notes datées de contrôle, pas une liste automatiquement à jour des écarts encore ouverts.
+
+La phase actuelle est l’évaluation de faisabilité. Ne pas introduire de droits de publication, de dépendance PC SOFT redistribuée ou d’obligation générale d’avis préalable au code original à partir d’une simple recommandation documentaire. Les utilisations effectives de logiciels et les actes sensibles doivent être distingués et qualifiés.

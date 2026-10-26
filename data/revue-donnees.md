@@ -1,5 +1,7 @@
 # Revue finale : données, intégrations et cibles
 
+**Note historique : cette revue décrit un état antérieur. La contrainte finale du propriétaire exclut tout logiciel, DLL, outil, pilote, serveur et oracle PC SOFT, même via un tiers dans notre chaîne. Les anciennes options de maintien HFSQL ou d’observation exécutée ne sont plus des voies actives. Voir le [périmètre retenu](../docs/15-perimetre-independant-et-preuve-de-faisabilite.md).**
+
 Revue du 26 octobre 2026 sur `docs/00-synthese-et-decisions.md`, `docs/04-donnees-integrations-et-cibles.md`, `examples/profil-migration.exemple.json` et les **500 lignes** de `data/fonctionnalites.csv` alors présentes. Aucun code ou moteur n'a été exécuté ; revue documentaire uniquement.
 
 ## Conclusions et corrections réalisées

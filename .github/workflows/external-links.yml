@@ -1,0 +1,24 @@
+name: Disponibilité indicative des sources externes
+
+on:
+  schedule:
+    - cron: '37 5 * * 1' # Lundi à 05:37 UTC.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  external-links:
+    name: Rapport informatif des réponses HTTP
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Récupérer les sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Consulter les en-têtes et afficher le bilan
+        continue-on-error: true
+        run: |
+          python3 tools/check_external_links.py --output /tmp/external-links.json

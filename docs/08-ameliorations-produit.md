@@ -2,6 +2,8 @@
 
 Recherche arrêtée au 26 octobre 2026. Ce chapitre est une proposition de produit, pas une évaluation par essai comparatif de WINDEV. Chaque idée doit être validée avec des projets et des équipes représentatifs. Une fonction existante chez PC SOFT peut être améliorée par un contrat plus ouvert, une mesure précise ou une meilleure continuité de migration ; il serait trompeur de la présenter comme absente.
 
+**Contrainte active : aucun outil, DLL, framework, pilote ou serveur PC SOFT dans la chaîne, y compris chez un tiers pour les tests. Les quinze propositions ci-dessous sont des implémentations originales ; les références à l’ancien produit restent documentaires.** [Périmètre indépendant](15-perimetre-independant-et-preuve-de-faisabilite.md).
+
 ## 1. Positionnement recommandé
 
 La promesse centrale doit être : **« Vos sources WLangage restent votre point de travail ; chaque compatibilité annoncée est démontrée et chaque écart est localisé. »** Le produit doit d'abord réduire les modifications nécessaires et la durée de retour à une application fiable. Une liste de nouvelles technologies ne constitue pas à elle seule un avantage pour les développeurs qui maintiennent une application de gestion depuis quinze ans.
@@ -20,13 +22,13 @@ Le rapport distingue code repris sans modification, écrans fidèles, données c
 
 **Preuve d'acceptation :** sur un jeu de projets de référence, aucun appel connu comme non implémenté ne passe en statut compatible ; chaque diagnostic peut être relié à un test ou à une raison d'incertitude. **Dépendance :** inventaire d'API et analyse sémantique. **Risque :** faux sentiment de sécurité si le dénominateur compte seulement des lignes de code.
 
-### A02 — Comparaison automatique avec l'application d'origine
+### A02 — Comparaison automatique aux références statiques fournies
 
-Un enregistreur capture entrées, événements observables, appels contrôlés, résultats et effets de données. Le même scénario est rejoué dans un environnement isolé sur la version d'origine et le nouveau moteur. La comparaison présente le premier écart pertinent : calcul, focus, ordre d'événements, requête, donnée modifiée ou pagination.
+Le comparateur lit des entrées, résultats, états, documents ou traces déjà disponibles, avec leur provenance et le contexte connu. Il exécute uniquement le nouveau moteur indépendant et présente le premier écart pertinent : calcul, focus, ordre d’événements, requête, donnée modifiée ou pagination. Il n’enregistre pas une nouvelle exécution de WINDEV et ne demande pas au client d’en produire une dans notre protocole.
 
-Les horloges, aléas, fichiers et services tiers doivent être injectables ou enregistrés. Les opérations de paiement, d'envoi et de production restent simulées dans la recette. Les captures d'écran complètent les assertions métier ; elles ne les remplacent pas.
+Les horloges, aléas, fichiers et services du nouveau moteur sont contrôlables. Les opérations de paiement et d’envoi restent simulées. Les références manquantes ou insuffisamment contextualisées sont marquées inconnues ; des cas synthétiques originaux peuvent tester le comparateur, sans devenir de faux résultats du produit d’origine.
 
-**Preuve :** un scénario injectant une différence volontaire de total ou d'ordre d'événements échoue avec une localisation utile. **Dépendance :** environnement original autorisé et instrumentable. **Limite :** les composants non déterministes exigent une normalisation déclarée ; toute tolérance doit être visible.
+**Preuve :** détecter une différence volontaire de total, de NULL ou d’ordre d’événements avec une localisation utile. **Dépendance :** spécification et références déjà fournies exploitables. **Limite :** la conformité porte sur ces cas, sans équivalence universelle déduite de l’absence d’écart.
 
 ### A03 — Projet texte complet, stable et réversible
 
@@ -44,7 +46,7 @@ Lors de changements concurrents, comparer propriétés et événements par ident
 
 ### A05 — Compilateur autonome et compilation reproductible
 
-Fournir CLI, version épinglée du compilateur/runtime, verrouillage des dépendances, manifeste d'entrées et génération automatisable sans interaction graphique. Le client peut reconstruire la version livrée à partir du dépôt, avec les droits de redistribution des dépendances explicités. La politique de licence proposée garantit la continuité d'exécution et une procédure durable de reconstruction des versions acquises ; ses conditions exactes doivent être contractualisées.
+Fournir CLI, version épinglée du compilateur/runtime, verrouillage des dépendances, manifeste d'entrées et génération automatisable sans interaction graphique. Le client peut reconstruire la version livrée à partir du dépôt, avec les droits de redistribution des dépendances explicités. La continuité de reconstruction est un objectif technique. Le choix des licences de publication et du futur produit est différé pendant la faisabilité.
 
 **Preuve :** deux environnements de construction propres produisent des artefacts identiques quand les outils et formats le permettent ; les variations de signature/horodatage sont isolées et expliquées. **Bénéfice :** audit, reprise d'activité et indépendance de l'IDE. **Risque :** la signature et les chaînes propriétaires mobiles imposent leurs propres contraintes.
 
@@ -56,7 +58,7 @@ Exposer complétion, références, diagnostics et refactorisations via LSP ; pro
 
 ### A07 — Modernisation progressive avec variantes comparables
 
-Conserver un rendu de référence puis permettre thèmes, densités, conteneurs flexibles, dispositions web/mobile et composants accessibles par écran. Prévisualiser la variante à côté de l'original avec noms et procédures partagés. Produire une liste de différences fonctionnelles attendues, pas seulement un changement de couleur.
+Conserver un rendu de référence puis permettre thèmes, densités, conteneurs flexibles, dispositions web/mobile et composants accessibles par écran. Prévisualiser la variante à côté d’une référence statique déjà fournie, avec noms et procédures partagés. Produire une liste de différences fonctionnelles attendues, pas seulement un changement de couleur.
 
 **Preuve :** une équipe modernise une fenêtre pilote, annule la variante et retrouve le comportement de référence ; les procédures métier ne divergent pas entre versions. **Risque :** les règles de focus, validation et événement peuvent changer avec la disposition. Le thème moderne doit donc rester une évolution révisable jusqu'à sa recette.
 
@@ -74,9 +76,9 @@ Chaque action UI peut être reliée à une procédure, un appel service et une r
 
 ### A10 — Transactions, migrations de données et droits explicables
 
-Afficher ce que fait un accès implicite : contexte HFSQL utilisé, transaction active, paramètres, origine de la liaison et contraintes. Générer une migration de schéma relisible, avec analyse de perte, sauvegarde et retour arrière lorsque c'est techniquement possible. Pour les droits, présenter les règles applicables et la raison d'un refus.
+Afficher ce que fait un accès implicite : contexte de compatibilité H* utilisé sur le moteur indépendant, transaction active, paramètres, origine de la liaison et contraintes. Générer une migration de schéma relisible, avec analyse de perte, sauvegarde et retour arrière lorsque c'est techniquement possible. Pour les droits, présenter les règles applicables et la raison d'un refus.
 
-**Preuve :** un développeur peut expliquer pourquoi une écriture a lieu et pourquoi un utilisateur n'accède pas à un écran ; une migration destructrice ne s'applique pas sans étape explicite. **Différenciation recherchée :** visibilité et contrôle de la sémantique, pas remplacement systématique de HFSQL par un autre moteur. **Risque :** un changement de moteur modifie tri, verrouillage ou NULL ; la preuve exige des tests différentiels.
+**Preuve :** un développeur peut expliquer pourquoi une écriture a lieu et pourquoi un utilisateur n'accède pas à un écran ; une migration destructrice ne s'applique pas sans étape explicite. **Différenciation recherchée :** visibilité et contrôle de la sémantique sur un moteur indépendant ; le serveur et les pilotes HFSQL PC SOFT sont exclus. **Risque :** un changement de moteur modifie tri, verrouillage ou NULL ; la preuve exige des tests différentiels.
 
 ### A11 — Assistant IA gouverné et facultatif
 

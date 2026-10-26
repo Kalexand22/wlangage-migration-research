@@ -1,0 +1,51 @@
+name: Correction ou complément de recherche
+description: Signaler un fait, une proposition ou une inconnue avec sa provenance.
+title: '[Recherche] '
+body:
+  - type: dropdown
+    id: nature
+    attributes:
+      label: Nature de l'élément
+      description: La correction doit distinguer connaissance établie et choix proposé.
+      options:
+        - Fait certain à vérifier ou corriger
+        - Proposition de conception
+        - Inconnu à résoudre
+    validations:
+      required: true
+  - type: input
+    id: requirement
+    attributes:
+      label: Exigence ou emplacement concerné
+      description: Indiquer les identifiants F-xxxx, ou le chapitre et le passage si sans objet.
+      placeholder: F-0274 ; docs/04-donnees-integrations-et-cibles.md, section 5
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Élément à corriger
+      description: Décrire précisément le fait contesté, l'omission ou la proposition à revoir.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Source et provenance
+      description: Lien primaire, titre, date de consultation, édition ou version/build et cible concernés ; préciser si la source reste introuvable.
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Preuve et limites
+      description: Extrait bref, raisonnement ou reproduction minimale autorisée ; distinguer observation, hypothèse et résultat effectivement exécuté.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Correction proposée
+      description: Texte ou critère de recette proposé, avec les inconnues restantes et les effets sur le profil de compatibilité.
+    validations:
+      required: true

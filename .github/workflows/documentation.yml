@@ -1,0 +1,28 @@
+name: Vérification documentaire
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  documentation:
+    name: Structure et fichiers générés
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Récupérer les sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Régénérer et vérifier le dossier
+        run: |
+          python3 --version
+          python3 tools/build_bibliography.py
+          python3 tools/assemble_report.py
+          python3 tools/update_metrics.py
+          python3 tools/check_repository.py
+          git diff --exit-code

@@ -2,6 +2,8 @@
 
 Recherche arrêtée au 26 octobre 2026. Ce document décrit l'expérience **à construire**, les éléments officiels vérifiés servant de référence et les conditions pour déclarer une reprise satisfaisante. Les tableaux de périmètre constituent des exigences du futur produit ; ils ne signifient pas que toutes les fonctions existent déjà dans un prototype.
 
+**Contrainte de réalisation : tous les éditeurs, renderers, automatismes et outils de cet atelier sont indépendants. Aucune DLL, IDE, serveur ou outil PC SOFT n’est utilisé ; les noms et parcours du produit d’origine sont des références de conception. Les comparaisons partent de documents et traces déjà fournis, sans exécuter WINDEV.** Voir le [périmètre retenu](15-perimetre-independant-et-preuve-de-faisabilite.md).
+
 ## 1. Principe directeur : préserver les gestes, expliciter les écarts
 
 Une solution compatible doit permettre au développeur de retrouver son projet, son analyse de données, ses fenêtres, ses champs et leurs événements. Lui demander de comprendre d'abord une arborescence React, un ORM et trois outils de compilation déplacerait le coût de migration vers la formation. Le futur atelier doit donc présenter ces concepts familiers directement, tout en utilisant un stockage ouvert et une architecture moderne en dessous.

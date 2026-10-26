@@ -1,28 +1,55 @@
 {
   "date_recherche": "2026-10-26",
   "nature": "mesures_du_dossier_documentaire_uniquement",
-  "chapitres": 13,
-  "mots_chapitres": 36921,
-  "exigences_fonctionnelles": 517,
+  "chapitres": 16,
+  "mots_chapitres": 50394,
+  "exigences_fonctionnelles": 519,
   "domaines": 17,
-  "url_distinctes_citees": 124,
-  "statut_implementation": "non implémenté",
+  "priorites": {
+    "P0": 269,
+    "P1": 230,
+    "P2": 20
+  },
+  "url_distinctes_citees": 157,
+  "statuts_implementation": {
+    "non implémenté": 519
+  },
   "compatibilite_executee_mesuree": false,
   "catalogue_api_exhaustif_certifie": false,
-  "controles_reussis": [
-    "liens locaux",
-    "structure CSV",
-    "unicité identifiants",
-    "champs obligatoires",
-    "priorités",
-    "statuts",
-    "syntaxe JSON",
-    "references exigences du premier lot",
-    "absence de cycle de dependances",
-    "references et statuts des seuils proposes"
-  ],
-  "limite_controles": "Aucun test de moteur WINDEV/WLangage, aucune validation réseau exhaustive des URL.",
+  "logiciels_pcsoft_autorises": false,
+  "choix_licence_publication": "differee",
+  "preuve_independance_binaire": "non réalisée; aucun produit implémenté à inspecter",
+  "couverture_api": {
+    "rattachement_fonctions_catalogue": "non établi",
+    "denominateur_versionne": null,
+    "nb_fonctions_couvertes": null,
+    "ratio": null,
+    "raison": "Exigences et fonctions sont des unités différentes; catalogue fermé et preuves absents."
+  },
+  "exigences_rattachement_api_inconnu": 519,
+  "references_ciblees": {
+    "nombre": 16,
+    "exigences": [
+      "F-0002",
+      "F-0004",
+      "F-0011",
+      "F-0030",
+      "F-0032",
+      "F-0034",
+      "F-0036",
+      "F-0038",
+      "F-0039",
+      "F-0043",
+      "F-0046",
+      "F-0047",
+      "F-0050",
+      "F-0051",
+      "F-0060",
+      "F-0518"
+    ]
+  },
   "taches_premier_lot": 10,
   "seuils_proposes_non_valides": 5,
-  "exigences_p0_references_precisees": 15
+  "verification_structurelle": "Exécuter tools/check_repository.py; ces métriques ne préjugent pas de son résultat.",
+  "limite_controles": "Aucun test de moteur WINDEV/WLangage; contrôle de liens externes distinct et informatif."
 }

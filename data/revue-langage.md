@@ -1,5 +1,7 @@
 # Revue croisée : synthèse, options et compatibilité du langage
 
+**Note historique : cette revue décrit un état antérieur. La contrainte finale du propriétaire exclut tout logiciel, DLL, outil, pilote, serveur et oracle PC SOFT, même via un tiers dans notre chaîne. Les anciennes options de maintien HFSQL ou d’observation exécutée ne sont plus des voies actives. Voir le [périmètre retenu](../docs/15-perimetre-independant-et-preuve-de-faisabilite.md).**
+
 Revue du 26 octobre 2026. Fichiers lus : `docs/00-synthese-et-decisions.md`, `docs/01-options-et-solutions-existantes.md`, `docs/02-langage-et-import.md`. Cette note conserve les constats de la revue initiale. Les corrections 1 à 6 ont été intégrées par la revue finale ; le séquencement interprète/backend est aussi clarifié en 00 et dans le cahier des prototypes 11. Ce fichier ne constitue plus une liste de défauts ouverts.
 
 ## Constats de la revue initiale

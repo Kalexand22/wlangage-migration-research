@@ -1,0 +1,29 @@
+{
+  "nature": "provenance des observations publiques; aucune validation des contrats individuels",
+  "observations": [
+    {
+      "url": "https://windev.com/fr/sessions",
+      "final_url": "https://windev.com/fr/sessions",
+      "http_status": 200,
+      "sha256_observation": "6b8be152d500208ca77137599e7d24057f6fb4b3ebf57ba464b588c964819d2c",
+      "date": "2026-10-26",
+      "method": "lecture HTTP publique; texte HTML extrait sans scripts"
+    },
+    {
+      "url": "https://windev.com/fr/news/wdnews-off-plan-de-continuite",
+      "final_url": "https://windev.com/fr/news/wdnews-off-plan-de-continuite",
+      "http_status": 200,
+      "sha256_observation": "43ceff468a0e381ec8922d258142ff77d9e89aef4d6afb9c22ada1832b05cfd0",
+      "date": "2026-10-26",
+      "method": "lecture HTTP publique; texte HTML extrait sans scripts"
+    },
+    {
+      "url": "https://windev.com/fr/contact?ask=quote",
+      "final_url": "https://windev.com/fr/contact?ask=quote",
+      "http_status": 200,
+      "sha256_observation": "40df7a0669f9498a4cc6f1b2a6833f2e51e160bca12227b9b7b6525f3228621e",
+      "date": "2026-10-26",
+      "method": "lecture HTTP publique; texte HTML extrait sans scripts"
+    }
+  ]
+}

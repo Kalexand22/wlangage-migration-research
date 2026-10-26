@@ -14,12 +14,14 @@ REQUIRED = {
     "id", "domaine", "sous_domaine", "fonctionnalite", "produits_reference",
     "cibles_proposees", "priorite", "strategie", "statut_preuve",
     "critere_acceptation", "source_url", "statut_implementation", "portee_source",
+    "nb_fonctions_couvertes", "statut_rattachement_api",
+    "decision_perimetre",
 }
 
 
 def main():
     errors = []
-    markdown = sorted(ROOT.glob("*.md")) + sorted((ROOT / "docs").glob("*.md"))
+    markdown = sorted(path for path in ROOT.rglob("*.md") if ".git" not in path.relative_to(ROOT).parts)
     for path in markdown:
         for target in LINK.findall(path.read_text(encoding="utf-8")):
             if target.startswith(("https://", "http://", "mailto:", "#")):
@@ -54,6 +56,11 @@ def main():
                 errors.append(f"Priorité invalide ligne {line}")
             if row.get("statut_implementation") != "non implémenté":
                 errors.append(f"Ce dossier de recherche ne démontre aucune implémentation : ligne {line}")
+            count = row.get("nb_fonctions_couvertes", "")
+            if count != "INCONNU" and not count.isdigit():
+                errors.append(f"Nombre de fonctions invalide ligne {line}")
+            if count == "INCONNU" and row.get("statut_rattachement_api") != "non établi":
+                errors.append(f"Rattachement API incohérent ligne {line}")
             parsed = urlsplit(row.get("source_url", ""))
             if parsed.scheme not in {"http", "https"} or not parsed.hostname:
                 errors.append(f"URL source invalide ligne {line}")
@@ -66,6 +73,20 @@ def main():
             json.loads(path.read_text(encoding="utf-8"))
         except (ValueError, UnicodeError) as exc:
             errors.append(f"JSON invalide {path.relative_to(ROOT)} : {exc}")
+
+    try:
+        policy = json.loads((ROOT / "data/contraintes-projet.json").read_text(encoding="utf-8"))
+        if policy["pcsoft_software_allowed"] is not False:
+            errors.append("La contrainte du propriétaire exclut les logiciels PC SOFT")
+        if policy["publication_license_decision"] != "differee":
+            errors.append("Le choix de licence de publication est différé")
+        profile = json.loads((ROOT / "examples/profil-migration.exemple.json").read_text(encoding="utf-8"))
+        if profile["constraints"]["noPcsoft"] is not True:
+            errors.append("Le modèle de profil doit reprendre noPcsoft=true")
+        if profile["generation_gate"]["no_PCSoft"] is not True:
+            errors.append("Le modèle doit déclarer le contrôle d'exclusion PC SOFT")
+    except (OSError, ValueError, KeyError, TypeError):
+        errors.append("Contrainte d'indépendance ou profil manquant/incohérent")
     bibliography = ROOT / "data/bibliographie.json"
     if bibliography.exists():
         try:
@@ -74,6 +95,19 @@ def main():
                 errors.append("Comptage bibliographique incohérent")
         except (ValueError, KeyError, TypeError):
             errors.append("Structure bibliographique invalide")
+
+    metrics = ROOT / "data/metriques-dossier.json"
+    if metrics.exists():
+        try:
+            data = json.loads(metrics.read_text(encoding="utf-8"))
+            if data["exigences_fonctionnelles"] != len(rows):
+                errors.append("Métriques : nombre d'exigences périmé")
+            if data["chapitres"] != len(list((ROOT / "docs").glob("*.md"))):
+                errors.append("Métriques : nombre de chapitres périmé")
+            if data["couverture_api"]["ratio"] is not None:
+                errors.append("Aucun ratio API n'est démontré dans ce dossier")
+        except (ValueError, KeyError, TypeError):
+            errors.append("Structure des métriques invalide")
 
     plan_path = ROOT / "data/premier-lot.csv"
     plan = []

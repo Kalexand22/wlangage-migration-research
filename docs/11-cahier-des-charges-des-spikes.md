@@ -8,7 +8,11 @@ Les seuils illustratifs sont rapprochés par stade dans le [registre de décisio
 
 Les durées sont des **hypothèses de charge en jours-personnes**, pour des ingénieurs expérimentés disposant des outils et des entrées, hors obtention des droits et remise en état du patrimoine. Elles ne constituent ni devis ni calendrier. On fige pour chaque essai : version/build PC SOFT, configuration, options, encodage, cible, architecture, système, polices et données. Les nombres de cas sont des minima de caractérisation du prototype, jamais des preuves d'exhaustivité.
 
-Prévoir trois projets autorisés : gestion avec états, interop/matériel, concurrence ou logique complexe. Une installation PC SOFT autorisée et capable de reconstruire ces projets fournit l'oracle ; son absence rend l'essai **non concluant**. Les jeux contiennent des données fictives ou anonymisées. Chaque dossier restitue entrées et empreintes, scripts, versions, résultats bruts, comparaison, limites, décision et procédure de répétition. Le code métier n'est pas réécrit pour obtenir un résultat favorable. Un échec reste dans le dénominateur.
+**Exclusion ferme : aucun outil, DLL, framework, SDK, pilote, serveur HFSQL ou pont PC SOFT à aucune étape, y compris import, build, CI, tests et comparaison.** Aucun WINDEV ou exécutable d'origine n'est lancé comme oracle, même chez un client pour notre workflow. Les six prototypes utilisent du code original et des outils tiers non PC SOFT. Fichiers/exports, fixtures, traces et PDF déjà disponibles peuvent être fournis comme données passives avec provenance ; aucun outil PC SOFT n'est sollicité pour les créer ou les compléter.
+
+Prévoir des dossiers déjà disponibles de trois projets : gestion avec états, interop tierce non PC SOFT, concurrence ou logique complexe. Les attendus proviennent de règles publiques sourcées ou de preuves passives reçues. Un attendu absent reste inconnu et bloque la revendication concernée, sans bloquer les expériences autonomes. Les jeux sont fictifs ou anonymisés. Chaque dossier restitue entrées/empreintes, provenance, scripts, résultats et limites. L'accord de nos deux moteurs peut partager un défaut : il ne prouve pas une parité totale avec PC SOFT.
+
+**Gate commun à tous les prototypes, à implémenter :** SBOM et fermeture transitive des dépendances, liste positive d'outils avec empreintes, processus enfants, modules/assemblages chargés, services/connexions et paquet inspectés sur machine propre sans PC SOFT. Toute dépendance PC SOFT locale, distante ou déléguée fait échouer le gate. Un composant non identifié n'est pas admis implicitement. Aucun avis juridique préalable n'est posé comme condition au code original autonome.
 
 Les seuils ci-dessous sont des **propositions à arrêter avant l'exécution**, puis à conserver dans le dossier. Une divergence critique de montant, transaction, ordre métier, document ou sécurité interdit le passage au pilote concerné, même si le taux moyen est élevé.
 
@@ -17,7 +21,7 @@ Les seuils ci-dessous sont des **propositions à arrêter avant l'exécution**, 
 | P1 | La chaîne conserve-t-elle la sémantique sur un sous-ensemble précis ? | 20–35 jours-personnes |
 | P2 | Peut-on récupérer les éléments sans reconstruction généralisée ? | 10–20 jours-personnes |
 | P3 | Le modèle d'événements permet-il un vrai parcours Windows ? | 12–20 jours-personnes |
-| P4 | L'adaptateur préserve-t-il les contrats H* utilisés ? | 15–25 jours-personnes |
+| P4 | L'adaptateur original sur PostgreSQL satisfait-il les contrats H* définis ? | 15–25 jours-personnes |
 | P5 | Les états restent-ils utilisables et exacts ? | 12–20 jours-personnes |
 | P6 | Le développeur débogue-t-il effectivement son WLangage ? | 8–15 jours-personnes |
 
@@ -25,55 +29,55 @@ P1 et P2 peuvent commencer en parallèle. P3–P5 consomment leurs contrats stab
 
 ## P1 — Compilateur et runtime sémantique
 
-**Entrées.** Profil figé, exemples originaux autorisés, documentation des constructions choisies et au moins 200 cas : nombres/arrondis, conversions, chaînes, dates vides/limites, paramètres par référence, tableaux, ordre d'évaluation et erreurs. Définir une grammaire volontairement limitée mais complète pour ces cas.
+**Entrées.** Profil déclaré, exemples originaux, documentation publique et fixtures/traces déjà fournies. Viser 200 cas : nombres, conversions, chaînes, dates, références, tableaux, ordre d'évaluation et erreurs. Chaque attendu porte sa source et son statut : règle documentée, observation passive reçue, ou hypothèse non vérifiée. Grammaire limitée et périmètre annoncés avant mesure.
 
 **Travail.** Réaliser lexer/parseur, AST, IR avec positions et effets, et primitives de runtime. Commencer par un interprète minimal afin d'obtenir des observations explicables ; produire ensuite un backend C# interne/.NET pour **le même sous-ensemble**. Les deux moteurs partagent les opérations sémantiques. L'ordre des conditions et les mutations d'arguments sont journalisés, pas seulement la valeur finale.
 
-**Artefacts.** Grammaire, table des types/conversions, cas autoportants, exécutables de référence, traces, résultats des deux moteurs, liste des constructions refusées et benchmark documenté.
+**Artefacts.** Grammaire, types/conversions, cas autoportants, attendus sourcés, résultats des deux moteurs originaux, traces de leur exécution, constructions refusées, inconnues et benchmark.
 
-**Mesures et décision.** Exiger 100 % des cas déclarés dans le sous-ensemble conformes dans les deux moteurs, y compris erreurs et effets observables ; aucune approximation numérique non prévue. Chaque syntaxe hors périmètre doit être refusée avec position utile. Mesurer temps et mémoire sur cinq charges fixes ; un ralentissement compilé supérieur à 5× sur une charge représentative déclenche une analyse avant décision, sans imposer cette limite à l'interprète diagnostique.
+**Mesures et décision.** Tous les cas indispensables au sous-ensemble revendiqué doivent satisfaire leur attendu documenté, erreurs et effets compris. Publier hypothèses/inconnues séparément ; l'accord compilé/interprété mesure aussi la cohérence interne. Syntaxe hors périmètre refusée avec position utile. Mesurer temps/mémoire sur cinq charges et fixer un budget absolu ; le ratio illustratif 5× n'est utilisable que si une référence passive comparable existe déjà. Aucun PC SOFT n'est lancé pour la mesurer.
 
 **Si échec.** Corriger le modèle de valeurs ou l'IR avant d'ajouter des API. Si .NET empêche un contrat indispensable, essayer un backend alternatif sur ces mêmes cas. Si la sémantique ne peut être caractérisée, réduire publiquement le profil ou abandonner la promesse de compatibilité correspondante.
 
-## P2 — Import texte hybride et voie des projets binaires
+## P2 — Import des fichiers/exports fournis et blocages binaires
 
-**Entrées.** Copies immuables des trois projets, dont un export texte identifié et, si le parc en contient, un projet natif ancien avec sa version autorisée. Inclure fenêtre interne, état, analyse, requête, classe, composant et ressources. Obtenir un inventaire de référence à partir de l'outil d'origine.
+**Entrées.** Copies immuables déjà disponibles, export texte fourni s'il existe, métadonnées et inventaires passifs avec provenance. Inclure fenêtre, état, analyse, requête, classe et ressources. Un natif ancien peut être fourni comme fichier ; aucune installation de sa version d'origine n'est requise ni utilisée.
 
-**Travail.** Détecter format/encodage sans se fier seulement à l'extension ; extraire traitements, propriétés et références avec provenance. Préserver les segments opaques. Pour le binaire, tester d'abord l'ouverture et l'export sur copie via les outils autorisés ; aucun décodeur binaire universel n'est présupposé. Reconstruire la référence après conversion pour détecter une altération due à celle-ci.
+**Travail.** Détecter format/encodage, lire via importeurs originaux, extraire traitements/propriétés/références et préserver les segments opaques. Un lecteur binaire indépendant n'est admis que si son fonctionnement est spécifié et testé sans composant PC SOFT. Sinon la portion reste opaque et sa fonctionnalité bloquée. Aucun IDE, exporteur ou convertisseur PC SOFT, même délégué au détenteur.
 
-**Artefacts.** Inventaire avant/après, empreintes, manifeste normalisé, correspondances objet/traitement, archive des inconnues, journal de conversion et diff d'une modification locale.
+**Artefacts.** Inventaire des fichiers reçus et de leur extraction, empreintes, manifeste, correspondances objet/traitement, portions inconnues et diff d'une modification locale.
 
-**Mesures et décision.** Retrouver 100 % des blocs de code et ressources inventoriés du périmètre, avec identité octet pour octet ou transcodage réversible déclaré. Toutes les propriétés indispensables au pilote sont récupérées ou bloquent explicitement l'élément. Aucun inconnu n'est supprimé. Un changement de libellé ne doit modifier que les éléments attendus. **Go binaire** uniquement si une voie reproductible restitue les métadonnées requises ; un export du code seul ne suffit pas.
+**Mesures et décision.** Retrouver tous les blocs/ressources de l'inventaire passif connu, avec identité d'octets ou transcodage déclaré. Sans décompte source fiable, la complétude reste indéterminée. Les propriétés indispensables absentes bloquent l'élément ; aucun inconnu supprimé. **Go binaire** seulement avec lecture indépendante éprouvée et métadonnées suffisantes. Le seul code texte ne démontre pas la reprise des écrans/états.
 
-**Si échec.** Demander un export plus complet au détenteur, limiter les versions prises en charge ou déclarer l'élément non importable. Si le parc prioritaire exige une reconstruction manuelle systématique, arrêter l'orientation « migration maximale » et chiffrer explicitement une autre approche.
+**Si échec.** Rechercher uniquement d'autres fichiers déjà disponibles, réduire la couverture ou déclarer l'élément non importable. Spécification/reconstruction originale explicite possible ; aucun nouvel export par PC SOFT ni pont en recours. Si la reconstruction devient systématique, reconsidérer la promesse de reprise maximale.
 
 ## P3 — Boucle d'événements, fenêtres et modalité
 
-**Entrées.** Écran Windows avec table liée, fenêtre modale, validation, raccourcis, événements de saisie/sortie, minuterie et callback. Capturer douze parcours déterministes et quatre scénarios de concurrence/fermeture sur la référence.
+**Entrées.** Description d'écran déjà fournie, ou écran synthétique : table liée, modalité, validation, raccourcis, minuterie et callback. Définir douze parcours et quatre scénarios de concurrence à partir des contrats publics et traces déjà disponibles, sans capture nouvelle de l'original PC SOFT.
 
 **Travail.** Exécuter le code importé via P1 dans un renderer Windows minimal. Construire répartiteur et contexte, puis tester focus, annulation, réentrance, modification programmée, fermeture pendant traitement et résultat modal. La prévisualisation du concepteur utilise ce même renderer dans un processus isolé.
 
 **Artefacts.** Modèle UI, carte des événements, traces comparées, captures à DPI fixés, scénario clavier et liste de propriétés encore indisponibles.
 
-**Mesures et décision.** Identité des événements déterministes et de leurs effets métier ; pour la concurrence, respect des relations d'ordre convenues sans exiger des horodatages identiques. Zéro validation omise, double écriture ou événement délivré à la mauvaise instance. Tous les parcours clavier terminent avec le même résultat. Les écarts visuels sont localisés et acceptés individuellement ; ils ne compensent pas un défaut fonctionnel. Mesurer latence p95 et mémoire sur matériel identique.
+**Mesures et décision.** Événements et effets conformes aux attendus documentés ; concurrence conforme aux relations d'ordre spécifiées, sans imposer d'horodatage identique. Zéro validation omise, double écriture ou mauvaise instance. Comparer les captures de notre renderer aux images passives disponibles, si leur contexte est connu. Un comportement sans référence reste non vérifié ; mesurer p95 et mémoire sur notre chaîne autonome.
 
 **Si échec.** Modifier ordonnanceur et contexte ; comparer WinForms et Avalonia sur le composant bloquant. Conserver Windows comme profil séparé. Une modalité desktop incompatible avec le navigateur ne doit pas conduire à modifier silencieusement le code du pilote.
 
-## P4 — Contrats H* et conservation des données
+## P4 — Contrats H* originaux sur PostgreSQL
 
-**Entrées.** Analyse et base fictive représentative, contraintes, clés composées, doublons, NULL, mémo/binaire et deux clients concurrents. Inventorier précisément les signatures H* utilisées ; disposer d'une interface HFSQL et de droits d'utilisation vérifiés.
+**Entrées.** Schéma et export logique déjà fournis, ou base synthétique PostgreSQL : clés composées, doublons, NULL, mémos/binaires et deux clients. Signatures H* tirées des sources reçues et documentation publique ; traces de données préexistantes si disponibles. Aucun fichier natif n'est lu par driver HFSQL.
 
-**Travail.** Réaliser au moins trente scénarios : recherche exacte/approchée, parcours/fin, filtre, tampon courant, modification, erreur, transaction/rollback, verrou concurrent et interruption de connexion. Comparer un adaptateur conservant HFSQL à la référence. Un essai PostgreSQL éventuel est une variante distincte, avec son propre rapport.
+**Travail.** Implémenter la couche sémantique originale sur PostgreSQL avec pilote non PC SOFT. Réaliser trente scénarios : recherche, parcours/fin, filtre, tampon courant, modification, erreur, transaction/rollback, verrou et interruption. Comparer aux contrats publics et attendus passifs reçus. Aucun serveur HFSQL, pilote, SDK ou pont.
 
 **Artefacts.** Contrat du fournisseur, traces de curseur et d'erreur, dump logique canonique, contrôles de volumes/empreintes, script de concurrence et procédure de restauration.
 
-**Mesures et décision.** Zéro divergence sur état final, retour, curseur, transaction et invariant métier dans les scénarios annoncés. Les blocages concurrents respectent le contrat convenu, sans exiger une durée identique. Mesurer latence p50/p95, débit et comportement lors d'un arrêt brutal. Aucun passage en production si l'interface ne couvre pas un contrat H* indispensable. La seule réussite de requêtes SQL ne vaut pas réussite du prototype.
+**Mesures et décision.** État final, retour, curseur, transaction et invariant conformes aux contrats explicitement retenus. Lacunes et contradictions de références restent visibles et bloquent la revendication concernée. Mesurer p50/p95, débit et reprise après arrêt de notre chaîne. La réussite de SQL ne prouve pas H* ; aucun résultat ne prétend à une parité totale avec HFSQL non exécuté.
 
-**Si échec.** Pont autorisé plus proche du moteur d'origine, réduction du profil ou maintien du module existant. Pour un remplacement SQL, construire une émulation démontrée ou accepter un changement explicite ; aucune double écriture non transactionnelle n'est retenue comme solution par défaut.
+**Si échec.** Corriger l'émulation originale, réduire le contrat ou annoncer un changement fonctionnel nécessitant adaptation. Si un cas indispensable reste insoluble, bloquer le module. HFSQL, pont et maintien du runtime d'origine ne sont jamais des solutions admises.
 
 ## P5 — États, pagination et PDF
 
-**Entrées.** Trois états autorisés : facture avec montants et totaux, état avec ruptures/sous-totaux, document comportant images, codes-barres et événements. Fournir polices sous droits adéquats, formats papier, marges, imprimante et PDF de référence. Utiliser cinq jeux par état, dont vide, une ligne et saut de page limite.
+**Entrées.** Sources déjà fournies de trois états, ou modèles originaux : facture, ruptures/sous-totaux, images/codes-barres/événements. Polices tierces non PC SOFT sous droits adéquats, papier/marges et PDF de référence déjà disponible avec provenance. Cinq jeux par état : vide, une ligne et limites de pagination incluses.
 
 **Travail.** Importer bandes, liaisons et traitements ; construire un layout documentaire avec pagination et génération PDF. Tester aperçu et une impression réelle, sans remplacer les traitements d'état par une réécriture métier.
 
@@ -81,7 +85,7 @@ P1 et P2 peuvent commencer en parallèle. P3–P5 consomment leurs contrats stab
 
 **Mesures et décision.** Zéro montant, libellé obligatoire, ligne ou code-barres absent ; totaux et ordre identiques. Même nombre de pages sur les cas de fidélité retenus. Fixer une tolérance proposée de 0,5 mm pour les zones critiques, à confirmer selon l'usage, avec contrôle visuel des écarts restants. Vérifier lecture des codes-barres et absence de texte tronqué. Un simple pourcentage de pixels semblables n'est pas un critère suffisant.
 
-**Si échec.** Évaluer un moteur documentaire différent sur les mêmes états, maintenir temporairement l'impression d'origine ou restreindre publiquement les types d'états supportés. La facture du pilote demeure bloquante.
+**Si échec.** Corriger notre layout, essayer un moteur documentaire tiers non PC SOFT ou restreindre les types d'états. Sans état exigé fonctionnel, le pilote reste bloqué. Aucun maintien de l'impression PC SOFT ni génération de PDF d'origine à la demande.
 
 ## P6 — Débogage dans le code d'origine
 

@@ -2,17 +2,15 @@
   "research_date": "2026-10-26",
   "kind": "index_of_cited_urls_not_a_network_or_factual_verification",
   "method": "Exact URLs extracted from chapter Markdown and the functional matrix; aliases may point to the same document.",
-  "url_count": 124,
+  "url_count": 157,
   "references": [
     {
       "url": "https://aide.pcsoft.fr/?1410087236=&name=annexe_7_les_procedures",
       "host": "aide.pcsoft.fr",
       "labels": [
-        "Source : procédures, paramètres et références",
         "Langage"
       ],
       "referenced_in": [
-        "docs/02-langage-et-import.md",
         "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
@@ -32,7 +30,7 @@
       "url": "https://blogs.pcsoft.fr/fr/obtenir-access-token-operations-pull-commit-push-projet-partage-git-heberge-chez-github/281474976710987/read.awp",
       "host": "blogs.pcsoft.fr",
       "labels": [
-        "PC SOFT, partage des projets et authentification GitHub",
+        "PC SOFT, enregistrement des projets en texte",
         "Blog officiel PC SOFT sur les projets Git",
         "Import et projet",
         "Collaboration"
@@ -69,11 +67,34 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://dev-booster.com/prestations/migration-windev",
+      "host": "dev-booster.com",
+      "labels": [
+        "Page propre migration WINDEV"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://developer.android.com/training/permissions/requesting",
       "host": "developer.android.com",
       "labels": [
         "Permissions Android",
         "Permissions à l'exécution Android"
+      ],
+      "referenced_in": [
+        "docs/04-donnees-integrations-et-cibles.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://doc.pcsoft.fr/?1000019581",
+      "host": "doc.pcsoft.fr",
+      "labels": [
+        "licence du framework",
+        "Licence du framework, clauses à rapprocher du contrat applicable"
       ],
       "referenced_in": [
         "docs/04-donnees-integrations-et-cibles.md"
@@ -107,7 +128,7 @@
       "url": "https://doc.pcsoft.fr/?1410086932=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Tests unitaires",
+        "Tests unitaires, contexte documentaire",
         "Qualité"
       ],
       "referenced_in": [
@@ -131,7 +152,7 @@
       "url": "https://doc.pcsoft.fr/?1410087273",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "licence spécifique du pilote OLE DB HFSQL",
+        "licence OLE DB HFSQL",
         "PC SOFT, licence pilote OLE DB HFSQL"
       ],
       "referenced_in": [
@@ -143,7 +164,7 @@
       "url": "https://doc.pcsoft.fr/?1410087305=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Source : manipulation du champ Éditeur de code"
+        "Source documentaire : manipulation du champ Éditeur de code"
       ],
       "referenced_in": [
         "docs/02-langage-et-import.md"
@@ -276,7 +297,20 @@
       "url": "https://doc.pcsoft.fr/?35400016=",
       "host": "doc.pcsoft.fr",
       "labels": [
+        "Fonctions historiques d'administration",
         "Gestion des fichiers HFSQL C/S"
+      ],
+      "referenced_in": [
+        "docs/04-donnees-integrations-et-cibles.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://doc.pcsoft.fr/?4510001",
+      "host": "doc.pcsoft.fr",
+      "labels": [
+        "Licence WINDEV",
+        "Licence WINDEV, clauses à rapprocher du contrat applicable"
       ],
       "referenced_in": [
         "docs/04-donnees-integrations-et-cibles.md"
@@ -287,7 +321,7 @@
       "url": "https://doc.pcsoft.fr/?9000059=&name=provider_ole_pour_hfsql&verdisp=180",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Provider OLE DB HFSQL",
+        "OLE DB HFSQL, comparaison historique",
         "Provider OLE DB HFSQL, page historique"
       ],
       "referenced_in": [
@@ -363,7 +397,7 @@
       "url": "https://doc.pcsoft.fr/en-us/?1410087576=&name=deploying_android_application",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Déploiement Android",
+        "Extensions présentées dans le déploiement Android",
         "Déploiement d'application Android, fichiers HFSQL"
       ],
       "referenced_in": [
@@ -375,10 +409,12 @@
       "url": "https://doc.pcsoft.fr/fr-FR/",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "accueil de la documentation"
+        "accueil de la documentation",
+        "Qualité"
       ],
       "referenced_in": [
-        "docs/06-inventaire-fonctionnel-et-couverture.md"
+        "docs/06-inventaire-fonctionnel-et-couverture.md",
+        "data/fonctionnalites.csv"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -470,6 +506,17 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://doc.pcsoft.fr/fr-FR/?1514077=",
+      "host": "doc.pcsoft.fr",
+      "labels": [
+        "Sources : passage de paramètres"
+      ],
+      "referenced_in": [
+        "docs/02-langage-et-import.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://doc.pcsoft.fr/fr-FR/?1514088=",
       "host": "doc.pcsoft.fr",
       "labels": [
@@ -531,8 +578,7 @@
       "host": "doc.pcsoft.fr",
       "labels": [
         "pilote ODBC HFSQL",
-        "configuration ODBC",
-        "Pilote ODBC HFSQL",
+        "ODBC HFSQL, comparaison historique",
         "Pilote ODBC HFSQL Windows"
       ],
       "referenced_in": [
@@ -552,10 +598,41 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://doc.pcsoft.fr/fr-FR/?4510001=&name=License_WINDEV",
+      "host": "doc.pcsoft.fr",
+      "labels": [
+        "contrat WINDEV publié, article 4",
+        "PC SOFT : contrat WINDEV, notamment articles 4 et 5",
+        "contrat WINDEV, article 4",
+        "PC SOFT, contrat WINDEV, articles 4 et 5",
+        "licence WINDEV, article 4",
+        "licence WINDEV",
+        "PC SOFT, licence WINDEV"
+      ],
+      "referenced_in": [
+        "docs/00-synthese-et-decisions.md",
+        "docs/05-architecture-cible.md",
+        "docs/07-plan-realisation-et-risques.md",
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://doc.pcsoft.fr/fr-FR/?9000011=",
       "host": "doc.pcsoft.fr",
       "labels": [
         "Sources : saisir du code Java"
+      ],
+      "referenced_in": [
+        "docs/02-langage-et-import.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://doc.pcsoft.fr/fr-FR/?9000050=&name=windev_2026_update",
+      "host": "doc.pcsoft.fr",
+      "labels": [
+        "Source : mise à jour WINDEV 2026, rubrique Update 2"
       ],
       "referenced_in": [
         "docs/02-langage-et-import.md"
@@ -702,7 +779,7 @@
       "url": "https://doc.pcsoft.fr/fr-fr/?1000024948=",
       "host": "doc.pcsoft.fr",
       "labels": [
-        "Source : Source.ExécuteRequêteSQL",
+        "Source documentaire : Source.ExécuteRequêteSQL",
         "ExécuteRequêteSQL",
         "Données"
       ],
@@ -798,7 +875,7 @@
       "url": "https://doc.windev.com/en-US/?2011027=&name=Generer_Scripts_SQL",
       "host": "doc.windev.com",
       "labels": [
-        "Génération de scripts SQL",
+        "Génération de scripts SQL, contexte historique",
         "Génération des scripts SQL depuis une analyse"
       ],
       "referenced_in": [
@@ -853,6 +930,34 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://doc.windev.com/en-US/?9500230=",
+      "host": "doc.windev.com",
+      "labels": [
+        "Source : PC SOFT, Share your projects via Git, prérequis et préparation"
+      ],
+      "referenced_in": [
+        "docs/02-langage-et-import.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://doc.windev.com/fr-FR/?1000019581=&name=licence_framework_windev",
+      "host": "doc.windev.com",
+      "labels": [
+        "licence du framework, article 3",
+        "licence du framework, notamment article 3",
+        "licence du Framework, article 3",
+        "PC SOFT, licence du Framework"
+      ],
+      "referenced_in": [
+        "docs/00-synthese-et-decisions.md",
+        "docs/05-architecture-cible.md",
+        "docs/07-plan-realisation-et-risques.md",
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://doc.windev.com/fr-FR/?1000021063=&product=WB",
       "host": "doc.windev.com",
       "labels": [
@@ -860,6 +965,18 @@
       ],
       "referenced_in": [
         "data/fonctionnalites.csv"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://doc.windev.com/fr-FR/?4510003=&name=Licence_Outils",
+      "host": "doc.windev.com",
+      "labels": [
+        "licence des outils",
+        "PC SOFT, licence des outils"
+      ],
+      "referenced_in": [
+        "docs/09-propriete-intellectuelle-et-licences.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -899,11 +1016,33 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://eloneva.com/migration-windev/",
+      "host": "eloneva.com",
+      "labels": [
+        "méthode détaillée"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://eloneva.com/services/migration-windev-webdev/",
+      "host": "eloneva.com",
+      "labels": [
+        "Page de prestation"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32009L0024",
       "host": "eur-lex.europa.eu",
       "labels": [
         "Directive 2009/24/CE",
-        "directive 2009/24/CE, article 1"
+        "directive 2009/24/CE"
       ],
       "referenced_in": [
         "docs/07-plan-realisation-et-risques.md",
@@ -927,8 +1066,20 @@
       "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:62010CJ0406",
       "host": "eur-lex.europa.eu",
       "labels": [
-        "SAS Institute / World Programming, C-406/10, arrêt du 2 mai 2012",
+        "SAS Institute / World Programming, CJUE C-406/10, 2 mai 2012",
         "CJUE, C-406/10, ECLI:EU:C:2012:259"
+      ],
+      "referenced_in": [
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:62020CJ0013",
+      "host": "eur-lex.europa.eu",
+      "labels": [
+        "Top System / État belge, **C-13/20**, 6 octobre 2021",
+        "CJUE, C-13/20, ECLI:EU:C:2021:811"
       ],
       "referenced_in": [
         "docs/09-propriete-intellectuelle-et-licences.md"
@@ -953,7 +1104,30 @@
       "url": "https://forum.xojo.com/t/new-webinar-intro-to-xojo-for-windev-users/88740",
       "host": "forum.xojo.com",
       "labels": [
-        "Annonce officielle Xojo"
+        "Annonce officielle Xojo",
+        "Webinaire de l'éditeur pour utilisateurs WINDEV"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://fr.linkedin.com/posts/winexit_architecturelogicielle-windev-refactoring-activity-7519284386350043137--4sw",
+      "host": "fr.linkedin.com",
+      "labels": [
+        "sa description de méthode"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://fr.linkedin.com/posts/winexit_windev-migration-react-activity-7518264443785416704-ogyR",
+      "host": "fr.linkedin.com",
+      "labels": [
+        "Annonce du compte de l'entreprise"
       ],
       "referenced_in": [
         "docs/01-options-et-solutions-existantes.md"
@@ -968,6 +1142,31 @@
       ],
       "referenced_in": [
         "docs/03-experience-developpement-et-interface.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://fr.pcsoft-windev-webdev.com/brochure-WX2026.pdf",
+      "host": "fr.pcsoft-windev-webdev.com",
+      "labels": [
+        "Brochure officielle 2026, page PDF15, nouveautés133–135",
+        "Langage"
+      ],
+      "referenced_in": [
+        "docs/06-inventaire-fonctionnel-et-couverture.md",
+        "data/fonctionnalites.csv"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://fr.pcsoft-windev-webdev.com/brochure-WX2026.pdf#page=15",
+      "host": "fr.pcsoft-windev-webdev.com",
+      "labels": [
+        "Source : brochure 2026, nouveautés 133–135, page PDF 15, pages imprimées 28–29",
+        "brochure 2026, nouveautés 133–135"
+      ],
+      "referenced_in": [
+        "docs/02-langage-et-import.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1012,7 +1211,31 @@
       "url": "https://github.com/lukimperinetti/wl2net",
       "host": "github.com",
       "labels": [
-        "Dépôt de l'auteur et limites"
+        "Dépôt de l'auteur et limites",
+        "Dépôt de l'auteur"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://github.com/migration-windev/windev-vers-dotnet/blob/2f3e04c808070bb5631299a10f287d47dffd2874/LICENSE",
+      "host": "github.com",
+      "labels": [
+        "licence MIT"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://github.com/migration-windev/windev-vers-dotnet/blob/2f3e04c808070bb5631299a10f287d47dffd2874/README.md",
+      "host": "github.com",
+      "labels": [
+        "README à version figée",
+        "README figé, étape de préparation"
       ],
       "referenced_in": [
         "docs/01-options-et-solutions-existantes.md"
@@ -1057,7 +1280,6 @@
       "url": "https://help.windev.com/en-US/?3044107=",
       "host": "help.windev.com",
       "labels": [
-        "Connecteurs dans HOuvreConnexion",
         "HOuvreConnexion",
         "HOuvreConnexion et connecteurs"
       ],
@@ -1136,6 +1358,17 @@
       ],
       "referenced_in": [
         "docs/05-architecture-cible.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://lexode.ch/",
+      "host": "lexode.ch",
+      "labels": [
+        "Site propre de l'offre"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1225,6 +1458,17 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://pcsoft.fr/wlangage.htm",
+      "host": "pcsoft.fr",
+      "labels": [
+        "page WLangage actuelle de PC SOFT"
+      ],
+      "referenced_in": [
+        "docs/06-inventaire-fonctionnel-et-couverture.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://slsa.dev/spec/v1.2/provenance",
       "host": "slsa.dev",
       "labels": [
@@ -1233,6 +1477,17 @@
       ],
       "referenced_in": [
         "docs/05-architecture-cible.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://smartshift.fr/migration-pcsoft",
+      "host": "smartshift.fr",
+      "labels": [
+        "Dossier propre de l'offre"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1296,6 +1551,52 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://windev.com/fr/contact?ask=quote",
+      "host": "windev.com",
+      "labels": [
+        "Contact commercial"
+      ],
+      "referenced_in": [
+        "docs/14-contexte-commercial-et-decision.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://windev.com/fr/news/wdnews-off-plan-de-continuite",
+      "host": "windev.com",
+      "labels": [
+        "Plan de continuité"
+      ],
+      "referenced_in": [
+        "docs/14-contexte-commercial-et-decision.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://windev.com/fr/sessions",
+      "host": "windev.com",
+      "labels": [
+        "Définition des sessions",
+        "Page officielle Sessions"
+      ],
+      "referenced_in": [
+        "docs/04-donnees-integrations-et-cibles.md",
+        "docs/14-contexte-commercial-et-decision.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://winfall.fr/",
+      "host": "winfall.fr",
+      "labels": [
+        "Site de l'offre"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://www.antlr.org/about.html",
       "host": "www.antlr.org",
       "labels": [
@@ -1320,6 +1621,30 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://www.ca4.uscourts.gov/opinions/161808.P.pdf",
+      "host": "www.ca4.uscourts.gov",
+      "labels": [
+        "SAS v WPL, Fourth Circuit, **24 octobre 2017**, nos 16-1808/16-1857",
+        "Fourth Circuit, 24 octobre 2017"
+      ],
+      "referenced_in": [
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://www.ca4.uscourts.gov/opinions/191290.P.pdf",
+      "host": "www.ca4.uscourts.gov",
+      "labels": [
+        "**12 mars 2020**, nos 19-1290/19-1300",
+        "Fourth Circuit, 12 mars 2020"
+      ],
+      "referenced_in": [
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://www.electronjs.org/docs/latest/tutorial/security",
       "host": "www.electronjs.org",
       "labels": [
@@ -1332,14 +1657,49 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032041260/",
+      "host": "www.legifrance.gouv.fr",
+      "labels": [
+        "l'article 1190 du Code civil",
+        "Code civil, art. 1190"
+      ],
+      "referenced_in": [
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032041378/",
+      "host": "www.legifrance.gouv.fr",
+      "labels": [
+        "L'article 1199",
+        "1199"
+      ],
+      "referenced_in": [
+        "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044365559",
       "host": "www.legifrance.gouv.fr",
       "labels": [
-        "l'article L122-6-1 du CPI",
+        "le CPI L122-6-1",
         "CPI, article L122-6-1"
       ],
       "referenced_in": [
         "docs/09-propriete-intellectuelle-et-licences.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://www.linkedin.com/company/pc-soft/",
+      "host": "www.linkedin.com",
+      "labels": [
+        "communication officielle PC SOFT"
+      ],
+      "referenced_in": [
+        "docs/14-contexte-commercial-et-decision.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1472,6 +1832,28 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://www.synelia.fr/migration-windev",
+      "host": "www.synelia.fr",
+      "labels": [
+        "Page propre de l'offre"
+      ],
+      "referenced_in": [
+        "docs/01-options-et-solutions-existantes.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://www.volarisgroup.com/press-room/volaris-group-acquires-pc-soft/",
+      "host": "www.volarisgroup.com",
+      "labels": [
+        "Communiqué de l'acquéreur"
+      ],
+      "referenced_in": [
+        "docs/14-contexte-commercial-et-decision.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://www.w3.org/TR/WCAG22/",
       "host": "www.w3.org",
       "labels": [
@@ -1485,10 +1867,22 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://www.windev.la/wlanguage/list-of-wlanguage-programming-commands.htm",
+      "host": "www.windev.la",
+      "labels": [
+        "liste des commandes WLanguage"
+      ],
+      "referenced_in": [
+        "docs/06-inventaire-fonctionnel-et-couverture.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://wxcode.ai/windev-migration-guide/kb-import",
       "host": "wxcode.ai",
       "labels": [
-        "Procédure de l'éditeur"
+        "Procédure de l'éditeur",
+        "Guide propre à l'éditeur"
       ],
       "referenced_in": [
         "docs/01-options-et-solutions-existantes.md"

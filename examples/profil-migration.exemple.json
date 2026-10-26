@@ -2,11 +2,47 @@
   "format": "migration-profile-proposal-v0",
   "nature": "modele_a_completer_non_executable",
   "project_id": "exemple-synthetique",
+  "constraints": {
+    "noPcsoft": true,
+    "enforcement_mode": "mandatory_fail_closed",
+    "applies_to": [
+      "import",
+      "data_migration",
+      "build",
+      "debug",
+      "test",
+      "runtime",
+      "client_side_steps",
+      "remote_services",
+      "transitive_dependencies"
+    ],
+    "forbidden_tools_and_components": [
+      "PC_SOFT_IDE_WINDEV_WEBDEV_WINDEV_Mobile",
+      "PC_SOFT_GDS_and_export_conversion_utilities",
+      "PC_SOFT_compilers_and_build_tools",
+      "PC_SOFT_DLL_SDK_and_runtimes",
+      "PC_SOFT_database_drivers_and_providers",
+      "PC_SOFT_HFSQL_server",
+      "PC_SOFT_executed_reference_oracle",
+      "PC_SOFT_remote_or_client_side_bridges"
+    ],
+    "allowed_input_policy": "already_available_sources_exports_profiles_fixtures_traces_with_provenance",
+    "public_documentation_as_static_evidence": true,
+    "execution_of_pcsoft_by_client_as_workaround": false
+  },
   "source": {
     "product": "WINDEV",
     "version": null,
+    "update_name": null,
     "build": null,
+    "version_evidence": {
+      "observation_status": "not_observed",
+      "evidence_reference": null,
+      "observed_from": null
+    },
     "configuration": null,
+    "save_format_by_element": [],
+    "source_control_mode": null,
     "target": null,
     "architecture": null,
     "git_commit": null,
@@ -18,10 +54,45 @@
     "array_assignment": null,
     "nullable_types": null,
     "datasource_naming": null,
+    "parameter_passing": {
+      "project_default": null,
+      "project_setting_provenance": {
+        "observation_status": "not_observed",
+        "source_element_id": null,
+        "source_build": null,
+        "source_configuration": null,
+        "evidence_reference": null
+      },
+      "effective_by_context": [],
+      "resolution_precedence": null,
+      "element_override_support_for_source_build": "not_verified",
+      "explicit_syntax_resolution": "to_characterize",
+      "qualification_status": "not_executed"
+    },
+    "class_parameter_instance_handling": null,
     "encoding": null,
     "locale": null,
     "timezone": null,
     "element_overrides": [],
+    "element_override_record_template": {
+      "is_template_not_observation": true,
+      "element_id": null,
+      "configuration": null,
+      "setting": "parameter_passing.project_default",
+      "declared_value": null,
+      "effective_value": null,
+      "caller_element_id": null,
+      "callee_element_id": null,
+      "procedure_id": null,
+      "call_site_id": null,
+      "resolution_status": "unresolved",
+      "provenance": {
+        "observation_status": "not_observed",
+        "observed_from": null,
+        "source_build": null,
+        "evidence_reference": null
+      }
+    },
     "unresolved_setting_policy": "block_generation",
     "numeric_contract": {
       "integer_widths_and_signs": null,
@@ -43,18 +114,45 @@
     "originals_immutable": true,
     "maintained_language": "WLangage",
     "generated_code_is_source_of_truth": false,
-    "unknown_properties": "preserve_and_report"
+    "unknown_properties": "preserve_and_report",
+    "unknown_properties_generation_policy": "block_affected_scope_until_impact_resolved"
+  },
+  "generation_gate": {
+    "active": true,
+    "no_PCSoft": true,
+    "requires_dependency_and_command_audit": true,
+    "dependency_audit_status": "not_executed",
+    "block_on_forbidden_direct_transitive_or_remote_dependency": true,
+    "block_affected_scope_on_unresolved_semantics_or_opaque_impact": true,
+    "pcsoft_oracle_required": false,
+    "independent_prototyping_allowed_without_oracle": true,
+    "production_generation_allowed": false,
+    "nature": "declarative_requirement_not_implemented_enforcement"
   },
   "dependencies": [],
   "secret_references": [],
   "external_bridges": [],
   "accepted_adaptations": [],
   "open_blockers": [
-    "Aucun projet ni oracle fourni ; tous les reglages doivent etre releves."
+    "Aucun projet fourni ; les reglages non etablis restent inconnus.",
+    "Les formats opaques non resolus bloquent leur perimetre ; aucun outil PC SOFT de secours.",
+    "Aucune preuve d execution PC SOFT nouvelle ne sera generee ou demandee au client."
   ],
   "proof": {
     "baseline_corpus_id": null,
-    "reference_environment_id": null,
+    "independent_test_environment_id": null,
+    "preexisting_trace_contexts": [],
+    "pcsoft_reference_execution_allowed": false,
+    "oracle_required_to_prototype": false,
+    "allowed_evidence_kinds": [
+      "public_documented_rule",
+      "already_available_fixture_with_provenance",
+      "already_available_trace_with_provenance",
+      "independent_design_contract_explicitly_distinguished"
+    ],
+    "expected_result_provenance_required": true,
+    "unjustified_expected_results_policy": "retain_unknown_never_claim_pcsoft_conformance",
+    "global_pcsoft_conformance_claim": "not_established",
     "last_qualification": null,
     "implementation_status": "not_implemented",
     "qualification_status": "not_executed"
@@ -63,6 +161,10 @@
     "source_engine": null,
     "source_engine_build": null,
     "driver_and_version": null,
+    "target_engine": "PostgreSQL",
+    "target_adapter": "independent_implementation_not_implemented",
+    "pcsoft_driver_provider_runtime_or_server_allowed": false,
+    "input_policy": "existing_export_or_proven_independent_reader_only",
     "collation": null,
     "transaction_isolation": null,
     "locking_contract": null,

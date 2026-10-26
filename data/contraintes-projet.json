@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "date": "2026-10-26",
+  "provenance": "instruction explicite du propriétaire : aucune utilisation de DLL ou d’outil PC SOFT",
+  "phase": "evaluation_de_faisabilite",
+  "publication_license_decision": "differee",
+  "pcsoft_software_allowed": false,
+  "stages": ["developpement", "import", "compilation", "execution", "tests", "deploiement"],
+  "excluded_components": ["IDE", "compilateur", "framework", "DLL", "SDK", "pilote HFSQL", "serveur HFSQL", "outil d’export ou de conversion", "pont WINDEV", "oracle WINDEV execute"],
+  "indirect_execution_by_supplier_or_customer": "exclue_du_protocole",
+  "allowed_inputs": ["sources utilisateur deja fournies", "exports textuels ou schemas deja disponibles", "donnees dans un format exploitable independamment", "fixtures ou traces preexistantes avec provenance", "documentation publique utilisee sans copie du code ou du manuel"],
+  "opaque_input_policy": "preserver_signaler_et_bloquer_le_perimetre_affecte",
+  "target": {"maintained_language": "WLangage", "compiler": "implementation_originale", "runtime": "implementation_originale", "data_engine_candidate": "PostgreSQL_independant"},
+  "reference_execution_policy": "aucun_logiciel_PC_SOFT_execute",
+  "proof_limit": "Conformite limitee aux specifications et references fournies; aucune equivalence universelle certifiee."
+}

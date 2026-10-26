@@ -1,6 +1,6 @@
 {
   "date_etude": "2026-10-26",
-  "nature": "registre de références thématiques et de preuves ponctuelles; aucun résultat de compatibilité mesuré",
+  "nature": "registre documentaire de contrats de référence ; profil logiciel entièrement indépendant ; aucun résultat de compatibilité mesuré",
   "sources": [
     {
       "id": "git",
@@ -9,7 +9,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé consulté dans la recherche collective"
+      "mode_observation": "Extrait indexé consulté dans la recherche collective",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "options",
@@ -18,7 +19,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien et constat officiel transmis par le volet langage de la recherche collective"
+      "mode_observation": "Lien et constat officiel transmis par le volet langage de la recherche collective",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "std",
@@ -27,7 +29,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lecture HTTP publique réussie; pagination non récoltée"
+      "mode_observation": "Lecture HTTP publique réussie; pagination non récoltée",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "ide",
@@ -36,7 +39,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu"
+      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "designer",
@@ -45,7 +49,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu"
+      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "champ",
@@ -54,7 +59,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "faa",
@@ -63,7 +69,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "hf",
@@ -72,7 +79,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans accueil officiel; ouverture moteur web 403"
+      "mode_observation": "Lien découvert dans accueil officiel; ouverture moteur web 403",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "hadd",
@@ -81,7 +89,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "sql",
@@ -90,7 +99,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "reports",
@@ -99,7 +109,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu"
+      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "comm",
@@ -108,7 +119,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web 403"
+      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web 403",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "web",
@@ -117,7 +129,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web indisponible"
+      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web indisponible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "mobile",
@@ -126,7 +139,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web 403"
+      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web 403",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "updates",
@@ -135,7 +149,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "tests",
@@ -144,7 +159,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "index",
@@ -153,7 +169,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
-      "mode_observation": "Lecture HTTP publique réussie; extrait moteur de recherche consulté"
+      "mode_observation": "Lecture HTTP publique réussie; extrait moteur de recherche consulté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0002",
@@ -162,7 +179,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "acquisition texte/hybride et catégories d’éléments; parseur et conservation opaque à démontrer",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0030",
@@ -171,7 +189,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "conversions logiques documentées; ne couvre pas toutes les conversions implicites",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0032",
@@ -180,7 +199,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "partiel: dates et surcharge PremierJourDuMois; heures et bornes générales non établies",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0034",
@@ -189,7 +209,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "familles ANSI/OEM/Unicode; longueurs représentations et différences cibles à tester",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0036",
@@ -198,7 +219,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "partiel: suppression indexée et erreur hors taille; ensemble des opérateurs à qualifier",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0043",
@@ -207,7 +229,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "portée et visibilité; glocales et captures à documenter et tester séparément",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0046",
@@ -216,7 +239,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "référence et LOCAL documentés; expressions et propagation mutations à caractériser",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "precision-F-0060",
@@ -225,7 +249,8 @@
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
       "portee": "mécanismes exceptions documentés; pile et correspondances exactes à qualifier",
-      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté"
+      "mode_observation": "Source déjà examinée dans la recherche du chapitre 02; précision documentaire uniquement, aucun essai exécuté",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     }
   ],
   "sources_complementaires": [
@@ -235,7 +260,8 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1410087578=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "hnum",
@@ -243,7 +269,8 @@
       "url": "https://doc.pcsoft.fr/?3044063=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "strings",
@@ -251,7 +278,8 @@
       "url": "https://doc.pcsoft.fr/?3024020=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "errors",
@@ -259,7 +287,8 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?3034016=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "parallel",
@@ -267,7 +296,8 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1000021229=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "list",
@@ -275,7 +305,8 @@
       "url": "https://doc.pcsoft.fr/?1514023=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "binding",
@@ -283,7 +314,8 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1000017342=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "palette",
@@ -291,7 +323,8 @@
       "url": "https://doc.pcsoft.fr/fr-FR/?1410090992=",
       "nature": "source primaire PC SOFT",
       "date_consultation": "2026-10-26",
-      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-26",
@@ -300,7 +333,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-27",
@@ -309,7 +343,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-28",
@@ -318,7 +353,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-29",
@@ -327,7 +363,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-30",
@@ -336,7 +373,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-31",
@@ -345,7 +383,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-32",
@@ -354,7 +393,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-33",
@@ -363,7 +403,8 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     },
     {
       "id": "revue-34",
@@ -372,7 +413,52 @@
       "nature": "source primaire fournie par la revue collective",
       "date_consultation": "2026-10-26",
       "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
-      "portee": "Contrat à qualifier par version et cible"
+      "portee": "Contrat à qualifier par version et cible",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
+    },
+    {
+      "id": "I2-url-historique",
+      "titre": "Ancienne URL WLanguage : redirection observée",
+      "url": "https://windev.com/wlanguage.htm",
+      "nature": "URL primaire PC SOFT historique",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Ouverture moteur web 403 ; requête HTTP publique 200 après redirection vers https://windev.com/en",
+      "constat": "Aucun compteur 3480 visible dans la page finale",
+      "portee": "Ne prouve aucun nombre actuel de fonctions",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
+    },
+    {
+      "id": "I2-liste-regionale-indexee",
+      "titre": "Liste régionale WLanguage avec compteur 3480 dans extrait indexé",
+      "url": "https://www.windev.la/wlanguage/list-of-wlanguage-programming-commands.htm",
+      "nature": "Page régionale de l’écosystème WINDEV ; compteur éditorial non qualifié",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé consulté via recherche Web ; accès HTTP direct 503",
+      "constat": "Extrait annonçant 3480 fonctions ; version et méthode de comptage non établies",
+      "portee": "Indice historique uniquement ; non retenu comme dénominateur de couverture",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
+    },
+    {
+      "id": "I2-wlangage-actuel",
+      "titre": "Page actuelle WLangage PC SOFT",
+      "url": "https://pcsoft.fr/wlangage.htm",
+      "nature": "Source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Lien depuis accueil officiel puis lecture HTTP publique 200",
+      "constat": "La présentation annonce plus de 4500 fonctions",
+      "portee": "Nombre éditorial non normalisé ; aucune liste version/cible/surcharge fermée déduite",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
+    },
+    {
+      "id": "I5-passage-parametres-2026",
+      "titre": "Brochure officielle2026 : modes de passage paramètres",
+      "url": "https://fr.pcsoft-windev-webdev.com/brochure-WX2026.pdf",
+      "nature": "Source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Lecture de la page PDF15 et des nouveautés133–135 par le volet langage de la recherche collective",
+      "constat": "Mode référence historique maintenu, choix par valeur au niveau projet, mots-clés par valeur et par référence",
+      "portee": "Surcharges par élément et priorité appelant/appelé non démontrées par cette source; à caractériser",
+      "usage_dans_profil_independant": "contexte documentaire passif uniquement ; ne permet aucune utilisation d’un outil bibliothèque pilote moteur ou service PC SOFT"
     }
   ],
   "limitations": [
@@ -380,7 +466,56 @@
     "Les catégories WLangage ne couvrent pas seules HFSQL syntaxe propriétés types constantes et événements",
     "Des ouvertures par le moteur web ont répondu 403; des pages publiques ont été consultées par HTTP et extraits indexés",
     "Aucune liste complète des signatures par version/cible n’a été récoltée",
-    "Aucune exécution sur projet PC SOFT fournie par l’utilisateur"
+    "Aucune exécution PC SOFT ne fait partie de la chaîne autorisée, y compris pour extraction ou oracle externe.",
+    "Les résultats de référence admissibles doivent être déjà fournis ; les fixtures documentaires ne prouvent pas une équivalence historique globale.",
+    "Un format binaire opaque reste bloquant sans lecteur indépendant établi ; aucune conversion par WINDEV ne peut servir de repli."
   ],
-  "sources_complementaires_description": "Références ponctuelles utilisées pour cadrer les tests et limites; pas nécessairement liées à une ligne principale du CSV."
+  "sources_complementaires_description": "Références ponctuelles utilisées pour cadrer les tests et limites; pas nécessairement liées à une ligne principale du CSV.",
+  "rattachement_api": {
+    "statut": "non établi",
+    "nombre_fonctions_couvertes": "INCONNU",
+    "couverture_api_qualifiee_mesuree": "N/A",
+    "campagne_tests_conformite_executee": false,
+    "compteurs_editeur_non_normatifs": [
+      3480,
+      "plus de 4500"
+    ],
+    "interdiction_interpretation": "Ne pas diviser un nombre d’exigences par un compteur éditorial de fonctions.",
+    "nombre_exigences": 519
+  },
+  "contrainte_utilisateur": {
+    "instruction": "Aucune utilisation de dll ou d’outil pc soft",
+    "origine": "instruction explicite de l’utilisateur transmise dans la tâche active",
+    "priorite": "normative et bloquante pour le profil cible",
+    "perimetre": [
+      "import et acquisition",
+      "build et CI",
+      "tests",
+      "installation et distribution",
+      "runtime",
+      "services distants et dépendances transitives"
+    ],
+    "exclus": [
+      "DLL et runtimes PC SOFT",
+      "outils IDE et générateurs PC SOFT",
+      "SDK et connecteurs PC SOFT",
+      "pilotes ODBC/OLE DB PC SOFT",
+      "moteurs et serveurs HFSQL",
+      "GDS et Fabrique logicielle PC SOFT",
+      "outils Robot, WDMSG, WDTRAD, États et Requêtes PC SOFT",
+      "oracles exécutés et extractions nouvelles par produits PC SOFT même côté client",
+      "services ou ponts distants utilisant PC SOFT"
+    ],
+    "admis": [
+      "consultation passive de documentation publique",
+      "analyse indépendante de fichiers sources et exports déjà fournis",
+      "résultats captures traces et données préexistants fournis",
+      "réimplémentation indépendante du WLangage des API H et des contrats UI",
+      "runtime propre et PostgreSQL",
+      "outils et bibliothèques tiers non-PC SOFT avec provenance transitive vérifiée"
+    ],
+    "format_opaque": "préserver et diagnostiquer ; bloquer si nécessaire sans lecteur indépendant établi",
+    "controle": "F-0519 non implémenté : contrôle de paquets SBOM processus modules pilotes et services avant toute release",
+    "absence_de_reference": "ne bloque pas le prototypage indépendant ; limite la portée de toute revendication de conformité historique"
+  }
 }

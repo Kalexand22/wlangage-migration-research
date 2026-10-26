@@ -1,5 +1,7 @@
 # Revue complémentaire de couverture fonctionnelle
 
+**Note historique : cette revue décrit un état antérieur. La contrainte finale du propriétaire exclut tout logiciel, DLL, outil, pilote, serveur et oracle PC SOFT, même via un tiers dans notre chaîne. Les anciennes options de maintien HFSQL ou d’observation exécutée ne sont plus des voies actives. Voir le [périmètre retenu](../docs/15-perimetre-independant-et-preuve-de-faisabilite.md).**
+
 Revue du 26 octobre 2026. Documents relus : `docs/02-langage-et-import.md`, `docs/03-experience-developpement-et-interface.md`, `docs/04-donnees-integrations-et-cibles.md`, `docs/08-ameliorations-produit.md`. Première passe sur documents, puis relecture du CSV de 500 lignes : les premiers compléments ont été intégrés à cette matrice. Le chapitre 06 n'était pas encore disponible lors de cette revue. Cette note identifie des familles ou contrats distincts, pas un nouvel inventaire concurrent. Les URL du CSV ont une portée thématique et les lignes sont des exigences proposées ; elles ne constituent pas chacune l'attestation d'une capacité PC SOFT sur une cible donnée.
 
 ## Compléments prioritaires à vérifier dans la matrice

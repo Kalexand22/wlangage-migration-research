@@ -9,23 +9,52 @@
   "preconditions": {
     "database_fixture": "jeu-synthetique-a-construire",
     "database_checksum": null,
-    "reference_build_sha256": null,
     "target_build_sha256": null,
     "isolated_environments": true,
-    "external_side_effects": "simulated"
+    "external_side_effects": "simulated",
+    "reference_dataset_sha256": null
   },
   "actions": [
-    {"step": 1, "action": "ouvrir_fenetre", "object": "a-renseigner"},
-    {"step": 2, "action": "saisir_valeur_invalide", "object": "a-renseigner"},
-    {"step": 3, "action": "declencher_enregistrement", "object": "a-renseigner"}
+    {
+      "step": 1,
+      "action": "ouvrir_fenetre",
+      "object": "a-renseigner"
+    },
+    {
+      "step": 2,
+      "action": "saisir_valeur_invalide",
+      "object": "a-renseigner"
+    },
+    {
+      "step": 3,
+      "action": "declencher_enregistrement",
+      "object": "a-renseigner"
+    }
   ],
   "observations": [
-    {"kind": "business_error", "comparison": "category_and_state", "expected_from_oracle": null},
-    {"kind": "database", "comparison": "no_unexpected_persistent_write", "expected_from_oracle": null},
-    {"kind": "focus", "comparison": "same_control_when_required", "expected_from_oracle": null}
+    {
+      "kind": "business_error",
+      "comparison": "category_and_state",
+      "expected_from_provided_reference": null
+    },
+    {
+      "kind": "database",
+      "comparison": "no_unexpected_persistent_write",
+      "expected_from_provided_reference": null
+    },
+    {
+      "kind": "focus",
+      "comparison": "same_control_when_required",
+      "expected_from_provided_reference": null
+    }
   ],
   "normalizations": [],
   "evidence_paths": [],
   "result": "not_executed",
-  "review": {"reviewer": null, "date": null, "decision": null}
+  "review": {
+    "reviewer": null,
+    "date": null,
+    "decision": null
+  },
+  "reference_policy": "references_statiques_deja_fournies_ou_specifications_publiques_sans_execution_PC_SOFT"
 }

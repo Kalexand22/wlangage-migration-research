@@ -2,11 +2,13 @@
 
 Ce chapitre répond à la question « que peut-on améliorer tout de suite ? ». Il distingue les corrections du dossier déjà faites et les travaux de préparation ou de développement restant à exécuter.
 
+**Le périmètre courant exclut tout outil ou composant PC SOFT, y compris pour importer ou tester.** Le [contrat d’indépendance](15-perimetre-independant-et-preuve-de-faisabilite.md) prime sur les comparaisons historiques.
+
 ## 1. Deux corrections livrées immédiatement
 
 **Précision des références.** Quinze exigences P0 de la matrice renvoyaient à des références trop générales alors que des pages ciblées avaient été examinées. Leurs URL et leur portée sont désormais précisées : F-0002, F-0004, F-0011, F-0030, F-0032, F-0034, F-0036, F-0038, F-0039, F-0043, F-0046, F-0047, F-0050, F-0051 et F-0060. Les limites restent explicites : une page sur la suppression d'un tableau ne définit pas tous les comportements d'un tableau. Aucun statut d'implémentation ou de compatibilité n'a été augmenté.
 
-**Ordre de travail.** Les 267 exigences P0 ne constituent pas un premier sprint. Le fichier [premier-lot.csv](../data/premier-lot.csv) définit dix tâches de préparation, avec dépendances, identifiants d'exigences, rôles et critères de sortie. Leur exécution reste à faire. Le plan permet d'avancer sur les contrats et l'outillage avant d'engager le développement complet du produit.
+**Ordre de travail.** Les 269 exigences P0 de la matrice révisée ne constituent pas un premier sprint. Le fichier [premier-lot.csv](../data/premier-lot.csv) définit dix tâches de préparation, avec dépendances, identifiants d'exigences, rôles et critères de sortie. Leur exécution reste à faire. Le plan permet d'avancer sur les contrats et l'outillage avant d'engager le développement complet du produit.
 
 ## 2. Ce qu'il faut améliorer ensuite, par ordre d'utilité
 
@@ -20,7 +22,7 @@ Choisir une cible proposée, puis obtenir les versions/builds et options d'un pr
 
 Le contrôle actuel du dépôt valide la syntaxe JSON, les liens et la matrice. Il ne garantit pas qu'un profil est prêt à compiler : les exemples comportent volontairement des champs `null` et aucune preuve. Cette distinction est correcte, mais un futur outil de préparation doit pouvoir refuser un profil incomplet.
 
-Définir un schéma pour profil, cas et preuve, puis un contrôle des règles entre fichiers : références existantes, options résolues, oracle disponible, sources correspondant aux empreintes, cas liés aux exigences et absence de blocage ouvert. Les étapes « audit prêt », « génération prête » et « qualification documentée » ont des conditions distinctes. Un schéma conforme ne démontre jamais le comportement du moteur.
+Définir un schéma pour profil, cas et preuve, puis un contrôle des règles entre fichiers : références existantes, options résolues, références statiques déjà fournies et documentées, sources correspondant aux empreintes, cas liés aux exigences et absence de blocage ouvert. Les étapes « audit prêt », « génération prête » et « qualification documentée » ont des conditions distinctes. Un schéma conforme ne démontre jamais le comportement du moteur.
 
 ### C. Relier catalogue et preuves
 
@@ -32,7 +34,7 @@ Commencer par les règles qui peuvent modifier silencieusement le métier : cour
 
 Préparer des observations synthétiques volontairement différentes : un centime d'écart, une valeur NULL remplacée par vide, deux événements inversés, une mutation perdue après passage par référence et une normalisation qui masque un montant. Le comparateur doit les détecter, et expliquer le premier écart utile.
 
-Ces fixtures peuvent être conçues sans projet client. Elles testeront le comparateur lorsqu'il sera réalisé ; elles ne seront jamais présentées comme des résultats de WINDEV. L'oracle original reste nécessaire pour qualifier le futur runtime.
+Ces fixtures peuvent être conçues sans projet client. Elles testeront le comparateur lorsqu'il sera réalisé ; elles ne seront jamais présentées comme des résultats de WINDEV. Aucun oracle PC SOFT n’est exécuté. Les attendus proviennent de spécifications publiques et de références préexistantes fournies ; les conclusions restent limitées à ces éléments.
 
 ### E. Centraliser les seuils
 
@@ -44,7 +46,7 @@ Avant un essai, choisir une seule valeur applicable à sa mesure, au profil et a
 
 Le premier lot porte sur le modèle de profil, les schémas, la traçabilité, les seuils, les fixtures synthétiques et le format des preuves. Les jours J1–J10 du CSV sont un **ordre indicatif de préparation**, pas un engagement de délai ni un programme de construction du compilateur en dix jours. Ils supposent les compétences et la disponibilité nécessaires.
 
-Les essais d'import, l'exécution du WLangage, la compatibilité H*, la fidélité des fenêtres et des états requièrent ensuite un corpus et un environnement de référence autorisé. Le [cahier des prototypes](11-cahier-des-charges-des-spikes.md) reste la référence pour ces développements. Ne pas écrire des résultats attendus imaginés pour remplir des colonnes de preuve.
+Les essais d'import, l'exécution du WLangage, la compatibilité H*, la fidélité des fenêtres et des états requièrent ensuite un corpus exploitable indépendamment et des références statiques déjà disponibles avec provenance. Aucun environnement PC SOFT ne participe aux essais. Le [cahier des prototypes](11-cahier-des-charges-des-spikes.md) reste la référence pour ces développements. Ne pas écrire des résultats attendus imaginés pour remplir des colonnes de preuve.
 
 ## 4. Décision recommandée
 
