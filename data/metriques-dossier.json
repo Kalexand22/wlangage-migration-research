@@ -2,7 +2,7 @@
   "date_recherche": "2026-10-26",
   "nature": "mesures_du_dossier_documentaire_uniquement",
   "chapitres": 16,
-  "mots_chapitres": 50394,
+  "mots_chapitres": 51076,
   "exigences_fonctionnelles": 519,
   "domaines": 17,
   "priorites": {
@@ -19,6 +19,7 @@
   "logiciels_pcsoft_autorises": false,
   "choix_licence_publication": "differee",
   "preuve_independance_binaire": "non réalisée; aucun produit implémenté à inspecter",
+  "admission_outils": "candidats non admis; aucun droit d'usage du futur produit vérifié par ces métriques",
   "couverture_api": {
     "rattachement_fonctions_catalogue": "non établi",
     "denominateur_versionne": null,

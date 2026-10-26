@@ -80,6 +80,10 @@ def main():
             errors.append("La contrainte du propriétaire exclut les logiciels PC SOFT")
         if policy["publication_license_decision"] != "differee":
             errors.append("Le choix de licence de publication est différé")
+        if policy["legal_admission_policy"]["unknown_or_ambiguous"] != "usage_bloque_ou_remplacement":
+            errors.append("Un droit inconnu ou ambigu doit bloquer l'usage concerné")
+        if policy["legal_admission_policy"]["absolute_zero_risk_guarantee"] is not False:
+            errors.append("Le dossier ne peut pas certifier un risque juridique nul")
         profile = json.loads((ROOT / "examples/profil-migration.exemple.json").read_text(encoding="utf-8"))
         if profile["constraints"]["noPcsoft"] is not True:
             errors.append("Le modèle de profil doit reprendre noPcsoft=true")
@@ -87,6 +91,18 @@ def main():
             errors.append("Le modèle doit déclarer le contrôle d'exclusion PC SOFT")
     except (OSError, ValueError, KeyError, TypeError):
         errors.append("Contrainte d'indépendance ou profil manquant/incohérent")
+
+    try:
+        admissions = json.loads((ROOT / "data/admission-outils.json").read_text(encoding="utf-8"))
+        if admissions["pcsoft_excluded"] is not True:
+            errors.append("Le registre ne peut pas lever l'exclusion PC SOFT")
+        if admissions["used_items"]:
+            errors.append("Ce dossier de faisabilité ne démontre encore aucune admission pour le produit")
+        for candidate in admissions["candidates"]:
+            if candidate["usage_authorized"] is not False or candidate["status"] != "candidat_non_admis":
+                errors.append("Aucun candidat ne possède encore de dossier d'admission vérifié")
+    except (OSError, ValueError, KeyError, TypeError):
+        errors.append("Registre d'admission documentaire absent ou incohérent")
     bibliography = ROOT / "data/bibliographie.json"
     if bibliography.exists():
         try:

@@ -171,5 +171,14 @@
     "null_semantics": null,
     "authoritative_writer": null,
     "migration_strategy": null
+  },
+  "legal_admission": {
+    "policy_reference": "data/contraintes-projet.json",
+    "register_reference": "data/admission-outils.json",
+    "required_before_effective_use": true,
+    "unknown_rights_policy": "block_affected_act",
+    "admitted_components": [],
+    "assessment_status": "not_performed_on_a_product",
+    "publication_license_decision": "deferred"
   }
 }

@@ -4,6 +4,8 @@
 
 **Contrainte ferme : aucune DLL, aucun outil, SDK, pilote, serveur ou runtime PC SOFT dans la chaîne de développement, import, compilation, exécution ou test.** Aucun oracle WINDEV ni export PC SOFT n’est exécuté, y compris par un tiers pour notre protocole. [Périmètre indépendant](docs/15-perimetre-independant-et-preuve-de-faisabilite.md).
 
+**Règle d’admission des outils : droits d’usage et obligations réglementaires établis pour la version et l’acte envisagés avant utilisation. Un droit manquant, ambigu ou incompatible bloque cet acte ou impose un remplacement.** Les outils indépendants cités sont des candidats, pas des admissions automatiques. [Politique et registre](docs/15-perimetre-independant-et-preuve-de-faisabilite.md).
+
 **Phase actuelle : évaluation de faisabilité.** Aucun compilateur compatible, importeur qualifié ou oracle d’exécution n’a été réalisé dans cette étude. Le choix d’une licence de publication et les décisions de commercialisation sont différés, conformément à la demande du propriétaire.
 
 ## La décision technique à préparer

@@ -1,5 +1,11 @@
 # Historique
 
+## Admission des outils — 26 octobre 2026
+
+- Droits et obligations à établir pour chaque artefact, version et usage avant introduction dans le prototype.
+- Tout doute pertinent non résolu bloque l’acte ou impose un remplacement ; aucune admission automatique des candidats .NET, WinForms ou PostgreSQL.
+- Registre des candidats distinct des composants effectivement admis ; aucune autorisation de publication du code accordée.
+
 ## Révision critique — 26 octobre 2026
 
 - Risque contractuel différencié selon les actes: implémentation originale, observation autorisée et réutilisation de composants; aucune obligation générale d’avis avant codage indépendant.

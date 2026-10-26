@@ -87,7 +87,7 @@ Le droit sur l'apparence d'une interface ne se résume pas au droit du logiciel.
 
 ## 8. Dépendances, licences du nouveau produit et distribution
 
-Cette étude de faisabilité ne choisit aucune licence de publication, aucun modèle économique et aucune modalité de diffusion du futur compilateur. À ce stade, inventorier les contraintes des dépendances suffit; les décisions sur la licence du code original restent ouvertes. Les questions de lien, modification ou distribution ne deviennent concrètes qu'avec les composants et le mode de livraison effectivement retenus.
+Cette étude de faisabilité ne choisit aucune licence de publication, aucun modèle économique et aucune modalité de diffusion du futur compilateur. Pour un candidat qui n’est pas utilisé, inventorier les contraintes prépare le choix. Pour un outil ou composant effectivement introduit, la nouvelle règle exige des droits et obligations établis pour sa version et son usage avant cet acte ; le simple inventaire ne suffit pas. Les décisions sur la licence de publication du code original restent ouvertes. Les questions de lien, modification ou distribution ne deviennent concrètes qu'avec les composants et le mode de livraison effectivement retenus.
 
 Exiger une nomenclature de composants, version verrouillée, auteur, licence, empreinte, notice et modalité de distribution. Le format [SPDX](https://spdx.dev/use/specifications/) fournit une référence primaire pour structurer ces informations. Une SBOM décrit les composants; elle n'accorde aucun droit supplémentaire et ne remplace pas leur lecture juridique.
 
@@ -107,11 +107,19 @@ Ne pas utiliser les projets clients pour entraîner un assistant ou enrichir pub
 
 **L'étude et le prototype entièrement originaux peuvent avancer sans avis juridique général préalable.** La cible exclut l'utilisation de PC SOFT; aucune notation M1 générique « critique » ou « moyenne » n'est imposée au développement au titre des clauses d'utilisation de ces logiciels. Les anciens cas B/C servent uniquement à comprendre les textes et ne sont pas des étapes ou variantes actives.
 
-Pendant la faisabilité, tenir un registre léger de provenance, inventorier les dépendances indépendantes et vérifier que l'import/build/runtime/tests ne lancent aucun logiciel PC SOFT. Conserver l'origine des fichiers, exports et traces existants; les références manquantes et comportements sans attendu fiable restent des questions de couverture à résoudre par la voie indépendante ou à déclarer inconnues.
+Pendant la faisabilité, tenir un registre de provenance et d’admission : version, usage, droits applicables, obligations satisfaites, réglementation pertinente et décision. Un candidat non évalué ne peut pas être utilisé. Vérifier aussi que l’import/build/runtime/tests ne lancent aucun logiciel PC SOFT. Conserver l'origine des fichiers, exports et traces existants; les références manquantes et comportements sans attendu fiable restent des questions de couverture à résoudre par la voie indépendante ou à déclarer inconnues.
 
 Une consultation spécialisée reste recommandée avant une commercialisation éventuelle pour les matériaux réellement utilisés, formats, documentation, identité du produit et territoires. Elle peut être ciblée plus tôt si un acte sensible concret apparaît. Ce conseil n'est pas une condition pour commencer le code original. La licence de publication et les modalités de diffusion restent différées conformément au périmètre demandé.
 
 L'absence de DLL ou d'outil PC SOFT ne règle pas à elle seule tous les droits sur le code client, les ressources, les données, la documentation ou les marques. Aucun avis particulier ni validation universelle de commercialisation n'est revendiqué par cette recherche.
+
+## 11. Condition d’usage précisée par le propriétaire
+
+Les outils et composants doivent être utilisables dans un cadre de droits établi et avec les obligations réglementaires applicables traitées. Une permission supposée, un conflit de licence, une obligation non satisfaite ou une incertitude pertinente bloque l’acte concerné. Les fichiers ou références déjà fournis ne sont pas automatiquement autorisés : provenance et droits restent à établir.
+
+Le [protocole d’admission](15-perimetre-independant-et-preuve-de-faisabilite.md) décrit cette décision par artefact, version, acte et contexte. La qualification du champ réglementaire dépend du rôle et des activités : le RGPD est examiné pour les traitements de données personnelles ; les règles de sécurité produit ou d’IA le sont si leur champ est pertinent, sans les présumer toutes applicables à une étude documentaire.
+
+Aucune analyse juridique individualisée ni garantie de risque nul n’est revendiquée. Le code original peut être rédigé sans avis général préalable ; les droits nécessaires sur les outils et matériaux réellement employés doivent néanmoins être établis avant usage. La licence de publication de notre code reste une décision ultérieure.
 
 ## Sources primaires consultées
 

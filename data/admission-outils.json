@@ -1,0 +1,69 @@
+{
+  "nature": "registre des candidats et admissions du futur prototype; aucun audit complet de conformité revendiqué",
+  "date": "2026-10-26",
+  "decision_rule": "Seul un dossier vérifié pour la version, l’acte et le contexte précis peut autoriser cet acte; un candidat n’est pas admis.",
+  "pcsoft_excluded": true,
+  "used_items": [],
+  "candidates": [
+    {
+      "id": "C01",
+      "component": ".NET SDK et runtime",
+      "planned_usage": "compilation et exécution proposées",
+      "artifact_version_or_hash": null,
+      "origin": null,
+      "applicable_legal_texts": [],
+      "obligations_and_fulfilment": [],
+      "regulatory_applicability": null,
+      "verified_by": null,
+      "decision_date": null,
+      "allowed_acts": [],
+      "status": "candidat_non_admis",
+      "usage_authorized": false
+    },
+    {
+      "id": "C02",
+      "component": "Windows Forms",
+      "planned_usage": "rendu Windows proposé",
+      "artifact_version_or_hash": null,
+      "origin": null,
+      "applicable_legal_texts": [],
+      "obligations_and_fulfilment": [],
+      "regulatory_applicability": null,
+      "verified_by": null,
+      "decision_date": null,
+      "allowed_acts": [],
+      "status": "candidat_non_admis",
+      "usage_authorized": false
+    },
+    {
+      "id": "C03",
+      "component": "PostgreSQL et pilote de connexion indépendant",
+      "planned_usage": "stockage et accès aux données proposés",
+      "artifact_version_or_hash": null,
+      "origin": null,
+      "applicable_legal_texts": [],
+      "obligations_and_fulfilment": [],
+      "regulatory_applicability": null,
+      "verified_by": null,
+      "decision_date": null,
+      "allowed_acts": [],
+      "status": "candidat_non_admis",
+      "usage_authorized": false
+    },
+    {
+      "id": "C04",
+      "component": "Générateur de parseur indépendant éventuel",
+      "planned_usage": "construction du frontend proposée",
+      "artifact_version_or_hash": null,
+      "origin": null,
+      "applicable_legal_texts": [],
+      "obligations_and_fulfilment": [],
+      "regulatory_applicability": null,
+      "verified_by": null,
+      "decision_date": null,
+      "allowed_acts": [],
+      "status": "candidat_non_admis",
+      "usage_authorized": false
+    }
+  ]
+}

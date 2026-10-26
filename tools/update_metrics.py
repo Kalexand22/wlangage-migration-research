@@ -34,6 +34,7 @@ def main():
         "logiciels_pcsoft_autorises": policy["pcsoft_software_allowed"],
         "choix_licence_publication": policy["publication_license_decision"],
         "preuve_independance_binaire": "non réalisée; aucun produit implémenté à inspecter",
+        "admission_outils": "candidats non admis; aucun droit d'usage du futur produit vérifié par ces métriques",
         "couverture_api": {
             "rattachement_fonctions_catalogue": "non établi",
             "denominateur_versionne": None,

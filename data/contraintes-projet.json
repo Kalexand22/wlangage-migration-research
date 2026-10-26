@@ -1,16 +1,81 @@
 {
-  "version": 1,
+  "version": 2,
   "date": "2026-10-26",
   "provenance": "instruction explicite du propriétaire : aucune utilisation de DLL ou d’outil PC SOFT",
   "phase": "evaluation_de_faisabilite",
   "publication_license_decision": "differee",
   "pcsoft_software_allowed": false,
-  "stages": ["developpement", "import", "compilation", "execution", "tests", "deploiement"],
-  "excluded_components": ["IDE", "compilateur", "framework", "DLL", "SDK", "pilote HFSQL", "serveur HFSQL", "outil d’export ou de conversion", "pont WINDEV", "oracle WINDEV execute"],
+  "stages": [
+    "developpement",
+    "import",
+    "compilation",
+    "execution",
+    "tests",
+    "deploiement"
+  ],
+  "excluded_components": [
+    "IDE",
+    "compilateur",
+    "framework",
+    "DLL",
+    "SDK",
+    "pilote HFSQL",
+    "serveur HFSQL",
+    "outil d’export ou de conversion",
+    "pont WINDEV",
+    "oracle WINDEV execute"
+  ],
   "indirect_execution_by_supplier_or_customer": "exclue_du_protocole",
-  "allowed_inputs": ["sources utilisateur deja fournies", "exports textuels ou schemas deja disponibles", "donnees dans un format exploitable independamment", "fixtures ou traces preexistantes avec provenance", "documentation publique utilisee sans copie du code ou du manuel"],
+  "allowed_inputs": [
+    "sources utilisateur deja fournies",
+    "exports textuels ou schemas deja disponibles",
+    "donnees dans un format exploitable independamment",
+    "fixtures ou traces preexistantes avec provenance",
+    "documentation publique utilisee sans copie du code ou du manuel"
+  ],
   "opaque_input_policy": "preserver_signaler_et_bloquer_le_perimetre_affecte",
-  "target": {"maintained_language": "WLangage", "compiler": "implementation_originale", "runtime": "implementation_originale", "data_engine_candidate": "PostgreSQL_independant"},
+  "target": {
+    "maintained_language": "WLangage",
+    "compiler": "implementation_originale",
+    "runtime": "implementation_originale",
+    "data_engine_candidate": "PostgreSQL_independant"
+  },
   "reference_execution_policy": "aucun_logiciel_PC_SOFT_execute",
-  "proof_limit": "Conformite limitee aux specifications et references fournies; aucune equivalence universelle certifiee."
+  "proof_limit": "Conformite limitee aux specifications et references fournies; aucune equivalence universelle certifiee.",
+  "legal_admission_policy": {
+    "rule": "Aucune incertitude juridique ou réglementaire identifiée non résolue acceptée pour un usage effectif.",
+    "scope": "Outils, composants, dépendances transitives, ressources et matériaux introduits dans le prototype et la future solution.",
+    "admission_unit": "artefact et version ou empreinte + acte + contexte d’usage",
+    "unknown_or_ambiguous": "usage_bloque_ou_remplacement",
+    "required_evidence": [
+      "origine et droits sur les éléments",
+      "texte de licence ou autorisation applicable à la version et à l’acte",
+      "obligations identifiées et respectées",
+      "réglementations applicables ou non-applicabilité motivée",
+      "décision datée et périmètre de validité"
+    ],
+    "acts_to_distinguish": [
+      "installation",
+      "prototype",
+      "import",
+      "build",
+      "tests",
+      "runtime",
+      "hébergement",
+      "modification",
+      "diffusion"
+    ],
+    "recheck_triggers": [
+      "nouvelle version",
+      "nouvelle dépendance",
+      "nouvel usage",
+      "nouveau territoire",
+      "nouveau traitement de données",
+      "changement de licence ou contrat"
+    ],
+    "pcsoft_rule": "Exclusion du scénario actuel maintenue; aucun dossier d’admission ne peut y déroger implicitement.",
+    "counsel": "Analyse ciblée si une incertitude exige une interprétation spécialisée; aucun acte incertain dans l’intervalle.",
+    "publication_license": "Décision distincte, toujours différée.",
+    "absolute_zero_risk_guarantee": false
+  }
 }

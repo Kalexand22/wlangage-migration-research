@@ -2115,7 +2115,7 @@ Le droit sur l'apparence d'une interface ne se résume pas au droit du logiciel.
 
 ### 8. Dépendances, licences du nouveau produit et distribution
 
-Cette étude de faisabilité ne choisit aucune licence de publication, aucun modèle économique et aucune modalité de diffusion du futur compilateur. À ce stade, inventorier les contraintes des dépendances suffit; les décisions sur la licence du code original restent ouvertes. Les questions de lien, modification ou distribution ne deviennent concrètes qu'avec les composants et le mode de livraison effectivement retenus.
+Cette étude de faisabilité ne choisit aucune licence de publication, aucun modèle économique et aucune modalité de diffusion du futur compilateur. Pour un candidat qui n’est pas utilisé, inventorier les contraintes prépare le choix. Pour un outil ou composant effectivement introduit, la nouvelle règle exige des droits et obligations établis pour sa version et son usage avant cet acte ; le simple inventaire ne suffit pas. Les décisions sur la licence de publication du code original restent ouvertes. Les questions de lien, modification ou distribution ne deviennent concrètes qu'avec les composants et le mode de livraison effectivement retenus.
 
 Exiger une nomenclature de composants, version verrouillée, auteur, licence, empreinte, notice et modalité de distribution. Le format [SPDX](https://spdx.dev/use/specifications/) fournit une référence primaire pour structurer ces informations. Une SBOM décrit les composants; elle n'accorde aucun droit supplémentaire et ne remplace pas leur lecture juridique.
 
@@ -2135,11 +2135,19 @@ Ne pas utiliser les projets clients pour entraîner un assistant ou enrichir pub
 
 **L'étude et le prototype entièrement originaux peuvent avancer sans avis juridique général préalable.** La cible exclut l'utilisation de PC SOFT; aucune notation M1 générique « critique » ou « moyenne » n'est imposée au développement au titre des clauses d'utilisation de ces logiciels. Les anciens cas B/C servent uniquement à comprendre les textes et ne sont pas des étapes ou variantes actives.
 
-Pendant la faisabilité, tenir un registre léger de provenance, inventorier les dépendances indépendantes et vérifier que l'import/build/runtime/tests ne lancent aucun logiciel PC SOFT. Conserver l'origine des fichiers, exports et traces existants; les références manquantes et comportements sans attendu fiable restent des questions de couverture à résoudre par la voie indépendante ou à déclarer inconnues.
+Pendant la faisabilité, tenir un registre de provenance et d’admission : version, usage, droits applicables, obligations satisfaites, réglementation pertinente et décision. Un candidat non évalué ne peut pas être utilisé. Vérifier aussi que l’import/build/runtime/tests ne lancent aucun logiciel PC SOFT. Conserver l'origine des fichiers, exports et traces existants; les références manquantes et comportements sans attendu fiable restent des questions de couverture à résoudre par la voie indépendante ou à déclarer inconnues.
 
 Une consultation spécialisée reste recommandée avant une commercialisation éventuelle pour les matériaux réellement utilisés, formats, documentation, identité du produit et territoires. Elle peut être ciblée plus tôt si un acte sensible concret apparaît. Ce conseil n'est pas une condition pour commencer le code original. La licence de publication et les modalités de diffusion restent différées conformément au périmètre demandé.
 
 L'absence de DLL ou d'outil PC SOFT ne règle pas à elle seule tous les droits sur le code client, les ressources, les données, la documentation ou les marques. Aucun avis particulier ni validation universelle de commercialisation n'est revendiqué par cette recherche.
+
+### 11. Condition d’usage précisée par le propriétaire
+
+Les outils et composants doivent être utilisables dans un cadre de droits établi et avec les obligations réglementaires applicables traitées. Une permission supposée, un conflit de licence, une obligation non satisfaite ou une incertitude pertinente bloque l’acte concerné. Les fichiers ou références déjà fournis ne sont pas automatiquement autorisés : provenance et droits restent à établir.
+
+Le [protocole d’admission](docs/15-perimetre-independant-et-preuve-de-faisabilite.md) décrit cette décision par artefact, version, acte et contexte. La qualification du champ réglementaire dépend du rôle et des activités : le RGPD est examiné pour les traitements de données personnelles ; les règles de sécurité produit ou d’IA le sont si leur champ est pertinent, sans les présumer toutes applicables à une étude documentaire.
+
+Aucune analyse juridique individualisée ni garantie de risque nul n’est revendiquée. Le code original peut être rédigé sans avis général préalable ; les droits nécessaires sur les outils et matériaux réellement employés doivent néanmoins être établis avant usage. La licence de publication de notre code reste une décision ultérieure.
 
 ### Sources primaires consultées
 
@@ -2631,12 +2639,12 @@ La cible exclut les composants, outils, pilotes et serveurs PC SOFT à toutes le
 | --- | --- | --- |
 | Sources | Fichiers utilisateur déjà fournis, lecture et analyse indépendantes | Ouvrir ou convertir le projet avec un IDE/outil PC SOFT dans notre procédure |
 | Compilation | Frontend WLangage, IR et backend développés avec des outils indépendants | Compilateur, SDK, framework ou DLL PC SOFT |
-| Exécution | Runtime original et composants tiers non PC SOFT sous leurs propres licences | Chargement direct ou indirect d'un runtime PC SOFT |
+| Exécution | Runtime original et composants tiers non PC SOFT admis pour leur version et leur usage | Chargement direct ou indirect d'un runtime PC SOFT |
 | Données | PostgreSQL proposé, adaptateur H* original, schéma et données exploitables indépendamment | Serveur HFSQL, pilotes PC SOFT ODBC/OLE DB, WDSQL ou service relais WINDEV |
 | Interface et états | Modèles et renderers originaux, métadonnées lisibles et références statiques | Moteur d'interface ou d'impression PC SOFT hébergé ou redistribué |
 | Tests | Spécifications publiques, cas synthétiques et références préexistantes fournies avec provenance | Exécuter WINDEV comme oracle, ou déléguer cette exécution à un client/prestataire dans le protocole |
 
-L'exclusion concerne les logiciels PC SOFT, pas le langage des sources utilisateur ni la lecture de documentation publique. Utiliser .NET, un compilateur C#, PostgreSQL ou une bibliothèque indépendante reste possible sous leurs propres conditions. La similarité de noms d'API ne signifie pas la réutilisation de leur implémentation.
+L'exclusion concerne les logiciels PC SOFT, pas le langage des sources utilisateur ni la lecture de documentation publique. Les références à .NET, à un compilateur C#, à PostgreSQL ou à une bibliothèque indépendante désignent des candidats. Leurs droits d’usage et obligations doivent être établis pour la version et l’acte envisagés avant leur utilisation effective. La similarité de noms d'API ne signifie pas la réutilisation de leur implémentation.
 
 ### 2. Conséquences sur l'import et les données
 
@@ -2669,3 +2677,27 @@ Ces contrôles sont des exigences du futur prototype, pas des essais déjà exé
 La clause d'utilisation de WINDEV ou de son framework ne doit pas être présentée comme un veto démontré contre une chaîne qui n'en utilise aucun. La provenance des informations, le droit sur les fichiers et ressources, la documentation, les marques et l'absence de copie de code restent des sujets distincts. Le [chapitre 09](docs/09-propriete-intellectuelle-et-licences.md) conserve cette analyse sans imposer une consultation préalable générale au code original.
 
 Le choix d'une licence de publication reste différé. L'évaluation porte maintenant sur l'import indépendant, la sémantique, le runtime, les données et la preuve de fonctionnement du sous-ensemble choisi.
+
+
+### 6. Admission des outils et conformité documentée
+
+La règle précisée par le propriétaire est : **n’accepter aucune incertitude juridique ou réglementaire identifiée non résolue pour un acte effectivement réalisé**. L’exclusion PC SOFT reste celle du scénario courant ; l’indépendance d’un autre outil ne lui donne pas automatiquement un droit d’entrée.
+
+Avant d’introduire un outil, une bibliothèque, une dépendance transitive, une police, un modèle ou des données tiers dans le prototype, établir une fiche portant sur :
+
+1. l’artefact, sa version ou son empreinte et son origine ;
+2. les actes prévus — installer, prototyper, importer, compiler, tester, exécuter, héberger, modifier ou diffuser ;
+3. le texte de licence, contrat ou autorisation applicable et les droits nécessaires à ces actes ;
+4. les obligations correspondantes et leur respect : notices, attribution, modifications, accès aux sources ou restrictions lorsqu’elles sont applicables ;
+5. les règles effectivement applicables au contexte, au rôle, au territoire et aux données, ou une non-applicabilité motivée ;
+6. la décision, sa date, son périmètre et les événements imposant une nouvelle vérification.
+
+Le [registre d’admission](data/admission-outils.json) distingue les candidats et les usages admis. Les candidats actuels n’ont ni version sélectionnée ni admission ; la liste des composants du futur prototype réellement utilisés est vide. Ce registre concerne l’introduction des composants dans le produit étudié, et ne prétend pas réaliser un audit global des services de recherche déjà fournis par l’environnement.
+
+**Doute, permission manquante, incompatibilité ou obligation non remplie : l’acte concerné reste bloqué.** Choisir un remplacement documenté, ou obtenir les éléments permettant de lever la question. Une interprétation spécialisée est recherchée si nécessaire ; aucun avis général n’est imposé à toute écriture de code original.
+
+La vérification réglementaire part des activités réelles : droit sur les sources et ressources, confidentialité et données personnelles, puis exigences de sécurité produit ou d’IA si le produit, le rôle et l’usage entrent dans leur champ. Ne pas confondre l’utilisation d’un outil avec la mise sur le marché d’un produit, ni appliquer automatiquement toutes les obligations d’un autre acteur. L’absence d’usage ou une non-applicabilité doit être expliquée.
+
+Une mise à jour, une nouvelle dépendance, un nouvel usage, un changement de licence, de territoire ou de traitement de données déclenche un réexamen. Une admission pour le build n’autorise pas implicitement la redistribution. Le choix de licence de publication de notre propre code reste différé.
+
+Cette politique vise une conformité documentée et un refus des incertitudes non levées. Elle ne constitue ni une garantie absolue d’absence de risque juridique ni une certification automatique : les contrôles du dépôt vérifient les déclarations et leur cohérence, pas l’interprétation juridique des textes.
