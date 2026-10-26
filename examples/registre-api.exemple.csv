@@ -1,0 +1,2 @@
+id,symbole_fr,symbole_en,nature,signature_exacte,version_build,options_profil,cible,source_url,statut_implementation,statut_qualification,preuve,ecart
+EXEMPLE-API-001,HAjoute,HAdd,fonction,a_relever,a_relever,a_relever,windows-x64,https://doc.pcsoft.fr/?3044147=,non_implemente,non_execute,,Exemple de structure du registre sans affirmation de support

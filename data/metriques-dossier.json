@@ -1,0 +1,22 @@
+{
+  "date_recherche": "2026-10-26",
+  "nature": "mesures_du_dossier_documentaire_uniquement",
+  "chapitres": 12,
+  "mots_chapitres": 35939,
+  "exigences_fonctionnelles": 517,
+  "domaines": 17,
+  "url_distinctes_citees": 124,
+  "statut_implementation": "non implémenté",
+  "compatibilite_executee_mesuree": false,
+  "catalogue_api_exhaustif_certifie": false,
+  "controles_reussis": [
+    "liens locaux",
+    "structure CSV",
+    "unicité identifiants",
+    "champs obligatoires",
+    "priorités",
+    "statuts",
+    "syntaxe JSON"
+  ],
+  "limite_controles": "Aucun test de moteur WINDEV/WLangage, aucune validation réseau exhaustive des URL."
+}

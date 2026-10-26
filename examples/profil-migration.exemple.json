@@ -1,0 +1,73 @@
+{
+  "format": "migration-profile-proposal-v0",
+  "nature": "modele_a_completer_non_executable",
+  "project_id": "exemple-synthetique",
+  "source": {
+    "product": "WINDEV",
+    "version": null,
+    "build": null,
+    "configuration": null,
+    "target": null,
+    "architecture": null,
+    "git_commit": null,
+    "inventory_sha256": null
+  },
+  "semantic_profile": {
+    "boolean_evaluation": null,
+    "scope_rules": null,
+    "array_assignment": null,
+    "nullable_types": null,
+    "datasource_naming": null,
+    "encoding": null,
+    "locale": null,
+    "timezone": null,
+    "element_overrides": [],
+    "unresolved_setting_policy": "block_generation",
+    "numeric_contract": {
+      "integer_widths_and_signs": null,
+      "decimal_precision_and_scale": null,
+      "rounding_and_truncation": null,
+      "overflow_and_conversion_rules": null
+    }
+  },
+  "proposed_target": {
+    "os": "windows",
+    "architecture": "x64",
+    "backend": "dotnet-proposed",
+    "renderer": "winforms-proposed",
+    "compiler_version": null,
+    "runtime_version": null,
+    "status": "not_implemented"
+  },
+  "source_policy": {
+    "originals_immutable": true,
+    "maintained_language": "WLangage",
+    "generated_code_is_source_of_truth": false,
+    "unknown_properties": "preserve_and_report"
+  },
+  "dependencies": [],
+  "secret_references": [],
+  "external_bridges": [],
+  "accepted_adaptations": [],
+  "open_blockers": [
+    "Aucun projet ni oracle fourni ; tous les reglages doivent etre releves."
+  ],
+  "proof": {
+    "baseline_corpus_id": null,
+    "reference_environment_id": null,
+    "last_qualification": null,
+    "implementation_status": "not_implemented",
+    "qualification_status": "not_executed"
+  },
+  "data_profile": {
+    "source_engine": null,
+    "source_engine_build": null,
+    "driver_and_version": null,
+    "collation": null,
+    "transaction_isolation": null,
+    "locking_contract": null,
+    "null_semantics": null,
+    "authoritative_writer": null,
+    "migration_strategy": null
+  }
+}

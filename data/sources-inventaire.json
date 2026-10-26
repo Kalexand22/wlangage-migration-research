@@ -1,0 +1,314 @@
+{
+  "date_etude": "2026-10-26",
+  "nature": "registre de références thématiques et de preuves ponctuelles; aucun résultat de compatibilité mesuré",
+  "sources": [
+    {
+      "id": "git",
+      "titre": "PC SOFT : sources texte et GitHub",
+      "url": "https://blogs.pcsoft.fr/fr/obtenir-access-token-operations-pull-commit-push-projet-partage-git-heberge-chez-github/281474976710987/read.awp",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé consulté dans la recherche collective"
+    },
+    {
+      "id": "options",
+      "titre": "Description projet : compilation",
+      "url": "https://doc.pcsoft.fr/?9500218=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien et constat officiel transmis par le volet langage de la recherche collective"
+    },
+    {
+      "id": "std",
+      "titre": "Index fonctions standard",
+      "url": "https://doc.pcsoft.fr/fr-FR/search2.awp?origin=browse&cat=fonctions-standard,484",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lecture HTTP publique réussie; pagination non récoltée"
+    },
+    {
+      "id": "ide",
+      "titre": "Index éditeur de code",
+      "url": "https://doc.pcsoft.fr/fr-FR/browse.awp?cat=editeur-de-code,25",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu"
+    },
+    {
+      "id": "designer",
+      "titre": "Index éditeur de fenêtres et pages",
+      "url": "https://doc.pcsoft.fr/fr-FR/browse.awp?cat=editeur-de-fenetre-et-de-pages,36",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu"
+    },
+    {
+      "id": "champ",
+      "titre": "Champ : type de variable et constantes de type",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1000020967=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "faa",
+      "titre": "Champ Arbre : fonctionnalités automatiques",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1013037=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "hf",
+      "titre": "Index HFSQL",
+      "url": "https://doc.pcsoft.fr/fr-FR/browse.awp?cat=hfsql,363",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans accueil officiel; ouverture moteur web 403"
+    },
+    {
+      "id": "hadd",
+      "titre": "HAjoute : paramètres implicites et erreurs",
+      "url": "https://doc.pcsoft.fr/?3044147=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "sql",
+      "titre": "ExécuteRequêteSQL : différences de connecteurs et cibles",
+      "url": "https://doc.pcsoft.fr/fr-fr/?1000024948=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "reports",
+      "titre": "Index éditeur états",
+      "url": "https://doc.pcsoft.fr/fr-FR/browse.awp?cat=editeur-d-etats,463",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans accueil officiel; contenu de la catégorie non lu"
+    },
+    {
+      "id": "comm",
+      "titre": "Index communication",
+      "url": "https://doc.pcsoft.fr/fr-FR/search2.awp?origin=browse&cat=communication,482",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web 403"
+    },
+    {
+      "id": "web",
+      "titre": "Index fonctions WEB",
+      "url": "https://doc.pcsoft.fr/fr-FR/search2.awp?origin=browse&cat=fonctions-specifiques-web,488",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web indisponible"
+    },
+    {
+      "id": "mobile",
+      "titre": "Index fonctions Mobile",
+      "url": "https://doc.pcsoft.fr/fr-FR/search2.awp?origin=browse&cat=fonctions-specifiques-mobile,525",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lien découvert dans index officiel; ouverture moteur web 403"
+    },
+    {
+      "id": "updates",
+      "titre": "Mises à jour WINDEV 2025 : nouveautés et limitations SaaS",
+      "url": "https://doc.pcsoft.fr/fr-GEN/?9000050=&verdisp=300",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "tests",
+      "titre": "Tests unitaires",
+      "url": "https://doc.pcsoft.fr/?1410086932=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "index",
+      "titre": "Index officiel des fonctions WLangage",
+      "url": "https://doc.pcsoft.fr/fr-FR/search2.awp?cat=fonctions-wlangage%2C489&origin=browse",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "portee": "contexte thématique; pas preuve de chaque cellule version/cible",
+      "mode_observation": "Lecture HTTP publique réussie; extrait moteur de recherche consulté"
+    }
+  ],
+  "sources_complementaires": [
+    {
+      "id": "lang",
+      "titre": "Le WLangage",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1410087578=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "hnum",
+      "titre": "HNumEnr : dépendance au moteur",
+      "url": "https://doc.pcsoft.fr/?3044063=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "strings",
+      "titre": "Manipuler les chaînes",
+      "url": "https://doc.pcsoft.fr/?3024020=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "errors",
+      "titre": "Gestion des erreurs en exécution",
+      "url": "https://doc.pcsoft.fr/fr-FR/?3034016=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "parallel",
+      "titre": "Gestion des tâches parallèles",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1000021229=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "list",
+      "titre": "Type Liste : variations de disponibilité",
+      "url": "https://doc.pcsoft.fr/?1514023=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "binding",
+      "titre": "ÉcranVersSource : liaison et NULL",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1000017342=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "palette",
+      "titre": "Gestion des palettes",
+      "url": "https://doc.pcsoft.fr/fr-FR/?1410090992=",
+      "nature": "source primaire PC SOFT",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Extrait indexé officiel consulté via recherche web; pas de test exécutable"
+    },
+    {
+      "id": "revue-26",
+      "titre": "Réplication universelle et transportable",
+      "url": "https://doc.pcsoft.fr/fr-FR/?3044209=&verdisp=210",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-27",
+      "titre": "Éditeur et import UML",
+      "url": "https://www.pcsoft-windev-webdev.com/conceptsWD25.pdf",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-28",
+      "titre": "MCD Merise et génération MLD analyse",
+      "url": "https://fr.pcsoft-windev-webdev.com/conceptsWB2024.pdf",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-29",
+      "titre": "Index HFSQL full-text",
+      "url": "https://www.pcsoft-windev-webdev.com/hfsql.pdf",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-30",
+      "titre": "Requêtes full-text et classement pertinence",
+      "url": "https://doc.pcsoft.fr/en-US/?1000025085=",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-31",
+      "titre": "HBase et API hb",
+      "url": "https://fr.pcsoft-windev-webdev.com/liste-exhaustive-des-fonctionnalites-de-windev.pdf",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-32",
+      "titre": "Éditeur et génération aide contextuelle",
+      "url": "https://doc.pcsoft.fr/en-US/?2010030=&name=Automatic_help",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-33",
+      "titre": "Ancienne famille SQL",
+      "url": "https://doc.windev.com/fr-FR/?1000021063=&product=WB",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    },
+    {
+      "id": "revue-34",
+      "titre": "Fichiers et enregistrements inaltérables",
+      "url": "https://doc.pcsoft.fr/fr-FR/?9000157=",
+      "nature": "source primaire fournie par la revue collective",
+      "date_consultation": "2026-10-26",
+      "mode_observation": "Référence transmise par revue UX/données; lecture complète non effectuée dans ce sous-lot",
+      "portee": "Contrat à qualifier par version et cible"
+    }
+  ],
+  "limitations": [
+    "Index officiel paginé et dépendant de la version sélectionnée",
+    "Les catégories WLangage ne couvrent pas seules HFSQL syntaxe propriétés types constantes et événements",
+    "Des ouvertures par le moteur web ont répondu 403; des pages publiques ont été consultées par HTTP et extraits indexés",
+    "Aucune liste complète des signatures par version/cible n’a été récoltée",
+    "Aucune exécution sur projet PC SOFT fournie par l’utilisateur"
+  ],
+  "sources_complementaires_description": "Références ponctuelles utilisées pour cadrer les tests et limites; pas nécessairement liées à une ligne principale du CSV."
+}
