@@ -104,11 +104,12 @@
   "proposed_target": {
     "os": "windows",
     "architecture": "x64",
-    "backend": "dotnet-proposed",
+    "backend": "csharp-dotnet-lts-planned-not-admitted",
     "renderer": "winforms-proposed",
     "compiler_version": null,
     "runtime_version": null,
-    "status": "not_implemented"
+    "status": "not_implemented",
+    "implementation_language": "C#"
   },
   "source_policy": {
     "originals_immutable": true,
@@ -170,7 +171,14 @@
     "locking_contract": null,
     "null_semantics": null,
     "authoritative_writer": null,
-    "migration_strategy": null
+    "migration_strategy": null,
+    "available_target_engine_candidates": [
+      "PostgreSQL",
+      "SQLite",
+      "SQL Server"
+    ],
+    "selected_engine_admission_status": "not_admitted",
+    "same_source_across_engines": "only_for_capabilities_individually_qualified"
   },
   "legal_admission": {
     "policy_reference": "data/contraintes-projet.json",

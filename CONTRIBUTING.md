@@ -2,16 +2,20 @@
 
 1. Décrire la fonctionnalité ou l'écart avec un identifiant stable. Ajouter une ligne à `data/fonctionnalites.csv` pour une exigence nouvelle ; ne pas renuméroter les lignes existantes.
 2. Séparer fait documenté, proposition de conception, résultat d'essai et inconnue. Citer une source primaire précise et sa version quand elle est connue. Une référence thématique ne prouve pas toutes les variantes d'une exigence.
-3. Pour une preuve future de compatibilité, indiquer profil/version/build/options/cible, corpus, cas, oracle et résultats bruts. Un statut de recherche ne devient pas « implémenté » sans faire évoluer explicitement le périmètre du dépôt et ses contrôles.
+3. Pour une preuve future de compatibilité, indiquer profil/version/build/options/cible, corpus, cas, provenance des attendus et résultats bruts. Aucun oracle ni outil PC SOFT exécuté. Un statut de recherche ne devient pas « implémenté » sans faire évoluer explicitement le périmètre du dépôt et ses contrôles.
 4. Conserver dans le dénominateur les inconnus et échecs. Les exclusions et non-applicabilités sont justifiées par périmètre ; une fonction rare n'est pas supprimée pour améliorer un score.
 5. Éviter de copier la documentation propriétaire, les exemples sous droits inconnus, les projets clients et les secrets. Conserver des liens, des métadonnées et des spécifications originales.
-6. Mettre à jour les références et lancer les deux commandes ci-dessous avant un commit.
+6. Modifier les sources du plan dans `data/plan-realisation.json` et `data/exigences-blocs.csv`, puis régénérer les fiches et le CSV ; ne pas modifier directement `plan/` ou `data/taches-agents.csv`. Une exigence parent doit être décomposée avant attribution.
+7. Mettre à jour les références et lancer les commandes ci-dessous avant un commit.
 
 ```bash
+python3 tools/build_execution_plan.py
 python3 tools/build_bibliography.py
 python3 tools/assemble_report.py
 python3 tools/update_metrics.py
+python3 tools/check_execution_plan.py
 python3 tools/check_repository.py
+python3 -m unittest discover -s tests -v
 ```
 
 Ces commandes ne réalisent ni migration, ni comparaison avec WINDEV, ni vérification réseau de toutes les sources. Les pages PC SOFT peuvent évoluer ou avoir des URL équivalentes ; l'index bibliographique compte des URL distinctes, pas des documents indépendants.

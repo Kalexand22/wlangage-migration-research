@@ -9,11 +9,11 @@
 | Sources | Fichiers utilisateur déjà fournis, lecture et analyse indépendantes | Ouvrir ou convertir le projet avec un IDE/outil PC SOFT dans notre procédure |
 | Compilation | Frontend WLangage, IR et backend développés avec des outils indépendants | Compilateur, SDK, framework ou DLL PC SOFT |
 | Exécution | Runtime original et composants tiers non PC SOFT admis pour leur version et leur usage | Chargement direct ou indirect d'un runtime PC SOFT |
-| Données | PostgreSQL proposé, adaptateur H* original, schéma et données exploitables indépendamment | Serveur HFSQL, pilotes PC SOFT ODBC/OLE DB, WDSQL ou service relais WINDEV |
+| Données | Multi-moteurs C# : PostgreSQL et SQLite initiaux, SQL Server ensuite ; adaptateur H* original, schéma et données exploitables indépendamment | Serveur HFSQL, pilotes PC SOFT ODBC/OLE DB, WDSQL ou service relais WINDEV |
 | Interface et états | Modèles et renderers originaux, métadonnées lisibles et références statiques | Moteur d'interface ou d'impression PC SOFT hébergé ou redistribué |
 | Tests | Spécifications publiques, cas synthétiques et références préexistantes fournies avec provenance | Exécuter WINDEV comme oracle, ou déléguer cette exécution à un client/prestataire dans le protocole |
 
-L'exclusion concerne les logiciels PC SOFT, pas le langage des sources utilisateur ni la lecture de documentation publique. Les références à .NET, à un compilateur C#, à PostgreSQL ou à une bibliothèque indépendante désignent des candidats. Leurs droits d’usage et obligations doivent être établis pour la version et l’acte envisagés avant leur utilisation effective. La similarité de noms d'API ne signifie pas la réutilisation de leur implémentation.
+L'exclusion concerne les logiciels PC SOFT, pas le langage des sources utilisateur ni la lecture de documentation publique. C# est la base d’implémentation choisie ; le multi-moteur est demandé dès la conception. Les versions concrètes de .NET, des moteurs PostgreSQL/SQLite/SQL Server, des pilotes ou bibliothèques indépendantes restent des candidats jusqu’à admission. Leurs droits d’usage et obligations doivent être établis pour la version et l’acte envisagés avant leur utilisation effective. La similarité de noms d'API ne signifie pas la réutilisation de leur implémentation.
 
 ## 2. Conséquences sur l'import et les données
 

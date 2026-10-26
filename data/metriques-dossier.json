@@ -1,8 +1,8 @@
 {
   "date_recherche": "2026-10-26",
   "nature": "mesures_du_dossier_documentaire_uniquement",
-  "chapitres": 16,
-  "mots_chapitres": 51076,
+  "chapitres": 19,
+  "mots_chapitres": 61785,
   "exigences_fonctionnelles": 519,
   "domaines": 17,
   "priorites": {
@@ -10,7 +10,7 @@
     "P1": 230,
     "P2": 20
   },
-  "url_distinctes_citees": 157,
+  "url_distinctes_citees": 167,
   "statuts_implementation": {
     "non implémenté": 519
   },
@@ -51,6 +51,28 @@
   },
   "taches_premier_lot": 10,
   "seuils_proposes_non_valides": 5,
+  "plan_realisation": {
+    "blocs": 24,
+    "taches_explicites": 255,
+    "gates": 24,
+    "gates_executees": 0,
+    "exigences_parents_rattachees": 519,
+    "parents_avec_lien_de_support_ou_preparation": 199,
+    "parents_sans_ticket_de_support_explicite": 320,
+    "liens_de_taches": {
+      "a_rattacher_apres_choix": 6,
+      "enabler_hors_matrice": 14,
+      "preparation": 84,
+      "support_partiel": 151
+    },
+    "portees": {
+      "exclu_technologie_pcsoft_comportement_a_reimplementer": 13,
+      "extension_a_decomposer": 237,
+      "socle_partiel": 269
+    },
+    "budgets_tickets": "2–6 h cibles, à redécouper si non borné; ni délai garanti ni estimation totale",
+    "limite": "Socle explicite et extensions à décomposer; aucune fonction ou exigence implémentée par la planification."
+  },
   "verification_structurelle": "Exécuter tools/check_repository.py; ces métriques ne préjugent pas de son résultat.",
   "limite_controles": "Aucun test de moteur WINDEV/WLangage; contrôle de liens externes distinct et informatif."
 }

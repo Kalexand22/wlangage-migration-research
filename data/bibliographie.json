@@ -2,7 +2,7 @@
   "research_date": "2026-10-26",
   "kind": "index_of_cited_urls_not_a_network_or_factual_verification",
   "method": "Exact URLs extracted from chapter Markdown and the functional matrix; aliases may point to the same document.",
-  "url_count": 157,
+  "url_count": 167,
   "references": [
     {
       "url": "https://aide.pcsoft.fr/?1410087236=&name=annexe_7_les_procedures",
@@ -1016,6 +1016,29 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://docs.github.com/en/rest/checks/runs",
+      "host": "docs.github.com",
+      "labels": [
+        "API officielle des check runs"
+      ],
+      "referenced_in": [
+        "docs/17-orchestration-agents-et-gates.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+      "host": "dotnet.microsoft.com",
+      "labels": [
+        "politique officielle .NET"
+      ],
+      "referenced_in": [
+        "docs/16-plan-detaille-de-realisation.md",
+        "docs/18-architecture-csharp-multi-bdd-et-reemploi.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://eloneva.com/migration-windev/",
       "host": "eloneva.com",
       "labels": [
@@ -1196,6 +1219,17 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://git-scm.com/docs/git-worktree",
+      "host": "git-scm.com",
+      "labels": [
+        "Documentation officielle Git worktree"
+      ],
+      "referenced_in": [
+        "docs/17-orchestration-agents-et-gates.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://github.com/AvaloniaUI/Avalonia/blob/main/licence.md",
       "host": "github.com",
       "labels": [
@@ -1204,6 +1238,17 @@
       ],
       "referenced_in": [
         "docs/05-architecture-cible.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://github.com/in-toto/attestation/blob/main/spec/v1/statement.md",
+      "host": "github.com",
+      "labels": [
+        "Spécification in-toto Statement v1"
+      ],
+      "referenced_in": [
+        "docs/17-orchestration-agents-et-gates.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1350,6 +1395,39 @@
       "verification": "see_chapter_method_and_qualifications"
     },
     {
+      "url": "https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview",
+      "host": "learn.microsoft.com",
+      "labels": [
+        "socle ADO.NET"
+      ],
+      "referenced_in": [
+        "docs/16-plan-detaille-de-realisation.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/data-providers",
+      "host": "learn.microsoft.com",
+      "labels": [
+        "Documentation Microsoft sur les objets des fournisseurs"
+      ],
+      "referenced_in": [
+        "docs/18-architecture-csharp-multi-bdd-et-reemploi.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/async",
+      "host": "learn.microsoft.com",
+      "labels": [
+        "Limites async du pilote"
+      ],
+      "referenced_in": [
+        "docs/18-architecture-csharp-multi-bdd-et-reemploi.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
       "url": "https://learn.microsoft.com/en-us/dotnet/standard/native-interop/cominterop",
       "host": "learn.microsoft.com",
       "labels": [
@@ -1358,6 +1436,17 @@
       ],
       "referenced_in": [
         "docs/05-architecture-cible.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+      "host": "learn.microsoft.com",
+      "labels": [
+        "Microsoft demande d’évaluer qualité, licence, support et compatibilité de chaque provider"
+      ],
+      "referenced_in": [
+        "docs/16-plan-detaille-de-realisation.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },
@@ -1828,6 +1917,28 @@
       ],
       "referenced_in": [
         "docs/04-donnees-integrations-et-cibles.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/current/errcodes-appendix.html",
+      "host": "www.postgresql.org",
+      "labels": [
+        "Codes d'erreur PostgreSQL"
+      ],
+      "referenced_in": [
+        "docs/18-architecture-csharp-multi-bdd-et-reemploi.md"
+      ],
+      "verification": "see_chapter_method_and_qualifications"
+    },
+    {
+      "url": "https://www.sqlite.org/lang_transaction.html",
+      "host": "www.sqlite.org",
+      "labels": [
+        "Transactions SQLite"
+      ],
+      "referenced_in": [
+        "docs/18-architecture-csharp-multi-bdd-et-reemploi.md"
       ],
       "verification": "see_chapter_method_and_qualifications"
     },

@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "date": "2026-10-26",
   "provenance": "instruction explicite du propriétaire : aucune utilisation de DLL ou d’outil PC SOFT",
   "phase": "evaluation_de_faisabilite",
@@ -38,7 +38,20 @@
     "maintained_language": "WLangage",
     "compiler": "implementation_originale",
     "runtime": "implementation_originale",
-    "data_engine_candidate": "PostgreSQL_independant"
+    "implementation_language": "C#",
+    "toolchain_family_candidate": ".NET 10 LTS; version exacte et admission à établir",
+    "database_strategy": "multi_moteurs_des_la_conception",
+    "initial_real_engine_candidates": [
+      "PostgreSQL",
+      "SQLite"
+    ],
+    "next_engine_candidate": "SQL Server",
+    "optional_engine_candidates": [
+      "MariaDB",
+      "MySQL",
+      "Oracle"
+    ],
+    "multi_tenant_distinct_from_multi_engine": true
   },
   "reference_execution_policy": "aucun_logiciel_PC_SOFT_execute",
   "proof_limit": "Conformite limitee aux specifications et references fournies; aucune equivalence universelle certifiee.",

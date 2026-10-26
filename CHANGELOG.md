@@ -1,5 +1,14 @@
 # Historique
 
+## Plan de réalisation C# et multi-BDD — 26 octobre 2026
+
+- Base C# retenue, abstractions multi-moteurs dès le départ, PostgreSQL et SQLite réellement testés au premier jalon données ; SQL Server et autres moteurs qualifiés séparément.
+- 24 blocs, 255 tâches explicites, budgets cibles 2–6 h avec redécoupage obligatoire, 24 gates et dépendances.
+- 519 exigences parents rattachées avec limites ; aucune famille large traitée comme ticket atomique ni fonctionnalité implémentée.
+- Protocole original d’orchestration : états, tentatives, baux, worktrees, revue indépendante et preuves de la révision finale.
+- Génération des fiches et du backlog, contrôle du DAG tâches/gates et tests négatifs du validateur intégrés à la CI.
+- Inspiration Liakern et modèles d’orchestration étudiés en lecture ; aucun code récupéré, aucun droit de réemploi présumé et choix de licence de publication toujours différé.
+
 ## Admission des outils — 26 octobre 2026
 
 - Droits et obligations à établir pour chaque artefact, version et usage avant introduction dans le prototype.

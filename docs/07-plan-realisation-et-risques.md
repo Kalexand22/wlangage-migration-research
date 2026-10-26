@@ -1,6 +1,6 @@
 # Plan de réalisation, validation et maîtrise des risques
 
-Date de l'étude : **26 octobre 2026**. Ce chapitre est une **proposition de conduite du programme**, pas le compte rendu d'une implémentation existante. Aucun projet client, installation WINDEV, périphérique ou serveur HFSQL n'a été testé pour cette étude. Les seuils ci-dessous sont des critères de départ à contractualiser avec les pilotes.
+Date de l'étude : **26 octobre 2026**. **Le plan opérationnel actualisé est le [chapitre 16](16-plan-detaille-de-realisation.md) : base C#, multi-BDD, tickets d’agents et gates.** Le scénario budgétaire long ci-dessous est conservé comme hypothèse de plateforme étendue, sans devenir une estimation calendaire du nouveau backlog. Ce chapitre est une **proposition de conduite du programme**, pas le compte rendu d'une implémentation existante. Aucun projet client, installation WINDEV, périphérique ou serveur HFSQL n'a été testé pour cette étude. Les seuils ci-dessous sont des critères de départ à contractualiser avec les pilotes.
 
 **Contrainte ferme : aucun outil, DLL, framework, SDK, pilote, serveur ou pont PC SOFT dans toute la chaîne, y compris import, build, CI, tests et référence de comparaison.** Aucune exécution d'un original PC SOFT n'est déléguée à un client pour notre workflow. On utilise code original, outils tiers non PC SOFT, spécifications publiques et fichiers/exports/fixtures/traces déjà fournis avec provenance. Aucun export ou conversion par outil PC SOFT n'est demandé.
 
@@ -14,7 +14,7 @@ Le programme comporte deux étages : **prototype autonome, inventaire et cas syn
 
 Le scénario des phases P1–P6 ci-dessous concerne la plateforme A si les preuves techniques justifient son élargissement. Il suit l'[architecture à prototyper](05-architecture-cible.md) : IR WLangage, runtime original, backend .NET candidat et Windows/WinForms en premier. Ces essais peuvent commencer sans WINDEV ni framework PC SOFT. Le scénario long n'est pas une décision d'investissement et ne chiffre pas une réécriture B.
 
-La donnée cible utilise PostgreSQL et un pilote non PC SOFT. La couche `H*` doit être développée et testée indépendamment. La conservation de HFSQL, d'un driver PC SOFT ou d'un pont vers l'original appartient aux stratégies comparées **exclues**, même en transition ; elle ne constitue jamais une réponse à un blocage dans ce plan.
+La couche données cible plusieurs moteurs : PostgreSQL et SQLite au premier gate réel, SQL Server ensuite, chacun avec pilote non PC SOFT et admission propre. La couche `H*` doit être développée et testée indépendamment. La conservation de HFSQL, d'un driver PC SOFT ou d'un pont vers l'original appartient aux stratégies comparées **exclues**, même en transition ; elle ne constitue jamais une réponse à un blocage dans ce plan.
 
 ### Périmètre admis, exclusions et provenance
 
@@ -146,7 +146,7 @@ Pour chaque pilote : sauvegarde restaurable, version applicative et runtime verr
 
 Le retour arrière décrit ici vise une **version précédente de notre plateforme autonome**, sans runtime PC SOFT. Il reste simple seulement si les données sont compatibles ; préférer des changements de schéma additifs. Tout changement destructif exige sauvegarde PostgreSQL, reprise et réconciliation éprouvées avec outils non PC SOFT. Un retour qui nécessiterait de relancer l'application PC SOFT d'origine est hors périmètre.
 
-Pendant nos tests, seules des instances PostgreSQL et données de recette indépendantes sont utilisées ; aucun service PC SOFT n'est sollicité pour une comparaison ou une réplication. La bascule métier ultérieure doit disposer de données d'entrée déjà disponibles et d'une procédure de reprise compatible avec l'exclusion. Si le retour exige de lancer PC SOFT dans notre workflow, ce plan de retour est exclu et la bascule reste bloquée jusqu'à définition d'une autre réponse.
+Dans le protocole prévu, seules des instances de moteurs indépendants admis (PostgreSQL et SQLite initiaux) et des données de recette autorisées sont utilisées ; aucun service PC SOFT n'est sollicité pour une comparaison ou une réplication. La bascule métier ultérieure doit disposer de données d'entrée déjà disponibles et d'une procédure de reprise compatible avec l'exclusion. Si le retour exige de lancer PC SOFT dans notre workflow, ce plan de retour est exclu et la bascule reste bloquée jusqu'à définition d'une autre réponse.
 
 Déclencheurs de repli proposés : perte/intégrité de données, erreur de montant, accès indu, incident critique, hausse de latence dépassant le seuil convenu ou taux d'échec d'un parcours essentiel. Le repli comprend arrêt des écritures, sauvegarde de l'état atteint, réconciliation et contrôle métier avant réouverture. Ne pas restaurer aveuglément une ancienne base en effaçant les opérations valides déjà réalisées.
 

@@ -6,7 +6,7 @@ Date de recherche : **26 octobre 2026**. Ce chapitre distingue les comportements
 
 **La chaîne entière doit être indépendante de PC SOFT : import, construction, exécution, tests, exploitation et support.** Sont exclus les DLL/frameworks PC SOFT, HFSQL comme moteur ou serveur, les pilotes HFSQL ODBC/OLE DB, les connecteurs PC SOFT, les ponts compilés WINDEV/WEBDEV, WDSQL, les convertisseurs et les exécutables de référence PC SOFT. Les faire exécuter chez le client ou derrière une API dans notre protocole ne respecte pas cette contrainte.
 
-**PostgreSQL est la cible prioritaire proposée**, avec un pilote et un runtime indépendants ; un autre moteur SQL indépendant reste possible après qualification. Les appels `H*` des sources métier sont interprétés ou compilés par notre implémentation originale et exécutés par notre adaptateur. Ce ne sont pas des appels à HFSQL cachés derrière une façade SQL.
+**La cible demandée est multi-moteurs sur base C# : PostgreSQL et SQLite au premier gate réel**, puis SQL Server ; MariaDB, MySQL, Oracle et les autres besoins sont qualifiés séparément. Pilotes et runtime sont indépendants, soumis à admission par version/acte. Les développements PostgreSQL ci-dessous restent un cas principal, et ne suffisent pas à prouver SQLite ou un autre fournisseur. Le [plan détaillé](16-plan-detaille-de-realisation.md) et l’[architecture multi-BDD](18-architecture-csharp-multi-bdd-et-reemploi.md) définissent les extensions. Les appels `H*` des sources métier sont interprétés ou compilés par notre implémentation originale et exécutés par notre adaptateur. Ce ne sont pas des appels à HFSQL cachés derrière une façade SQL.
 
 Le code métier peut rester du WLangage. Cette continuité du langage ne prouve pas la fidélité de tous ses comportements. Les sources lisibles, métadonnées, données et schémas déjà fournis constituent les entrées ; les formats opaques sans lecteur indépendant qualifié constituent des blocages. Le protocole ne demande pas une extraction ou une conversion avec un outil PC SOFT, même par un tiers. Le [protocole de recette](10-protocole-pilote-et-recette.md) précise les preuves acceptables.
 
@@ -31,7 +31,7 @@ La page officielle des sessions associe notamment application, machine, compte s
 | Code métier et actifs | Sources et ressources déjà fournies, provenance établie | Inventaire, droits, empreintes ; composants opaques bloquants |
 | Langage et compilation | Compilateur indépendant et format ouvert ; aucun compilateur PC SOFT | Build sur poste vierge et nomenclature des outils |
 | Runtime distribué | Aucun framework/DLL PC SOFT direct ou transitif | Inventaire des binaires, bibliothèques chargées et appels externes |
-| Serveur de données | PostgreSQL prioritaire ou autre moteur indépendant | Services et connexions recensés ; absence de serveur HFSQL |
+| Serveur de données | PostgreSQL et SQLite initiaux, autres moteurs indépendants par qualification | Services et connexions recensés ; absence de serveur HFSQL |
 | Pilote et connexion | Pilote non PC SOFT qualifié | Provenance, licence et dépendances transitives |
 | Sessions applicatives | État géré par le runtime cible | Scénarios sans serveur WEBDEV ni pont PC SOFT |
 | Import et qualification | Lecteurs indépendants et références déjà fournies | Journal des outils utilisés ; aucune exécution d'oracle propriétaire |

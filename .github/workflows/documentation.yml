@@ -21,8 +21,11 @@ jobs:
       - name: Régénérer et vérifier le dossier
         run: |
           python3 --version
+          python3 tools/build_execution_plan.py
           python3 tools/build_bibliography.py
           python3 tools/assemble_report.py
           python3 tools/update_metrics.py
+          python3 tools/check_execution_plan.py
           python3 tools/check_repository.py
+          python3 -m unittest discover -s tests -v
           git diff --exit-code

@@ -50,7 +50,7 @@ Le format texte prévu pour Git est une porte d'entrée **lorsqu'un export exist
 
 La version du produit ne suffit pas à définir le langage d'un projet. Des options de compilation influencent notamment l'évaluation des conditions et d'autres comportements. L'import doit donc produire un profil de compatibilité **version + build + options + cible + encodage**, conserver les réglages non résolus comme inconnus dans le bilan, puis bloquer la génération du périmètre concerné jusqu'à leur résolution. [PC SOFT, onglet Compilation du projet](https://doc.pcsoft.fr/?9500218=).
 
-Le moteur de données cible proposé est **PostgreSQL avec un pilote non PC SOFT**. Les fonctions `H*` nécessitent une couche sémantique originale pour curseurs, filtres, verrous et erreurs : un accès SQL seul ne prouve pas leur équivalence. Les entrées sont des schémas et exports de données déjà fournis, ou des jeux synthétiques. Aucun pilote, serveur HFSQL ou accès distant indirect à ce moteur n'est prévu. Un fichier de données opaque sans lecteur indépendant éprouvé reste bloquant ; voir le [chapitre données](docs/04-donnees-integrations-et-cibles.md).
+La base d’implémentation demandée est **C#**, avec une couche **multi-moteurs dès la conception : PostgreSQL et SQLite au premier gate réel**, puis SQL Server et extensions qualifiées séparément. Les pilotes doivent être indépendants de PC SOFT et admis pour version/usage. Le [plan détaillé](docs/16-plan-detaille-de-realisation.md) et l’[architecture C#](docs/18-architecture-csharp-multi-bdd-et-reemploi.md) précisent cette évolution. Les fonctions `H*` nécessitent une couche sémantique originale pour curseurs, filtres, verrous et erreurs : un accès SQL seul ne prouve pas leur équivalence. Les entrées sont des schémas et exports de données déjà fournis, ou des jeux synthétiques. Aucun pilote, serveur HFSQL ou accès distant indirect à ce moteur n'est prévu. Un fichier de données opaque sans lecteur indépendant éprouvé reste bloquant ; voir le [chapitre données](docs/04-donnees-integrations-et-cibles.md).
 
 Le [contrat WINDEV publié, article 4](https://doc.pcsoft.fr/fr-FR/?4510001=&name=License_WINDEV), et la [licence du framework, article 3](https://doc.windev.com/fr-FR/?1000019581=&name=licence_framework_windev), concernent l'utilisation des produits couverts. Notre architecture exclut cette utilisation ; elle conserve la provenance des sources et informations reçues. Le dossier ne conclut ni à la nullité générale des clauses ni à l'interdiction du code autonome. Voir le [chapitre juridique](docs/09-propriete-intellectuelle-et-licences.md) pour l'analyse séparée des droits et de la diffusion future.
 
@@ -106,9 +106,9 @@ Deux tableaux de bord sont nécessaires : couverture de la plateforme de référ
 | Faisabilité immédiate | Prototyper la reprise WLangage avec compilateur et runtime originaux | Cas synthétiques, limites connues et résultats reproductibles ; aucun avis juridique préalable imposé au code autonome |
 | Réutilisation des sources | Maintenir le WLangage dans A ; accepter un langage cible dans B si nécessaire | Débogage et exécution inchangée dans A ; recette métier et changements tracés dans B |
 | Import | Fichiers et exports déjà disponibles, lus par du code indépendant | Aucune conversion/export par outil PC SOFT ; toute portion opaque et information absente détectée |
-| Cible et backend | Windows desktop/.NET/WinForms comme hypothèse de A | Mesures sur le sous-ensemble, conformité sémantique et parcours UI ; réexaminer les candidats si échec |
-| Moteur de données | PostgreSQL et adaptateur sémantique `H*` originaux | Aucun serveur/pilote HFSQL ; données importables depuis des exports fournis ou synthétiques |
-| Élargissement SQL | Adaptateur PostgreSQL distinct | Tests des contrats `H*`, reprise des données et retour arrière répétés |
+| Cible et backend | Base C# choisie ; Windows desktop et .NET LTS/WinForms à qualifier | Mesures sur le sous-ensemble, conformité sémantique et parcours UI ; réexaminer les candidats si échec |
+| Moteurs de données | PostgreSQL + SQLite d’abord, adaptateur sémantique `H*` original | Aucun serveur/pilote HFSQL ; données importables depuis des exports fournis ou synthétiques |
+| Élargissement SQL | SQL Server ensuite ; chaque moteur a son adaptateur et son gate | Tests des contrats `H*`, reprise des données et retour arrière répétés |
 | Plateformes suivantes | Services/web puis autres cibles selon demande | Profil de compatibilité et budget séparés pour chaque renderer |
 | Exclusion PC SOFT | Appliquer la contrainte à import/build/CI/test/exécution et dépendances transitives | SBOM, processus, modules et connexions contrôlés ; échec si un composant ou service PC SOFT est requis |
 | Différenciation | Formats ouverts, reproductibilité et traçabilité | Reconstruction sur poste vierge sans composant ni outil PC SOFT |
@@ -796,7 +796,7 @@ Date de recherche : **26 octobre 2026**. Ce chapitre distingue les comportements
 
 **La chaîne entière doit être indépendante de PC SOFT : import, construction, exécution, tests, exploitation et support.** Sont exclus les DLL/frameworks PC SOFT, HFSQL comme moteur ou serveur, les pilotes HFSQL ODBC/OLE DB, les connecteurs PC SOFT, les ponts compilés WINDEV/WEBDEV, WDSQL, les convertisseurs et les exécutables de référence PC SOFT. Les faire exécuter chez le client ou derrière une API dans notre protocole ne respecte pas cette contrainte.
 
-**PostgreSQL est la cible prioritaire proposée**, avec un pilote et un runtime indépendants ; un autre moteur SQL indépendant reste possible après qualification. Les appels `H*` des sources métier sont interprétés ou compilés par notre implémentation originale et exécutés par notre adaptateur. Ce ne sont pas des appels à HFSQL cachés derrière une façade SQL.
+**La cible demandée est multi-moteurs sur base C# : PostgreSQL et SQLite au premier gate réel**, puis SQL Server ; MariaDB, MySQL, Oracle et les autres besoins sont qualifiés séparément. Pilotes et runtime sont indépendants, soumis à admission par version/acte. Les développements PostgreSQL ci-dessous restent un cas principal, et ne suffisent pas à prouver SQLite ou un autre fournisseur. Le [plan détaillé](docs/16-plan-detaille-de-realisation.md) et l’[architecture multi-BDD](docs/18-architecture-csharp-multi-bdd-et-reemploi.md) définissent les extensions. Les appels `H*` des sources métier sont interprétés ou compilés par notre implémentation originale et exécutés par notre adaptateur. Ce ne sont pas des appels à HFSQL cachés derrière une façade SQL.
 
 Le code métier peut rester du WLangage. Cette continuité du langage ne prouve pas la fidélité de tous ses comportements. Les sources lisibles, métadonnées, données et schémas déjà fournis constituent les entrées ; les formats opaques sans lecteur indépendant qualifié constituent des blocages. Le protocole ne demande pas une extraction ou une conversion avec un outil PC SOFT, même par un tiers. Le [protocole de recette](docs/10-protocole-pilote-et-recette.md) précise les preuves acceptables.
 
@@ -821,7 +821,7 @@ La page officielle des sessions associe notamment application, machine, compte s
 | Code métier et actifs | Sources et ressources déjà fournies, provenance établie | Inventaire, droits, empreintes ; composants opaques bloquants |
 | Langage et compilation | Compilateur indépendant et format ouvert ; aucun compilateur PC SOFT | Build sur poste vierge et nomenclature des outils |
 | Runtime distribué | Aucun framework/DLL PC SOFT direct ou transitif | Inventaire des binaires, bibliothèques chargées et appels externes |
-| Serveur de données | PostgreSQL prioritaire ou autre moteur indépendant | Services et connexions recensés ; absence de serveur HFSQL |
+| Serveur de données | PostgreSQL et SQLite initiaux, autres moteurs indépendants par qualification | Services et connexions recensés ; absence de serveur HFSQL |
 | Pilote et connexion | Pilote non PC SOFT qualifié | Provenance, licence et dépendances transitives |
 | Sessions applicatives | État géré par le runtime cible | Scénarios sans serveur WEBDEV ni pont PC SOFT |
 | Import et qualification | Lecteurs indépendants et références déjà fournies | Journal des outils utilisés ; aucune exécution d'oracle propriétaire |
@@ -1148,7 +1148,7 @@ Date de recherche : **26 octobre 2026**. Statut : **hypothèses d’architecture
 
 La priorité est **A — compatibilité du code** : conserver le WLangage comme source maintenue par une implémentation indépendante. **L'exclusion de tout outil ou composant PC SOFT est ferme dès l'import, le développement, la construction et les tests, puis en production.** Le code de la plateforme est original ; les outils tiers et leurs dépendances sont non PC SOFT. Cela exclut DLL, framework, SDK, IDE, exporteur/convertisseur, pilote, serveur HFSQL et pont, ainsi que l'exécution d'un original PC SOFT comme oracle, même chez un tiers pour notre workflow. B, conversion/réécriture explicite si A échoue, respecte la même exclusion.
 
-Choisir les premières expériences d'après les contraintes techniques : conservation du WLangage, desktop Windows, types et événements à reproduire, interop effectivement utilisée et ressources de l'équipe. .NET et WinForms peuvent être essayés immédiatement sur ce sous-ensemble original. Le modèle commercial, les pays et la distribution future éclaireront une phase ultérieure ; ils ne conditionnent pas le démarrage du prototype.
+Choisir les premières expériences d'après les contraintes techniques : conservation du WLangage, desktop Windows, types et événements à reproduire, interop effectivement utilisée et ressources de l'équipe. .NET et WinForms peuvent être essayés après admission exacte des outils nécessaires sur ce sous-ensemble original. Le modèle commercial, les pays et la distribution future éclaireront une phase ultérieure ; ils ne conditionnent pas le démarrage du prototype.
 
 Le [contrat WINDEV publié, article 4](https://doc.pcsoft.fr/fr-FR/?4510001=&name=License_WINDEV), et la [licence du framework, article 3](https://doc.windev.com/fr-FR/?1000019581=&name=licence_framework_windev), visent l'utilisation des produits couverts. Cette utilisation est exclue de notre architecture. Leur applicabilité au code autonome original n'est pas démontrée ; elles ne constituent pas ici un veto au prototype. Les sources, exports, traces et fixtures déjà fournis restent des entrées passives avec provenance ; aucune nouvelle observation par exécution PC SOFT n'est demandée. La diffusion future relève d'une analyse distincte, sans avis préalable imposé au codage autonome.
 
@@ -1159,7 +1159,7 @@ Le [contrat WINDEV publié, article 4](https://doc.pcsoft.fr/fr-FR/?4510001=&nam
 | Langage | Analyseur, compilateur et sémantique implémentés indépendamment | Conserver la syntaxe WLangage ne supprime pas le coût de suivi de ses versions ni les questions sur les actes de développement |
 | Import et construction | Aucun IDE, générateur, exporteur, convertisseur, SDK ou compilateur PC SOFT, local ou délégué | Générer du C# après avoir demandé un export WINDEV pour notre workflow |
 | Exécution et tests | Runtime original, aucun framework PC SOFT ni oracle de ce fournisseur | Appeler une DLL PC SOFT via adaptateur, sous-processus ou pont réseau chez un tiers |
-| Données | PostgreSQL et pilote non PC SOFT ; schémas/exports déjà fournis ou jeux synthétiques | Accéder à HFSQL par SQL, ODBC, API ou service distant |
+| Données | PostgreSQL + SQLite d’abord, pilotes non PC SOFT ; schémas/exports déjà fournis ou jeux synthétiques | Accéder à HFSQL par SQL, ODBC, API ou service distant |
 | Exploitation et maintenance | Installation, support, mises à jour et restauration réalisables avec les composants retenus | Une exécution réussie sur une machine qui possède encore toutes les dépendances d'origine |
 
 Dans ce chapitre, **runtime de compatibilité** désigne une implémentation originale à développer. Tout module PC SOFT, même isolé ou transitoire, est exclu. Un composant externe contenant transitivement un tel module est également exclu ; un nom renommé ou un accès réseau ne change pas cette décision.
@@ -1172,9 +1172,9 @@ Dans ce chapitre, **runtime de compatibilité** désigne une implémentation ori
 
 #### 1.3 Branche A : architecture du prototype
 
-**Les sections 2 à 18 détaillent A sous l'exclusion ferme ; la conformité reste à démontrer.** Le prototype étudie un compilateur WLangage indépendant, un runtime explicite et un modèle UI partagé entre concepteur et application. Commencer par constructions originales puis projets de gestion dont les fichiers sont déjà disponibles. PostgreSQL est le moteur proposé ; la couche de contrats `H*` est originale et ne charge aucun composant HFSQL. Les scénarios historiques de conservation de HFSQL ou de pont PC SOFT sont exclus.
+**Les sections 2 à 18 détaillent A sous l'exclusion ferme ; la conformité reste à démontrer.** Le prototype étudie un compilateur WLangage indépendant, un runtime explicite et un modèle UI partagé entre concepteur et application. Commencer par constructions originales puis projets de gestion dont les fichiers sont déjà disponibles. La couche données est désormais multi-moteurs : PostgreSQL et SQLite initiaux, SQL Server ensuite ; la couche de contrats `H*` est originale et ne charge aucun composant HFSQL. Les scénarios historiques de conservation de HFSQL ou de pont PC SOFT sont exclus.
 
-Le premier backend candidat de A est **.NET**, avec génération interne de C# puis compilation en IL, et un renderer Windows Forms pour une première cible desktop. Le développeur continuerait d’écrire et de déboguer son WLangage. Le C# généré serait un artefact de construction, sans devenir la source durable du projet. Un interprète de la même représentation intermédiaire servirait aux évaluations du débogueur, aux constructions dynamiques prises en charge et à la comparaison des exécutions.
+La base d’implémentation demandée est **C#**, avec génération interne de C# puis compilation en IL par une toolchain **.NET LTS** admise, et Windows Forms comme renderer candidat pour la première cible desktop. Le [plan de réalisation](docs/16-plan-detaille-de-realisation.md) et l’[architecture multi-BDD](docs/18-architecture-csharp-multi-bdd-et-reemploi.md) détaillent les modules et gates. Le développeur continuerait d’écrire et de déboguer son WLangage. Le C# généré serait un artefact de construction, sans devenir la source durable du projet. Un interprète de la même représentation intermédiaire servirait aux évaluations du débogueur, aux constructions dynamiques prises en charge et à la comparaison des exécutions.
 
 Cette hypothèse privilégie la réalisation d’une compatibilité Windows, l’interopérabilité .NET et le diagnostic ; aucune vitesse de réalisation n'a été mesurée. Elle ne signifie pas que la sémantique WLangage serait celle de C#. La génération doit traduire chaque différence par une opération du runtime. Une simple substitution de noms de fonctions et d’opérateurs serait insuffisante.
 
@@ -1203,7 +1203,7 @@ flowchart TD
     G --> J[Runtime de compatibilité]
     H --> J
     J --> K[Renderer Windows]
-    J --> L[Adaptateurs originaux et PostgreSQL]
+    J --> L[Adaptateurs originaux PostgreSQL et SQLite]
     J --> M[Renderer desktop multiplateforme futur]
     C --> N[IDE et concepteur]
     N <--> O[LSP et DAP]
@@ -1338,7 +1338,7 @@ Un pont natif choisit explicitement architecture x86/x64/ARM64, convention d’a
 
 La prise en charge COM de .NET est spécifique à Windows ; elle ne rend pas l’automatisation Office ou ActiveX portable. Le profil Windows peut préserver ces dépendances tant que versions, architecture et autorisations conviennent. [Interop COM .NET](https://learn.microsoft.com/en-us/dotnet/standard/native-interop/cominterop).
 
-Le fournisseur de données cible utilise PostgreSQL et un pilote indépendant de PC SOFT. La couche originale `H*` doit spécifier tampon courant, recherche, parcours, filtres, erreurs, verrous et transactions à partir des contrats publics et preuves reçues. Elle ne se réduit pas à renommer des fonctions SQL. Schémas et données proviennent de formats déjà fournis et lisibles indépendamment ; un fichier natif opaque sans lecteur original éprouvé bloque sa reprise. **HFSQL, ses pilotes et tout pont vers l'exécutable d'origine sont exclus**, même en transition. Voir le [chapitre données](docs/04-donnees-integrations-et-cibles.md).
+Les premiers fournisseurs de données ciblent PostgreSQL et SQLite avec pilotes indépendants de PC SOFT ; les contrats ne référencent aucun fournisseur concret. SQL Server puis les moteurs optionnels repassent chacun les mêmes tests et leur admission propre. La couche originale `H*` doit spécifier tampon courant, recherche, parcours, filtres, erreurs, verrous et transactions à partir des contrats publics et preuves reçues. Elle ne se réduit pas à renommer des fonctions SQL. Schémas et données proviennent de formats déjà fournis et lisibles indépendamment ; un fichier natif opaque sans lecteur original éprouvé bloque sa reprise. **HFSQL, ses pilotes et tout pont vers l'exécutable d'origine sont exclus**, même en transition. Voir le [chapitre données](docs/04-donnees-integrations-et-cibles.md).
 
 ### 12. Débogueur et langage dans l’IDE
 
@@ -1398,7 +1398,7 @@ src/
   interpreter/            # exécution de l'IR et instrumentation
   runtime-core/           # types, conversions, collections et erreurs
   runtime-platform/       # fichiers, réseau, processus et identité
-  data-providers/         # contrats H* originaux et fournisseur PostgreSQL
+  data-providers/         # contrats H* originaux, PostgreSQL, SQLite puis extensions
   ui-model/               # description des champs et événements
   ui-winforms/            # premier renderer Windows
   reports/                # bandes, pagination et impression
@@ -1440,7 +1440,7 @@ Les essais emploient exclusivement code original et outils non PC SOFT. Les atte
 2. **Sémantique** : exécuter les cas dans l'interprète et le backend .NET originaux, comparer aux contrats publics et fixtures passives disponibles. Couvrir chaînes, décimaux, dates, références, erreurs, indirection et collections ; distinguer cohérence des deux moteurs et preuve externe disponible.
 3. **UI** : reprendre un parcours de saisie avec table liée, modalité, validation, FAA, raccourcis, impression et fermeture pendant traitement. Comparer événements et données, puis apparence, DPI, clavier et accessibilité.
 4. **Interop** : tester les dépendances tierces non PC SOFT permises par le contrat d'exclusion : bibliothèque matérielle, COM/ActiveX tiers, imprimante. Vérifier également leur fermeture transitive ; bloquer un composant qui embarque du PC SOFT.
-5. **Données** : tester PostgreSQL et l'adaptateur `H*` original sur schéma/export déjà fourni ou jeu synthétique. Définir transactions, curseurs, verrous et reprise ; aucun serveur HFSQL, pilote ou pont dans les tests.
+5. **Données** : tester PostgreSQL, SQLite et l’adaptateur `H*` original sur schéma/export déjà fourni ou jeu synthétique. Définir transactions, curseurs, verrous et reprise ; aucun serveur HFSQL, pilote ou pont dans les tests.
 6. **Outillage** : poser un point d’arrêt dans le code d’un champ, modifier une variable, suivre une exception et retrouver la source exacte. Aucun passage obligé par le C# généré.
 7. **Industrialisation** : reconstruire sur agent propre, installer sur machine vierge, vérifier exclusion A00, signature, symboles et retour arrière ; répéter avec les mêmes entrées. L'absence de PC SOFT est requise dans l'agent, les processus, services nécessaires et paquets, pas seulement dans le fichier principal.
 
@@ -1681,7 +1681,7 @@ Cette procédure permet une affirmation vérifiable : « cette application, dans
 
 ## Plan de réalisation, validation et maîtrise des risques
 
-Date de l'étude : **26 octobre 2026**. Ce chapitre est une **proposition de conduite du programme**, pas le compte rendu d'une implémentation existante. Aucun projet client, installation WINDEV, périphérique ou serveur HFSQL n'a été testé pour cette étude. Les seuils ci-dessous sont des critères de départ à contractualiser avec les pilotes.
+Date de l'étude : **26 octobre 2026**. **Le plan opérationnel actualisé est le [chapitre 16](docs/16-plan-detaille-de-realisation.md) : base C#, multi-BDD, tickets d’agents et gates.** Le scénario budgétaire long ci-dessous est conservé comme hypothèse de plateforme étendue, sans devenir une estimation calendaire du nouveau backlog. Ce chapitre est une **proposition de conduite du programme**, pas le compte rendu d'une implémentation existante. Aucun projet client, installation WINDEV, périphérique ou serveur HFSQL n'a été testé pour cette étude. Les seuils ci-dessous sont des critères de départ à contractualiser avec les pilotes.
 
 **Contrainte ferme : aucun outil, DLL, framework, SDK, pilote, serveur ou pont PC SOFT dans toute la chaîne, y compris import, build, CI, tests et référence de comparaison.** Aucune exécution d'un original PC SOFT n'est déléguée à un client pour notre workflow. On utilise code original, outils tiers non PC SOFT, spécifications publiques et fichiers/exports/fixtures/traces déjà fournis avec provenance. Aucun export ou conversion par outil PC SOFT n'est demandé.
 
@@ -1695,7 +1695,7 @@ Le programme comporte deux étages : **prototype autonome, inventaire et cas syn
 
 Le scénario des phases P1–P6 ci-dessous concerne la plateforme A si les preuves techniques justifient son élargissement. Il suit l'[architecture à prototyper](docs/05-architecture-cible.md) : IR WLangage, runtime original, backend .NET candidat et Windows/WinForms en premier. Ces essais peuvent commencer sans WINDEV ni framework PC SOFT. Le scénario long n'est pas une décision d'investissement et ne chiffre pas une réécriture B.
 
-La donnée cible utilise PostgreSQL et un pilote non PC SOFT. La couche `H*` doit être développée et testée indépendamment. La conservation de HFSQL, d'un driver PC SOFT ou d'un pont vers l'original appartient aux stratégies comparées **exclues**, même en transition ; elle ne constitue jamais une réponse à un blocage dans ce plan.
+La couche données cible plusieurs moteurs : PostgreSQL et SQLite au premier gate réel, SQL Server ensuite, chacun avec pilote non PC SOFT et admission propre. La couche `H*` doit être développée et testée indépendamment. La conservation de HFSQL, d'un driver PC SOFT ou d'un pont vers l'original appartient aux stratégies comparées **exclues**, même en transition ; elle ne constitue jamais une réponse à un blocage dans ce plan.
 
 #### Périmètre admis, exclusions et provenance
 
@@ -1827,7 +1827,7 @@ Pour chaque pilote : sauvegarde restaurable, version applicative et runtime verr
 
 Le retour arrière décrit ici vise une **version précédente de notre plateforme autonome**, sans runtime PC SOFT. Il reste simple seulement si les données sont compatibles ; préférer des changements de schéma additifs. Tout changement destructif exige sauvegarde PostgreSQL, reprise et réconciliation éprouvées avec outils non PC SOFT. Un retour qui nécessiterait de relancer l'application PC SOFT d'origine est hors périmètre.
 
-Pendant nos tests, seules des instances PostgreSQL et données de recette indépendantes sont utilisées ; aucun service PC SOFT n'est sollicité pour une comparaison ou une réplication. La bascule métier ultérieure doit disposer de données d'entrée déjà disponibles et d'une procédure de reprise compatible avec l'exclusion. Si le retour exige de lancer PC SOFT dans notre workflow, ce plan de retour est exclu et la bascule reste bloquée jusqu'à définition d'une autre réponse.
+Dans le protocole prévu, seules des instances de moteurs indépendants admis (PostgreSQL et SQLite initiaux) et des données de recette autorisées sont utilisées ; aucun service PC SOFT n'est sollicité pour une comparaison ou une réplication. La bascule métier ultérieure doit disposer de données d'entrée déjà disponibles et d'une procédure de reprise compatible avec l'exclusion. Si le retour exige de lancer PC SOFT dans notre workflow, ce plan de retour est exclu et la bascule reste bloquée jusqu'à définition d'une autre réponse.
 
 Déclencheurs de repli proposés : perte/intégrité de données, erreur de montant, accès indu, incident critique, hausse de latence dépassant le seuil convenu ou taux d'échec d'un parcours essentiel. Le repli comprend arrêt des écritures, sauvegarde de l'état atteint, réconciliation et contrôle métier avant réouverture. Ne pas restaurer aveuglément une ancienne base en effaçant les opérations valides déjà réalisées.
 
@@ -2640,11 +2640,11 @@ La cible exclut les composants, outils, pilotes et serveurs PC SOFT à toutes le
 | Sources | Fichiers utilisateur déjà fournis, lecture et analyse indépendantes | Ouvrir ou convertir le projet avec un IDE/outil PC SOFT dans notre procédure |
 | Compilation | Frontend WLangage, IR et backend développés avec des outils indépendants | Compilateur, SDK, framework ou DLL PC SOFT |
 | Exécution | Runtime original et composants tiers non PC SOFT admis pour leur version et leur usage | Chargement direct ou indirect d'un runtime PC SOFT |
-| Données | PostgreSQL proposé, adaptateur H* original, schéma et données exploitables indépendamment | Serveur HFSQL, pilotes PC SOFT ODBC/OLE DB, WDSQL ou service relais WINDEV |
+| Données | Multi-moteurs C# : PostgreSQL et SQLite initiaux, SQL Server ensuite ; adaptateur H* original, schéma et données exploitables indépendamment | Serveur HFSQL, pilotes PC SOFT ODBC/OLE DB, WDSQL ou service relais WINDEV |
 | Interface et états | Modèles et renderers originaux, métadonnées lisibles et références statiques | Moteur d'interface ou d'impression PC SOFT hébergé ou redistribué |
 | Tests | Spécifications publiques, cas synthétiques et références préexistantes fournies avec provenance | Exécuter WINDEV comme oracle, ou déléguer cette exécution à un client/prestataire dans le protocole |
 
-L'exclusion concerne les logiciels PC SOFT, pas le langage des sources utilisateur ni la lecture de documentation publique. Les références à .NET, à un compilateur C#, à PostgreSQL ou à une bibliothèque indépendante désignent des candidats. Leurs droits d’usage et obligations doivent être établis pour la version et l’acte envisagés avant leur utilisation effective. La similarité de noms d'API ne signifie pas la réutilisation de leur implémentation.
+L'exclusion concerne les logiciels PC SOFT, pas le langage des sources utilisateur ni la lecture de documentation publique. C# est la base d’implémentation choisie ; le multi-moteur est demandé dès la conception. Les versions concrètes de .NET, des moteurs PostgreSQL/SQLite/SQL Server, des pilotes ou bibliothèques indépendantes restent des candidats jusqu’à admission. Leurs droits d’usage et obligations doivent être établis pour la version et l’acte envisagés avant leur utilisation effective. La similarité de noms d'API ne signifie pas la réutilisation de leur implémentation.
 
 ### 2. Conséquences sur l'import et les données
 
@@ -2701,3 +2701,604 @@ La vérification réglementaire part des activités réelles : droit sur les sou
 Une mise à jour, une nouvelle dépendance, un nouvel usage, un changement de licence, de territoire ou de traitement de données déclenche un réexamen. Une admission pour le build n’autorise pas implicitement la redistribution. Le choix de licence de publication de notre propre code reste différé.
 
 Cette politique vise une conformité documentée et un refus des incertitudes non levées. Elle ne constitue ni une garantie absolue d’absence de risque juridique ni une certification automatique : les contrôles du dépôt vérifient les déclarations et leur cohérence, pas l’interprétation juridique des textes.
+
+
+---
+
+## Plan détaillé de réalisation : C#, multi-BDD et agents IA
+
+**Plan proposé le 26 octobre 2026, non exécuté.** La base d’implémentation demandée est **C#**. Les applications continuent à être maintenues en WLangage ; le C# généré reste un artefact interne. Le premier résultat à obtenir est une preuve autonome bornée, puis une application Windows de gestion. Les autres cibles et la longue traîne sont des programmes d’extension qualifiés séparément.
+
+Le plan et ses fiches sont dans l’[index des blocs](plan/README.md). Le [JSON de référence](data/plan-realisation.json) décrit les tâches, dépendances, livrables, critères, budgets et gates. Le [CSV des tâches](data/taches-agents.csv) permet leur import dans un outil de suivi. **Aucun ticket n’a été exécuté, aucune gate produit n’a été passée et aucun composant n’est admis par la rédaction de ce plan.**
+
+### 1. Décisions de départ
+
+| Sujet | Décision de réalisation | Limite explicite |
+| --- | --- | --- |
+| Implémentation | C# pour import, frontend, IR, runtime, données, CLI, services de langage et atelier | Aucun besoin de réécrire le code métier maintenu en C# |
+| Toolchain | Famille .NET LTS supportée ; .NET 10 est le candidat initial à dater de cette étude | Version corrective, SDK, runtime, workloads et dépendances à épingler et admettre avant usage |
+| Données | Abstractions multi-moteurs dès le départ ; premiers tests réels sur PostgreSQL **et** SQLite | Plusieurs bases PostgreSQL ne prouvent pas le multi-moteur |
+| Moteurs suivants | SQL Server, puis MariaDB, MySQL et Oracle suivant besoin et admission | Un dossier, un pilote, des versions et un gate propre à chaque moteur |
+| Interface initiale | Windows, renderer original sur un framework admis ; WinForms est le premier candidat | Le noyau C# multiplateforme ne rend pas l’interface Windows portable automatiquement |
+| Indépendance | Aucun outil, DLL, SDK, pilote, serveur, service ou pont PC SOFT, dans aucune étape | Aucun oracle exécuté ni export demandé chez un tiers pour contourner la contrainte |
+| Entrées | Sources, exports, schémas, données et références passives déjà disponibles avec droits et provenance | Une portion opaque indispensable reste un blocage ; aucune reconstruction fidèle supposée |
+| Réemploi | Liakern est examiné comme inspiration et source potentielle à qualifier | Lecture, accès GitHub, inspiration, copie, modification et diffusion sont des actes distincts |
+| Publication | Décision de licence de notre code toujours différée | Le partage temporaire du dossier ne donne pas de droits sur les composants de tiers |
+
+La [politique officielle .NET](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) consultée pour cette étude classe .NET 10 en LTS. Le choix de famille évite une préversion comme base du prototype ; il ne vaut ni admission juridique ni autorisation de réutiliser tout composant de l’écosystème.
+
+L’[architecture C# et multi-BDD](docs/18-architecture-csharp-multi-bdd-et-reemploi.md) définit les modules et les contrats. Les règles d’[orchestration et de preuve](docs/17-orchestration-agents-et-gates.md) définissent l’exécution. Ces trois chapitres se lisent ensemble.
+
+### 2. Ce que le découpage couvre réellement
+
+Le backlog explicite contient un **socle borné**, sa preuve, un premier pilote et les mécanismes d’extension. Il ne prétend pas implémenter en quelques tâches toutes les fonctions WLangage, tous les champs ou toutes les variantes historiques. Le nombre de fonctions n’est toujours pas fermé dans le dossier.
+
+Les **519 exigences** de la matrice sont rattachées une fois chacune à un bloc principal dans la [cartographie des exigences](data/exigences-blocs.csv). Cette cartographie distingue :
+
+- **269 socles partiels** : des tickets préparent ou réalisent une partie du contrat ; l’exigence entière n’est pas déclarée atomique ni couverte.
+- **237 extensions à décomposer** : chaque famille doit produire des tickets par signature, comportement, propriété, cible et profil avant attribution.
+- **13 technologies PC SOFT exclues, avec comportement à réimplémenter** : le besoin observable reste recensé, la technologie d’origine n’entre jamais dans la solution.
+
+Chaque ligne reste un **parent non ordonnançable**, avec ses limites dans `notes`. « Rattaché » n’est ni « implémenté », ni « compatible », ni « décomposé jusqu’à chaque surcharge ». Le gate d’une extension exige sa propre décomposition et ses preuves avant toute déclaration de couverture.
+
+L’[agenda des extensions](data/extensions-a-decomposer.csv) instancie un identifiant `E-F-xxxx` pour chacun des 519 parents, avec priorité, bloc propriétaire et critère d’acceptation d’origine. Il inclut aussi le périmètre résiduel des socles partiels. Tous restent `a_decomposer`, non ordonnançables, avec contrats restants à inventorier ; ce fichier ne fabrique pas de tâches de quelques heures à partir de familles encore ouvertes. Un agenda/planning/Gantt, une intégration héritée ou une collaboration avancée conserve donc sa propre ligne, même si son détail attend les premières mesures.
+
+Chaque ticket possède aussi un identifiant de contrat planifié `K-Bxx-nn`, ses liens `requirement_ids` et la nature du lien : préparation ou support partiel, **jamais clôture**. Ces liens concernent **199 parents distincts** ; **320 parents restent sans ticket de support explicite** dans ce premier backlog et restent visibles dans l’agenda. Quatorze tickets sont des prérequis techniques hors matrice fonctionnelle ; six attendent un choix fonctionnel précis avant rattachement et attribution. Aucun parent n’est ajouté arbitrairement pour faire monter le nombre de liens. Même les 199 parents liés conservent un périmètre résiduel à inventorier.
+
+Ainsi, un ticket `HAjoute V0` porte sur une surcharge, un tampon et un profil choisis. Il ne clôt pas à lui seul l’exigence générale de manipulation des enregistrements. Un ticket « fermer le catalogue » produit un inventaire et ses inconnus ; il n’implémente pas cet inventaire.
+
+Les exigences historiques de double exécution ou de coexistence restent bornées par la contrainte actuelle : comparaison à des références préexistantes ou entre nos moteurs indépendants ; aucun routage vers une application, un serveur ou un outil PC SOFT.
+
+### 3. Taille acceptable d’une mission d’agent
+
+La cible est **2 à 6 heures de travail effectif d’agent par ticket**, comme budget de travail révisable après les premières mesures. Elle ne prédit ni le temps calendaire, ni le coût d’une fonctionnalité complète. L’attente, la CI, la revue et la réparation doivent être mesurées séparément. Un agent rapide peut terminer avant ; un agent qui atteint le budget ne peut pas clôturer sans résultat.
+
+Une mission doit avoir un résultat observable, un périmètre d’écriture limité et un critère qui pourrait échouer sur une mauvaise implémentation. Cinq fichiers ou 600 lignes modifiées sont des signaux de redécoupage, pas des objectifs ni des plafonds justifiant un contournement. Ne pas ajouter des tests qui recopient l’implémentation ; viser les invariants et risques réels.
+
+**Redécouper avant attribution** lorsque le ticket contient plusieurs décisions ouvertes, dépend d’un outil encore non qualifié, modifie plusieurs contrats indépendants, ou demande une famille entière. Si la difficulté apparaît pendant l’exécution : conserver le diff et les observations, marquer le blocage, créer des enfants avec identifiants nouveaux, puis réviser les liens de dépendance. Les critères du parent ne disparaissent pas.
+
+Exemple de décomposition d’une nouvelle recherche sur clé composée :
+
+| Enfant | Résultat borné | Acceptation |
+| --- | --- | --- |
+| Spécification | Une signature, un profil, comparaison et ordre documentés | Attendus et inconnus identifiés ; pas de réponse inventée |
+| Sémantique | Construction de la clé et état du tampon sur un seul cas | Absent, doublon et erreur différenciés |
+| PostgreSQL | Traduction paramétrée du contrat déjà fixé | Ordre et valeurs vérifiés sur le moteur réel |
+| SQLite | Adaptation du même contrat ou refus justifié | Écart de collation/capacité visible ; pas de faux support |
+| Intégration | Cas WLangage inchangé et résultat observable | Source conservée, erreur localisée, preuves sur la révision finale |
+
+Ces enfants sont à instancier avec identifiants, versions et références réelles. Leurs tests nécessaires font partie de leurs livraisons ; une tâche supplémentaire de tests n’est ajoutée que lorsqu’elle vérifie une intégration ou un risque distinct.
+
+### 4. Ordre des blocs et gates de sortie
+
+Les fiches indiquent tous les tickets et leurs critères. Les dépendances exactes sont dans le JSON et dans le diagramme de l’index ; ce tableau donne les résultats attendus.
+
+| Bloc | Résultat à obtenir | Gate de fin |
+| --- | --- | --- |
+| [B00](plan/blocs/B00.md) — admissions | Petite chaîne d’outils et entrées initiales qualifiées, actes distingués | `G-B00` : tout acte initial autorisé et documenté ; doute non résolu bloquant ; aucun PC SOFT |
+| [B01](plan/blocs/B01.md) — socle | Solution C#, dépendances verrouillées, contrat agent, états, DAG, baux et CI | `G-B01` : build propre et mini-cycle auteur/relecteur/intégration reproductible |
+| [B02](plan/blocs/B02.md) — import | Corpus synthétique, inventaire, profil et extraction sans perte | `G-B02` : tous éléments ont un état, octets conservés, inconnus requis bloquants |
+| [B03](plan/blocs/B03.md) — syntaxe | Lexer/CST/parseur sur grammaire V0 déclarée | `G-B03` : sous-ensemble analysé, erreurs récupérées, texte et positions conservés |
+| [B04](plan/blocs/B04.md) — types | Valeurs, conversions et options sémantiques explicites | `G-B04` : cas limites vérifiés, aucun défaut implicite C# ou de profil inconnu |
+| [B05](plan/blocs/B05.md) — runtime | Cellules, procédures, alias, erreurs et interprète original | `G-B05` : effets et passage des paramètres éprouvés sur règles identifiées |
+| [B06](plan/blocs/B06.md) — compilation | Génération C#, CLI, source maps et démonstration console | `G-B06` : mêmes sources V0 inchangées exécutées sur machine propre, limites publiées |
+| [B07](plan/blocs/B07.md) — contrats données | Modèle logique, sessions, capacités, types et transactions | `G-B07` : aucune dépendance fournisseur dans les contrats, différence des moteurs représentable |
+| [B08](plan/blocs/B08.md) — deux moteurs | Providers PostgreSQL et SQLite réels, valeurs exactes et transactions | `G-B08` : mêmes contrats exécutés sur les deux, écarts visibles, aucun faux moteur de substitution |
+| [B09](plan/blocs/B09.md) — H* | Sous-ensemble original tampon/recherche/parcours/écriture/transaction | `G-B09` : mini-parcours WLangage sur les deux moteurs, erreurs et ordre vérifiés |
+| [B10](plan/blocs/B10.md) — migration | Entrées logiques, mapping, chargement, reprise et réconciliation | `G-B10` : clés, comptes, montants, null et blobs préservés ; restauration répétée |
+| [B11](plan/blocs/B11.md) — UI runtime | Fenêtre, saisie, bouton, grille, événements et modalité bornés | `G-B11` : parcours clavier/validation/DPI/accessibilité et ordre tracés |
+| [B12](plan/blocs/B12.md) — atelier | Explorateur, édition WLangage, diagnostics et GO | `G-B12` : trois parcours développeur utilisables avec sources conservées |
+| [B13](plan/blocs/B13.md) — designer | Modèle ouvert, canvas, propriétés, événements, undo et aperçu | `G-B13` : édition/reprise sans perte, diff lisible, propriétés opaques bloquantes |
+| [B14](plan/blocs/B14.md) — langage/debug | LSP, source maps, arrêt/pas-à-pas/pile/variables V0 | `G-B14` : débogage des sources WLangage sur le chemin compilé prouvé ou blocage déclaré |
+| [B15](plan/blocs/B15.md) — documents | État métier simple, pagination, aperçu et PDF | `G-B15` : valeurs exactes et comparaison structurée puis visuelle, ressources admises |
+| [B16](plan/blocs/B16.md) — APIs/intégrations | Registre et petites signatures fichiers/chaînes/dates/JSON/HTTP | `G-B16` : contrat par signature, erreurs/annulation, aucune réussite d’un stub vide |
+| [B17](plan/blocs/B17.md) — transversal | Secrets, droits, isolation, logs, audit et support | `G-B17` : contrôles négatifs d’accès et d’isolation, secrets absents des preuves |
+| [B18](plan/blocs/B18.md) — moteurs suivants | Troisième moteur réel et dossiers optionnels distincts | `G-B18` : mêmes contrats sur la version admise, aucun support déduit d’une simple connexion |
+| [B19](plan/blocs/B19.md) — pilote Windows | Parcours métier, sources conservées, paquet et repli autonome | `G-B19` : recette bornée, machine propre, indépendance et décision de faisabilité |
+| [B20](plan/blocs/B20.md) — web | Première page, séparation client/serveur, sessions et données | `G-B20` : parcours E2E sécurisé sur un profil web distinct |
+| [B21](plan/blocs/B21.md) — mobile | Android, hors ligne et sync ; iOS ensuite avec admission propre | `G-B21` : preuves appareil/cycle système/conflits propres à chaque plateforme annoncée |
+| [B22](plan/blocs/B22.md) — longue traîne | Catalogue, champs, FAA, langage et formats supplémentaires | `G-B22` : extensions décomposées et profils de compatibilité datés ; aucun taux artificiel |
+| [B23](plan/blocs/B23.md) — maintenance | Support, collaboration, plugins, mises à jour et nouvelles cibles | `G-B23` : régression historique reproduite/corrigée et évolution requalifiée |
+
+#### Jalons décisionnels utiles
+
+1. **M0 — exécution maîtrisée :** B00 puis B01. On sait autoriser un acte, attribuer une mission et refuser une fausse preuve. Ce n’est pas une preuve de compatibilité du langage.
+2. **M1 — faisabilité du code :** B02 à B06. On compile un vrai sous-ensemble WLangage original inchangé. Un échec sémantique entraîne correction ou réduction explicite avant financement de l’atelier complet.
+3. **M2 — faisabilité multi-BDD :** B07 à B09, puis réconciliation B10. On éprouve le même code et les mêmes contrats sur PostgreSQL et SQLite. On mesure les capacités impossibles à émuler plutôt que les cacher.
+4. **M3 — expérience développeur :** B11 à B14. Ouvrir, éditer, concevoir, GO et déboguer deviennent des parcours vérifiables. Le runtime seul ne prouve pas l’ergonomie RAD.
+5. **M4 — pilote Windows :** B15 à B17 et B19, avec les blocs précédents. Le périmètre métier est fixé avant recette ; aucune fonction manquante n’est découverte puis retirée du dénominateur pour passer.
+6. **M5 — élargissement :** B18, B20 à B23 suivant les besoins. SQL Server, web, Android, iOS, catalogue avancé et autres OS ont chacun leurs propres critères ; leur présence dans le programme ne promet pas leur disponibilité.
+
+B18 n’est pas un prérequis systématique au pilote Windows : le gate multi-moteur de départ repose déjà sur PostgreSQL et SQLite. Un pilote qui exige SQL Server doit ajouter explicitement `G-B18` à ses préconditions. Les cibles web et mobile ne sont pas nécessaires à la première preuve de faisabilité.
+
+### 5. Contenu obligatoire d’une gate
+
+Le passage d’un bloc ne se résume pas à « tous les tickets sont fermés ». Pour chaque gate :
+
+1. Identifier la révision intégrée finale, l’arbre, les versions des outils, le profil et les données de test.
+2. Rejouer les contrôles pertinents sur cette révision, avec commandes, codes de sortie, cas découverts et résultats. Un test absent, ignoré, interrompu ou bloqué reste non acquis.
+3. Vérifier les critères spécifiques du bloc et les cas négatifs nécessaires : mauvais profil, capacité inconnue, entrée hostile, erreur, annulation, etc.
+4. Contrôler les admissions pour **les actes effectivement nécessaires à ce stade**, les obligations et les dépendances transitives. B00 ne donne pas d’autorisation générale aux futures extensions.
+5. Vérifier l’exclusion PC SOFT dans les outils, processus, modules, services distants et paquets du périmètre testé.
+6. Faire relire diff, preuves et limites par un autre agent. Une correction ultérieure invalide les preuves et avis affectés.
+7. Enregistrer `pass_verified`, `fail`, `blocked`, `stale` ou `non_execute`, la raison et la suite. Seul `pass_verified` valable ouvre les dépendants.
+
+Le [modèle de preuve](examples/preuve-gate.exemple.json) est vierge et non exécuté. Ses valeurs nulles ne sont pas des observations. Le statut n’est pas déduit d’un résumé d’agent ou d’un délai écoulé.
+
+Le refus des droits non établis, l’exclusion PC SOFT et l’absence de perte de données ou de sources sont des contraintes fermes. Une réduction de périmètre se décide et se documente ; elle ne transforme pas un échec antérieur en réussite. Les autres blocs indépendants continuent si leurs propres préconditions sont satisfaites.
+
+### 6. Multi-BDD : critères qui doivent rester séparés
+
+Le contrat fournisseur repose sur ADO.NET, avec types, requêtes paramétrées, erreurs, sessions et transactions explicites. Le [socle ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) fournit les mécanismes d’accès ; il n’uniformise pas la syntaxe SQL, l’isolation, les collations ou les contrats H*.
+
+| Dimension | Vérification exigée |
+| --- | --- |
+| Moteur et version | Instance réelle, options/collation/édition capturées ; admission du moteur, du driver et des composants natifs |
+| Types | Entiers, précision/échelle, null/vide, dates, encodages et blobs sans pertes silencieuses |
+| SQL | Paramètres pour les valeurs, validation/citation des identifiants, dialecte isolé ; SQL arbitraire fournisseur non réputé portable |
+| H* | Tampon courant, ordre, recherche, filtre, états de fin/erreur et mutation visibles selon contrat |
+| Transactions | Atomicité de plusieurs tables sur une connexion ; aucun commit par module si le contrat source porte plus loin |
+| Concurrence | Verrouillage, timeouts, conflits, annulation, commit d’issue incertaine et politique de rejeu ; capacité non équivalente refusée |
+| Reprise | Sauvegarde restaurée, migration additive et retour à une release autonome précédente ; pas de repli PC SOFT |
+| Multi-tenant | Contexte, cache, erreurs, tampon, droits et connexion isolés ; gate distinct de la portabilité entre moteurs |
+
+Sur SQLite, le monétaire exact doit avoir une représentation explicitement choisie et éprouvée ; aucun flottant implicite. Une absence de verrou de ligne équivalent ne devient pas « conforme » parce qu’un CRUD simple réussit. Pour MariaDB et MySQL, des dossiers séparés évitent de supposer leur identité à partir d’un protocole commun. La compatibilité d’un fournisseur EF Core avec une version du framework est elle aussi à vérifier si EF est retenu pour un module auxiliaire ; [Microsoft demande d’évaluer qualité, licence, support et compatibilité de chaque provider](https://learn.microsoft.com/en-us/ef/core/providers/). L’ORM ne remplace pas la couche de sémantique de compatibilité.
+
+### 7. Liakern et modèles d’orchestration : comment en tirer parti
+
+La consultation des dépôts indiqués par le propriétaire sert à identifier des approches et des éléments candidats. **Aucune récupération de code, exécution d’un outil de ces dépôts ni admission d’un composant n’est effectuée dans ce livrable.** Les observations détaillées de dépôts privés restent dans des notes séparées du dépôt partagé ; aucune source ni extrait interne n’est transféré ici.
+
+La procédure de réemploi suit quatre étapes :
+
+1. Identifier un besoin de notre plateforme et une frontière précise : contrats d’infrastructure, isolation de contexte, configuration, tests d’architecture ou principe d’orchestration.
+2. Comparer le contrat attendu au candidat, avec ses dépendances et hypothèses. Un élément multi-tenant n’est pas automatiquement un adaptateur multi-moteurs ; une transaction par module ne doit pas casser une transaction source plus large.
+3. Établir les droits sur l’élément exact, les contributions, les dépendances et les actes prévus. Le statut privé, le droit d’accès ou la titularité supposée ne valent pas une autorisation automatique de copie ou de diffusion.
+4. Choisir une réalisation originale, un composant indépendant admis, une récupération admise et isolée, ou un refus. Faire une petite preuve d’adaptation avant toute généralisation.
+
+Pour l’orchestration, les propriétés utiles à retenir sont : plan séparé de l’état des tentatives, dépendances explicites, état absent non assimilé à terminé, baux/heartbeats, preuve de la révision finale, revue indépendante, gate intégrée et reprise sans double effet. Le chapitre 17 les spécifie de manière originale, sans recopier de workflow privé ni présumer que les modèles consultés sont des produits à reprendre tels quels.
+
+### 8. Organisation des agents et pilotage de l’effort
+
+Commencer avec **trois fonctions**, cumulables selon la capacité réelle : intégrateur/planificateur, agent d’implémentation, agent de revue. Quand plusieurs tickets indépendants existent, ouvrir des pistes langage, données et transversal ; l’atelier démarre après stabilisation des contrats qu’il consomme. Plus d’agents ne raccourcit pas une chaîne de dépendances et peut augmenter les conflits.
+
+Le DAG est volontairement conservateur au sein d’un bloc. Les tâches y sont ordonnées pour éviter que deux agents modifient simultanément la même grammaire ou le même contrat. Certaines tâches d’intégration exigent en plus des gates ciblées dans `requires_block_gates` : binding UI après données, RAD CRUD après données et renderer, isolation de connexion après runtime données. Le validateur inclut ces liens dans la recherche de cycles ; ils ne figurent pas tous dans le diagramme simplifié des prérequis de blocs. On peut ensuite paralléliser des enfants sur périmètres réellement séparés, après révision des dépendances. Le coordinateur ne doit pas ignorer ces liens pour occuper tous les agents.
+
+Mesurer dès les dix premières tâches : durée active, délai d’attente, coût agent, CI, temps de revue, nombre de retours, défauts d’intégration et taux de redécoupage. Réestimer après M1 puis M2. La somme des budgets de tickets n’est ni le calendrier du produit ni le devis d’une compatibilité complète. Les anciennes hypothèses budgétaires du chapitre 07 restent un scénario historique de plateforme étendue, pas une conversion de ce backlog en mois garantis.
+
+Une nouvelle API ou un nouveau champ doit être chiffré avec sa spécification, son implémentation, ses tests pertinents, la revue, les défauts et la maintenance du profil. Ne pas extrapoler le débit d’une fonction pure à un driver, un débogueur ou un moteur d’états.
+
+### 9. Livrables et contrôles du plan
+
+| Fichier | Rôle |
+| --- | --- |
+| [Plan JSON](data/plan-realisation.json) | Source éditable des blocs, tâches et gates |
+| [Exigences vers blocs](data/exigences-blocs.csv) | Source éditable des 519 parents et de leurs limites |
+| [Agenda des extensions](data/extensions-a-decomposer.csv) | Export des 519 parents nommés et priorisés, tous à décomposer avant exécution |
+| [Index et fiches](plan/README.md) | Lecture humaine des missions, prérequis et critères |
+| [Backlog CSV](data/taches-agents.csv) | Export généré pour suivi/import, sans exécution |
+| [Preuve de gate](examples/preuve-gate.exemple.json) | Modèle de preuve à remplir lors d’une vraie réalisation |
+| [Générateur](tools/build_execution_plan.py) | Régénère les fiches et le CSV depuis les sources |
+| [Contrôle du plan](tools/check_execution_plan.py) | Vérifie références, DAG tâches/gates, budgets déclarés, rattachements et fraîcheur |
+
+Commandes documentaires :
+
+```bash
+python3 tools/build_execution_plan.py
+python3 tools/build_bibliography.py
+python3 tools/assemble_report.py
+python3 tools/update_metrics.py
+python3 tools/check_execution_plan.py
+python3 tools/check_repository.py
+```
+
+Le contrôle détecte notamment un cycle passant par une gate, un prérequis inconnu, une tâche omise par sa gate, une exigence perdue et un fichier généré périmé. **Il ne mesure pas la taille réelle d’une implémentation, ne vérifie pas l’interprétation d’une licence et ne passe aucune gate produit.** L’ordonnanceur et les contrôles runtime seront réalisés et éprouvés dans B01 ; les scripts du dossier ne lancent pas d’agents, de compilateur ou de base de données.
+
+La prochaine action de réalisation concrète est B00 sur la petite chaîne nécessaire à B01, puis la première tranche syntaxe/types/compilation. Les choix d’extension sont arrêtés sur les mesures de ces preuves, sans attendre que tout le catalogue soit implémenté.
+
+
+---
+
+## Orchestration des agents, preuves et gates de livraison
+
+Proposition de conception du 26 octobre 2026. Ce chapitre définit comment exécuter et vérifier le plan de réalisation de la plateforme. **Le plan est documentaire : ses tâches sont initialement `planifie` et ses vérifications `non_execute`. Aucun succès d'exécution n'est revendiqué.** Le moteur d'orchestration, ses contrôles et ses adaptateurs devront être implémentés puis éprouvés avant de recevoir des travaux réels.
+
+Cette conception est autonome. Elle ne requiert ni environnement, ni runtime, ni outil PC SOFT pour fabriquer, tester, distribuer ou exploiter la nouvelle plateforme. Les références historiques d'une étude de compatibilité ne deviennent pas des dépendances d'exécution.
+
+### 1. Unité de travail et taille des missions
+
+Le plan distingue trois objets :
+
+- Un **bloc** `Bxx` rassemble une capacité livrable et ses critères d'ensemble.
+- Une **tâche** `T-Bxx-nn` produit un résultat limité, vérifiable et révisable.
+- Une **gate** `G-Bxx` décide si la capacité intégrée satisfait le contrat du bloc sur une révision précise.
+
+Le découpage vise des missions d'environ **deux à six heures de travail effectif d'agent**, comme budget de planification à réviser après mesure. Ce n'est ni un délai garanti, ni une estimation de tout le projet, ni une raison de clôturer un travail incomplet. Les attentes externes, les builds et la revue sont suivis séparément. Une mission qui demande plusieurs décisions de conception, modifie plusieurs contrats indépendants ou ne possède pas de test de sortie doit être redécoupée avant attribution.
+
+Chaque tâche doit avoir un effet visible : par exemple une règle sémantique implémentée et éprouvée sur des cas limites, un importeur borné avec diagnostics, ou un adaptateur dont les comportements d'échec sont démontrés. « Faire le compilateur » ou « terminer l'interface » sont des blocs, pas des tâches atomiques. Une tâche de recherche peut produire une décision et ses éléments contradictoires ; elle ne doit pas prétendre produire une fonctionnalité exécutable.
+
+Le résultat est accepté en fonction de ses critères, pas du nombre de fichiers, de lignes ou de tests. Le parent conserve ses critères d'intégration même lorsque toutes ses tâches ont été acceptées.
+
+### 2. Contrat minimal d'une tâche
+
+Le [plan JSON](data/plan-realisation.json) fixe les champs du backlog proposé ; le [modèle de preuve](examples/preuve-gate.exemple.json) décrit les résultats à renseigner lors d’une exécution réelle. Le contrat conceptuel suivant précise aussi les champs de tentative, d’affectation et de révision à rendre obligatoires dans le futur ordonnanceur ; le plan statique ne les fournit pas encore et n’est pas directement un ordonnanceur exécutable.
+
+| Élément | Information exigée |
+|---|---|
+| Identité | Identifiant stable, bloc parent, révision du plan et type de mission |
+| Objectif | Résultat attendu et problème concret résolu |
+| Périmètre | Fichiers/composants autorisés, contrats modifiables et travaux exclus |
+| Entrées | Révision source de départ, documents applicables et données de test autorisées |
+| Prérequis | Tâches acceptées, gates requises, capacités machine et accès nécessaires |
+| Livrables | Code, documentation ou artefacts précisément identifiés |
+| Acceptation | Invariants et scénarios mesurables, dont refus/erreurs nécessaires |
+| Vérification | Commandes ou procédures attendues, environnement et résultats à examiner |
+| Risques | Inconnues, effets persistants et conditions d'arrêt |
+| Budget | Temps cible, ressources, coût maximal et nombre de tentatives autorisées |
+| Responsabilités | Agent d'implémentation, relecteur distinct et autorité de gate |
+| Intégration | Branche candidate, contrat de dépendance et stratégie de retour arrière |
+
+Le contexte remis à l'agent contient les sources de l'exigence et les critères complets. Il n'est pas remplacé par un résumé généré dont la fidélité serait supposée. Les références sont versionnées ; un changement de besoin devient une nouvelle révision du plan et une analyse d'impact.
+
+Une tâche ne doit pas dépendre seulement d'un nom de branche susceptible de changer. Elle précise la preuve ou le contrat attendu de ses prérequis. Quand une interface évolue, les consommateurs sont identifiés et requalifiés avant d'être considérés prêts.
+
+### 3. Dépendances : un DAG et des gates explicites
+
+L'ordonnanceur doit valider le graphe avant chaque vague : identifiants uniques, références existantes, absence de cycle et compatibilité des contraintes. Une dépendance inconnue, absente, remplacée ou seulement déclarée terminée sans preuve ne peut satisfaire un prérequis.
+
+Une tâche devient éligible uniquement lorsque les quatre conditions sont réunies :
+
+1. Ses dépendances de tâches sont acceptées sur des livraisons identifiées.
+2. Ses gates préalables ont une décision valable pour les versions concernées.
+3. Ses entrées et autorisations sont présentes.
+4. Les ressources nécessaires et un espace de travail isolé sont disponibles.
+
+Dans le plan statique, `depends_on_blocks` déclare les blocs dont la gate est requise pour tout le bloc courant. Chaque tâche peut ajouter `requires_block_gates`, également rempli avec des identifiants de bloc comme `B09` ; la gate correspondante est `G-B09`. `depends_on` contient uniquement des identifiants de tâches. Le validateur combine ces trois types de liens pour détecter les cycles ; les fiches et le CSV affichent les gates supplémentaires au niveau du ticket concerné.
+
+L'absence d'un item dans un fichier n'est jamais assimilée à une réussite. Les objets retirés conservent un état terminal explicite et une raison : livré, remplacé ou abandonné. Un remplacement ne satisfait une dépendance que par un nouveau lien accepté, avec les critères préservés.
+
+Le parallélisme dépend aussi du périmètre d'écriture. Deux tâches indépendantes dans le DAG peuvent entrer en conflit sur une même grammaire, un registre d'API, un schéma ou une ressource de test. Le plan identifie ces ressources partagées et impose soit une sérialisation, soit des contrats suffisamment séparés. Une simple liste de chemins est un premier filtre, pas une preuve de compatibilité des changements.
+
+### 4. Séparer plan, tentative et résultat
+
+La tâche exprime le besoin stable ; une **tentative** représente une exécution particulière. Elle possède son propre identifiant, propriétaire, révision de départ, bail, budget, journal, artefacts et motif de fin. Une nouvelle tentative n'efface pas l'échec précédent.
+
+Le cycle cible distingue préparation, attribution, exécution, vérification, revue et acceptation. Une tâche interrompue peut revenir en attente après réconciliation ; elle ne revient pas automatiquement à l'exécution parce qu'un délai a expiré.
+
+| Situation | Effet attendu |
+|---|---|
+| Plan écrit | `planifie` ; aucune commande exécutée ni preuve positive |
+| Précondition manquante | Attente ou blocage avec cause identifiable |
+| Vérification réellement réussie | Preuve technique admissible pour la révision vérifiée |
+| Vérification `FAIL` | Échec conservé ; correction puis nouvelle preuve requise |
+| Vérification `BLOCKED` | Résultat non acquis ; dépendance ou environnement à résoudre |
+| Commande non lancée ou interrompue | `non_execute` ou résultat inconclusif selon le cas, jamais `PASS` |
+| Revue indépendante favorable | Condition supplémentaire ; ne remplace pas les tests |
+| Toutes les tâches d'un bloc acceptées | Bloc candidat à la gate ; aucune validation implicite du bloc |
+
+Les vocabulaires affichés et les codes machine doivent avoir une correspondance explicite. Une couleur dans un tableau de bord ne peut pas changer le sens d'un état. Un test ignoré, un job neutralisé ou une collection vide ne prouve pas que le comportement a été exercé.
+
+### 5. Attribution concurrente, baux et espaces Git
+
+L'attribution doit être une opération atomique : vérifier l'éligibilité et la révision du statut, réserver la tâche et ses ressources, créer la tentative, puis délivrer un jeton de propriété. Deux demandes concurrentes ne doivent jamais obtenir toutes deux le droit de finaliser le même travail.
+
+Le bail contient une échéance renouvelable et un **numéro de génération**. Les changements d'état et l'intégration exigent le numéro courant. Si un agent perd son bail et qu'un autre reprend, les messages tardifs du premier sont refusés. L'expiration détecte une perte de maîtrise ; elle ne prouve pas que le processus ancien est arrêté. La reprise vérifie ses effets et son espace de travail avant de réattribuer.
+
+Chaque tentative utilise une branche et un worktree dédiés, ou un clone indépendant lorsque l'isolation l'exige. Un worktree offre un arbre et un index distincts, tout en partageant des données Git avec le dépôt principal : il ne constitue pas à lui seul une frontière de sécurité. Les dépendances, caches, ports, bases de test et dossiers d'artefacts doivent être isolés ou protégés séparément. [Documentation officielle Git worktree](https://git-scm.com/docs/git-worktree).
+
+Le gestionnaire refuse un espace déjà occupé ou modifié sans provenance connue. Il ne lance aucune remise à zéro destructive pour « nettoyer » la situation. Les fichiers modifiés par l'utilisateur et les autres agents sont hors périmètre. L'intégration est sérialisée par cible et contrôlée sur la révision attendue de la branche de destination ; un changement de cette base déclenche une nouvelle vérification appropriée.
+
+Le nombre d'agents configuré ne prouve pas la capacité disponible. Commencer avec une concurrence faible, mesurer CPU, mémoire, I/O, quotas et contention des tests, puis augmenter seulement si les résultats le justifient. Les missions de lecture peuvent avancer pendant qu'un build lourd occupe l'unique ressource prévue pour ce type de travail.
+
+### 6. Une preuve porte sur le SHA final et les effets réellement contrôlés
+
+Un dossier de preuve doit identifier au minimum :
+
+| Groupe | Données nécessaires |
+|---|---|
+| Sujet | Tâche, tentative, dépôt, SHA candidat, SHA de base et empreinte de l'arbre Git |
+| État de travail | Arbre propre, ou inventaire complet et empreintes des modifications non commises ; présence de fichiers non suivis pertinents |
+| Environnement | OS/architecture, versions du compilateur et du runtime, outils de test, dépendances verrouillées et configuration non secrète |
+| Entrées de test | Version et empreinte du corpus, paramètres, fixtures et services simulés ou réels |
+| Exécution | Commande exacte, répertoire, début/fin, code de sortie et statut du processus |
+| Résultat | Tests découverts/exécutés, succès, échecs, exclusions et raison ; assertions métier contrôlées |
+| Artefacts | Emplacement, empreinte, type, rétention et règles de confidentialité |
+| Décision | Relecteur, conclusions motivées, réserves et autorité d'acceptation |
+
+Le chemin ou le nom d'un fichier ne suffit pas à identifier sa version. Une attestation doit relier un résultat à un sujet immuable. Le modèle public in-toto formalise notamment ce lien par des empreintes d'artefacts ; il constitue une référence possible pour le format, sans imposer tout son écosystème au produit. [Spécification in-toto Statement v1](https://github.com/in-toto/attestation/blob/main/spec/v1/statement.md).
+
+La vérification décisive s'exécute sur le **candidat final intégré à sa base prévue**, puis la revue examine ce même candidat. Toute correction après la revue invalide au moins les preuves et avis affectés. Un rebase, un merge ou une modification du corpus doit être évalué ; on ne réutilise pas une preuve parce que le titre de PR ou le nom de branche reste identique. Les contrôles GitHub eux-mêmes se rattachent à un commit identifié : leur rattachement ne dispense pas de vérifier quelles commandes et assertions ont réellement tourné. [API officielle des check runs](https://docs.github.com/en/rest/checks/runs).
+
+Un test réussi sur des modifications non commises peut fournir un diagnostic, mais ne valide pas automatiquement un futur commit. La gate exige une preuve correspondant exactement à l'arbre de livraison. Les horodatages seuls et les phrases « tests OK » sont insuffisants.
+
+### 7. Revue indépendante et protection des critères
+
+Un agent implémente ; **un autre agent** relit. Le relecteur accède à l'objectif, aux critères, au diff complet et aux résultats bruts. Il recherche aussi les omissions, les changements hors périmètre, les erreurs de sémantique et les preuves qui pourraient passer sur une implémentation incorrecte. Il peut demander une vérification supplémentaire motivée ; il n'a pas à multiplier les tests sans lien avec un risque.
+
+Le relecteur ne reprend pas simplement le résumé de l'auteur et n'approuve pas ses propres changements. S'il devient nécessaire qu'il corrige directement le candidat, un autre relecteur indépendant doit examiner la révision résultante. La correction des remarques revient normalement à l'agent d'implémentation, avec réponse point par point et nouvelles preuves ciblées.
+
+Les invariants et les résultats attendus sont établis depuis l'exigence, des spécifications publiques et des exemples autonomes autorisés. Les tests peuvent évoluer pour une raison fondée, mais il est interdit de supprimer un cas gênant, diminuer une assertion, régénérer une référence ou remplacer le chemin réel par un mock afin d'obtenir du vert. Toute modification d'un test d'acceptation doit expliquer son motif, son effet sur la couverture et recevoir une revue distincte.
+
+Le plan doit prévoir des contre-exemples : erreurs d'import, valeur limite, refus d'accès, annulation ou entrée invalide selon le domaine. Lorsque le risque le justifie, montrer qu'une variante volontairement erronée échoue permet de vérifier la capacité du test à détecter la régression. Un pourcentage de couverture n'établit pas à lui seul cette capacité.
+
+L'auteur ne peut ni modifier sa propre politique de gate, ni fabriquer un résultat de contrôle pour fermer sa tâche. Les permissions du runner de test, du validateur d'état et du mécanisme d'intégration doivent matérialiser cette séparation. La formulation dans un prompt ne constitue pas un contrôle suffisant.
+
+### 8. Gate par bloc et progression sans contournement
+
+La gate `G-Bxx` porte sur un **ensemble intégré**, pas sur l'addition de rapports de tâches. Elle vérifie les contrats internes, les interactions avec les blocs déjà acceptés et les scénarios utilisateurs du bloc. Les tests d'une bibliothèque isolée ne remplacent pas les parcours de l'application assemblée.
+
+La décision exige :
+
+1. Toutes les tâches requises acceptées avec leurs preuves valables.
+2. Le candidat du bloc et sa base d'intégration identifiés.
+3. Les vérifications obligatoires réellement exécutées et réussies sur ce candidat.
+4. Une revue indépendante sans défaut bloquant non résolu.
+5. Les limites, opérations de migration et moyens de retour arrière documentés et exercés selon le risque.
+6. La décision de l'autorité de gate prévue par le plan, humaine pour les arbitrages produit/livraison qui lui sont réservés.
+
+Une gate peut être évaluée automatiquement pour des critères déterministes ; cela ne donne pas à l'auteur le droit de s'approuver. Les gates métier peuvent exiger une recette humaine. La nature de chaque gate est fixée avant exécution et ne change pas pour accélérer un lot en difficulté.
+
+**Un `FAIL` ou `BLOCKED` d'une vérification obligatoire maintient la gate fermée.** Un défaut préexistant est conservé et attribué ; il n'est pas transformé en succès. Si un contrôle n'est réellement pas applicable, cette décision appartient à une révision explicite de la politique, avec justification et contrôle compensatoire éventuel, examinée indépendamment. Le résultat historique en échec demeure visible. L'agent ne peut pas décider seul d'exclure le test après l'avoir vu échouer.
+
+Ni l'ouverture d'une PR, ni sa fusion, ni l'expiration d'un délai, ni la clôture d'une issue ne valent preuve de gate. Les branches de livraison et dépendances entre blocs doivent empêcher mécaniquement la progression lorsque la gate requise reste fermée. Les blocs indépendants peuvent continuer si leurs propres préconditions sont satisfaites.
+
+### 9. Échec, arrêt et reprise
+
+Les réparations sont bornées par un nombre de tentatives et un budget. Deux échecs identiques sans nouvel élément ne doivent pas déclencher indéfiniment la même action. Le diagnostic distingue défaut produit, test instable, environnement absent, quota, dépendance et erreur de planification. Un test instable conserve ses échecs ; une relance réussie n'efface pas le problème.
+
+Un arrêt contrôlé procède ainsi :
+
+1. Empêcher de nouveaux départs pour le périmètre concerné.
+2. Demander l'arrêt des seules tentatives possédées par l'ordonnanceur.
+3. Capturer le SHA, les modifications, les commandes en cours, les artefacts et les effets persistants connus.
+4. Marquer les résultats interrompus comme non acquis et invalider les baux concernés.
+5. Conserver un point de reprise qui indique ce qui doit être vérifié avant tout nouvel effet.
+
+Ne jamais terminer globalement tous les processus d'un langage ou d'un outil sur une machine partagée. La gestion des processus doit utiliser des identifiants et groupes créés pour la tentative, et tenir compte des sous-processus.
+
+Au redémarrage, vérifier propriétaire, génération de bail, état Git, artefacts, effets externes et dernière révision du plan. Les compilations peuvent être relancées si elles sont reproductibles ; une publication, une migration de données ou un déploiement demande d'abord de déterminer si l'effet a déjà eu lieu. Une clé d'idempotence et un registre d'effet préviennent les doublons. Le texte d'une conversation ne suffit pas comme checkpoint durable.
+
+### 10. Replanification et retour arrière
+
+Redécouper une tâche crée des enfants avec des identifiants nouveaux et conserve les critères du parent. Les preuves déjà acquises sont rattachées aux parties qu'elles couvrent ; les écarts restent visibles. Le parent est marqué remplacé ou suspendu selon la politique et ne doit plus être exécuté en concurrence avec ses enfants. Les dépendances sortantes sont révisées explicitement.
+
+Changer la portée, abandonner un critère ou changer une architecture n'est pas une réparation automatique. La proposition contient cause, options, impacts, coût consommé et décision nécessaire. Les travaux sans dépendance à cette décision peuvent avancer ; les autres restent bloqués.
+
+Le retour arrière utilise les versions de **la nouvelle plateforme**, ses artefacts, son format de projet et ses sauvegardes. Il ne repose pas sur une installation PC SOFT. Prévoir distinctement restauration de code, retour de configuration et compensation des données : un revert Git ne récupère pas une colonne supprimée et ne retire pas un message déjà envoyé. Les opérations irréversibles ou publiées sont identifiées avant la gate, avec sauvegarde/restauration ou stratégie de compensation testée.
+
+### 11. Vérifier l'orchestrateur avant de lui déléguer le plan
+
+Son propre banc d'essai doit comprendre : double attribution simultanée, bail expiré avec ancien agent encore actif, résultat tardif, crash après effet avant confirmation, reprise après interruption, mutation concurrente du plan, dépendance absente/cycle, gate fermée, preuve d'un autre SHA, arbre sale et relecteur identique à l'auteur.
+
+Il faut également tester qu'une tâche ne peut pas modifier ses critères, que le périmètre d'écriture est appliqué, qu'un échec obligatoire bloque l'intégration et qu'une replanification conserve les engagements. Les premières épreuves utilisent un dépôt et des données jetables propres à ce projet. Aucun plan documentaire n'active implicitement une routine, un service permanent ou une connexion à un autre projet.
+
+Les journaux doivent permettre de reconstituer attribution, exécution, vérification, revue, décision et intégration, avec leur ordre et leurs révisions. Le magasin d'état doit protéger les transitions concurrentes ; choisir base transactionnelle ou autre implémentation après expérimentation. La présence d'un fichier d'événements ne suffit pas à assurer sa lecture, sa cohérence ou sa capacité de reprise.
+
+### 12. Tableau de bord et première utilisation
+
+Afficher par bloc : tâches prévues/acceptées/bloquées, gate, candidat évalué et preuves manquantes. Afficher par tentative : propriétaire, âge, bail, budget consommé, dernier événement et prochaine action. Séparer temps actif, attente d'environnement, attente de dépendance et attente de décision. Les dépenses et la qualité du résultat sont plus utiles qu'un simple compteur d'agents actifs.
+
+La première mise en œuvre doit démontrer un petit bloc de bout en bout : une tâche, une seconde tâche dépendante, une revue distincte, une preuve sur SHA final et une gate qui refuse volontairement un contrôle manquant. L'élargissement vient après cette preuve et l'essai d'arrêt/reprise. Tant que ces essais ne sont pas réalisés, l'état public reste **planifié / non exécuté**.
+
+
+---
+
+## Architecture C#, multi-BDD et procédure de réemploi
+
+Date : **26 octobre 2026**. Ce chapitre définit une architecture originale à réaliser. Aucun compilateur, pilote, moteur de données, paquet réutilisé ou profil de compatibilité n'est admis, implémenté ou certifié par sa rédaction. Il complète les [principes d'architecture](docs/05-architecture-cible.md), le [chapitre données](docs/04-donnees-integrations-et-cibles.md) et le [périmètre indépendant](docs/15-perimetre-independant-et-preuve-de-faisabilite.md).
+
+### 1. Décisions de conception
+
+La **base d'implémentation choisie est C#** : importeurs, frontend WLangage, analyse sémantique, IR, runtime, générateur, services de données et outillage. Le langage maintenu par l'utilisateur reste WLangage. Le C# produit pour une application constitue un artefact interne, jamais un fichier que le développeur doit corriger pour réussir la migration.
+
+La cible est une version **.NET LTS encore supportée**, à sélectionner et épingler après admission de sa version exacte, du SDK, des workloads, du runtime et des composants distribués. Ce choix ne se réduit pas à un numéro de langage C#. La durée de support restante doit couvrir le pilote et sa maintenance ; une mise à jour de sécurité déclenche les contrôles concernés et la requalification des profils affectés. La [politique officielle .NET](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) distingue support et niveau de correctifs requis. La famille .NET 10 LTS est le candidat initial du plan ; aucun patch exact ni droit d’usage n’est fixé par ce chapitre.
+
+**Le multi-moteur est une exigence de conception.** Le premier gate utilise réellement **PostgreSQL et SQLite**, puis SQL Server devient la troisième cible. MariaDB, MySQL et Oracle restent des extensions facultatives, chacune avec son pilote, ses versions, ses capacités et son admission propres. Aucun de ces produits n'est autorisé à l'usage par sa seule présence dans ce document.
+
+La contrainte actuelle demeure : **aucun outil, framework, DLL, SDK, pilote, serveur, service ou pont PC SOFT**, dans l'import, la construction, les tests ou l'application. Aucun oracle PC SOFT, même délégué à un client. Les entrées sont des fichiers, exports et preuves passives déjà disponibles, lus par du code indépendant. Un format opaque indispensable bloque l'élément concerné. La procédure d'[admission documentée](data/admission-outils.json) s'applique aussi aux outils et dépendances non PC SOFT ; candidat ne signifie pas admis.
+
+### 2. Séparer trois problèmes de données
+
+| Notion | Ce qu'il faut réaliser | Ce qu'elle ne démontre pas |
+| --- | --- | --- |
+| Plusieurs connexions ou bases | Une application ouvre plusieurs bases logiques, avec sessions et transactions distinctes | La prise en charge de moteurs SQL différents |
+| Plusieurs moteurs | Le même sous-ensemble WLangage fonctionne sur PostgreSQL et SQLite, puis sur d'autres fournisseurs | L'équivalence de toutes leurs transactions, types, collations et fonctions |
+| Multi-tenant | Les données et droits de chaque client/contexte sont isolés | La portabilité SQL ou l'atomicité d'une opération couvrant plusieurs tenants |
+
+Le runtime doit représenter une **base logique** par identifiant, un moteur par identifiant/version, et une session par contexte d'exécution. Le tenant éventuel est un autre attribut contrôlé. Ne pas confondre nom de table, nom de base, schéma SQL et tenant dans une même chaîne.
+
+Le premier pilote peut rester mono-tenant tout en passant le gate multi-moteur. La qualification multi-tenant viendra avec ses propres tests d'isolation ; elle ne doit pas être annoncée parce qu'un dictionnaire contient plusieurs chaînes de connexion.
+
+### 3. Modules et sens des dépendances
+
+Organiser une solution C# modulaire, avec des processus séparés aux frontières utiles : CLI, serveur de langage, débogueur et prévisualisation. Les bibliothèques de syntaxe ou de valeurs restent sans accès réseau, disque métier ni référence à un moteur de données concret. Aucun ERP, ORM ou framework web n'est imposé au noyau.
+
+Les namespaces ci-dessous sont des **propositions originales**, à adapter au nom final du projet.
+
+| Modules proposés | Responsabilité | Dépendances permises |
+| --- | --- | --- |
+| `Compatibility.ProjectModel`, `Compatibility.Import` | Provenance, profils, éléments et import non destructif des fichiers reçus | Contrats de formats et diagnostics ; aucun exécutable d'origine |
+| `Compatibility.Language.Syntax`, `.Semantics` | Tokens/CST/AST, symboles, types, résolution FR/EN, diagnostics | Modèle de projet, contrats du langage ; aucun fournisseur SQL concret |
+| `Compatibility.IR` | Opérations typées, références, ordre d'évaluation et effets | Types de contrat et positions source |
+| `Compatibility.Runtime.Values`, `.Execution`, `.Library` | Valeurs WLangage, contextes, erreurs, ordonnancement et fonctions originales | IR/contrats ; accès externes via interfaces |
+| `Compatibility.CodeGen.CSharp` | Génération interne et correspondances source | IR stabilisée et contrats du runtime |
+| `Compatibility.Data.Contracts`, `.Semantics`, `.Relational` | Modèle logique, contrats H*/SQL, curseurs, plans relationnels | Valeurs et contrats ; pas de pilote concret dans la sémantique |
+| `Compatibility.Data.Providers.PostgreSql`, `.Sqlite` | Connexions, dialecte, liaisons de types, erreurs et migrations propres au moteur | Contrats de données, ADO.NET et pilote admis |
+| `Compatibility.UI.Model`, `.Windows` | Champs, propriétés, événements et premier renderer | Contrats UI/runtime ; aucun accès SQL direct des contrôles |
+| `Compatibility.Tools.LanguageServer`, `.DebugAdapter`, `.Cli` | LSP, DAP, import/audit/build/test/package | Services publics du compilateur et du runtime |
+| `Compatibility.IDE` | Atelier familier, concepteur et navigation | Contrats d'outillage ; prévisualisation de notre renderer isolée |
+
+Les fournisseurs futurs ont chacun leur module. Aucun `using` d'un fournisseur PostgreSQL, SQLite ou SQL Server ne doit apparaître dans `Runtime.Values`, l'analyseur ou les contrats H*. Un test d'architecture vérifie cette règle et un cas négatif démontre qu'il détecte réellement sa violation.
+
+Les changements transverses passent par des contrats versionnés. Une tâche d'agent doit pouvoir modifier un module et ses tests sans comprendre tous les moteurs. Les catégories d'un ERP ne sont pas recopiées systématiquement : un parseur n'a pas besoin d'une couche HTTP ou d'une entité métier pour chaque nœud.
+
+### 4. De la source WLangage à l'application C#
+
+```mermaid
+flowchart TD
+    A[Fichiers et exports déjà disponibles] --> B[Importeurs originaux et provenance]
+    B --> C[CST et AST WLangage]
+    C --> D[Analyse sémantique et profil source]
+    D --> E[IR typée avec effets]
+    E --> F[Interprète C# original]
+    E --> G[Générateur C# interne]
+    G --> H[SDK .NET admis]
+    H --> I[Application et runtime originaux]
+    F --> J[Contrats UI données système]
+    I --> J
+    J --> K[Sémantique données et plan relationnel]
+    K --> L[SPI ADO.NET et capacités]
+    L --> M[PostgreSQL]
+    L --> N[SQLite]
+    L --> O[SQL Server et extensions ultérieures]
+    P[Spécifications et fixtures passives sourcées] --> Q[Comparateurs et tests]
+    F --> Q
+    I --> Q
+```
+
+La résolution d'un nom, le choix d'une conversion et le passage par référence sont décidés par le frontend WLangage. Ils ne sont pas abandonnés au compilateur C#. L'IR matérialise aussi les effets UI, données, fichiers et suspension. Le backend n'optimise un chemin qu'après vérification de son contrat.
+
+Le runtime contient des valeurs propres aux règles de compatibilité : précision numérique, valeur vide, NULL, encodage, indices, cellules de référence, erreur et contexte. Utiliser directement `double`, `DateTime` ou une liste C# n'est acceptable que lorsque l'équivalence est établie pour le profil concerné.
+
+L'interprète et le code généré consomment les mêmes contrats. Leur accord prouve une cohérence interne et facilite le diagnostic ; un défaut du runtime peut être partagé. Les attendus externes restent des règles publiques ou fixtures/traces déjà fournies, avec provenance et portée explicites. Aucun accord interne ne devient une preuve de parité générale avec WINDEV.
+
+### 5. Trois couches de données, aucune obligation de modèle EF
+
+#### 5.1 Sémantique de compatibilité
+
+Cette couche implémente les opérations observables : tampon courant, recherche exacte/générique, parcours ordonné, filtre, erreur, ajout/modification/suppression et contexte de transaction. Les fonctions H* et les anciennes familles SQL gardent des contrats distincts lorsqu'elles n'ont pas le même comportement.
+
+Le modèle est issu de l'analyse ou des métadonnées déjà reçues : tables, rubriques, clés, relations et requêtes. Il n'impose pas de réécrire chaque fichier en classe métier C# ou en entité Entity Framework. Un ORM optionnel ne doit pas devenir un prérequis de migration ni décider des conversions ou de la durée de vie des curseurs.
+
+#### 5.2 Plan relationnel et dialecte
+
+La sémantique produit un plan structuré, pas une chaîne SQL fabriquée partout. Le plan exprime projection, prédicats, paramètres typés, ordre total, limite, clé de reprise et effets d'écriture. Le générateur de dialecte choisit la syntaxe compatible avec le moteur/version.
+
+Les valeurs sont paramétrées. Les identifiants proviennent d'un modèle validé et d'un mécanisme de citation propre au moteur ; ils ne sont pas des paramètres SQL ordinaires. Les requêtes sources sont conservées avec provenance. Une requête utilisant un dialecte spécifique peut rester liée à un moteur ou être refusée sur un autre ; « multi-BDD » ne promet pas la portabilité de tout SQL arbitraire.
+
+#### 5.3 Fournisseur ADO.NET
+
+ADO.NET fournit notamment les abstractions `DbConnection`, `DbCommand`, `DbTransaction`, `DbParameter` et `DbDataReader`. Elles sont un socle de transport et d'exécution ; elles ne standardisent ni SQL, ni verrouillage, ni toutes les conversions. [Documentation Microsoft sur les objets des fournisseurs](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/data-providers).
+
+La **SPI**, interface d'extension entre le moteur et ses fournisseurs, comporte les contrats originaux suivants :
+
+| Contrat proposé | Entrées et sorties | Invariant |
+| --- | --- | --- |
+| `DatabaseProviderDescriptor` | Identifiant, version de contrat, moteurs/versions cibles et identifiant d'admission | Une implémentation ne s'enregistre pas anonymement |
+| `DatabaseCapabilities` | Capacités qualifiées et limites par profil | Une capacité inconnue n'est pas annoncée disponible |
+| `DatabaseSessionFactory` | Référence de base logique et contexte ; session ouverte | Résolution contrôlée des secrets ; isolation du contexte ; pas de singleton de connexion métier |
+| `RelationalCommandCompiler` | Plan typé ; commande et paramètres | Pas d'interpolation des valeurs ; identifiants validés |
+| `StorageTypeMapping` | Type source, précision, valeur ; type/valeur du pilote | Aucun arrondi, NULL ou encodage modifié silencieusement |
+| `DatabaseErrorTranslator` | Erreur structurée fournisseur ; catégorie canonique et détail préservé | Pas d'analyse fragile du texte localisé comme seul mécanisme |
+| `SchemaMigrationAdapter` | Plan de schéma versionné ; commandes et préconditions | Aucune modification appliquée pendant la simple lecture d'un projet |
+
+Ces noms décrivent des responsabilités, pas un SDK déjà livré. La signature finale sera stabilisée par de petites tâches de contrats, puis utilisée par des implémentations indépendantes. L'appelant ne reçoit pas un objet fournisseur dans une valeur WLangage.
+
+### 6. Matrice de capacités et limites assumées
+
+Chaque capacité porte : moteur/version, pilote/version, statut `non testé`, `natif qualifié`, `émulé qualifié avec limites` ou `indisponible`, cas exécutés, preuves et limites. Les tableaux suivants fixent les **points de qualification**, pas des résultats acquis.
+
+| Capacité | PostgreSQL : voie à qualifier | SQLite : voie à qualifier | Décision de compatibilité |
+| --- | --- | --- | --- |
+| Lecture et écriture paramétrées | Pilote dédié admis | Pilote dédié et bibliothèque native admis | Même contrat de paramètres, erreurs et valeurs |
+| Décimaux exacts | Liaison vers stockage numérique approprié | Représentation exacte à définir selon précision/plage | Refus si le profil ne tient pas dans la représentation choisie ; jamais de repli monétaire silencieux en réel |
+| NULL, vide, zéro | Types et contraintes du modèle | Affinités et contraintes à contrôler | Cas séparés à la lecture, écriture et comparaison |
+| Identifiants générés | Stratégie propre au moteur | Stratégie propre au moteur | Résultat retourné explicitement à la session |
+| Verrou d'enregistrement | Contrat et durée à préciser | Pas d'équivalence présumée au verrou d'une ligne serveur | Émulation uniquement si effets et limites sont acceptables ; sinon profil bloqué |
+| Concurrence d'écriture | Transactions concurrentes à qualifier | Écriture concurrente limitée | Tester attentes, délais, annulation et erreurs |
+| Savepoints et isolation | Niveaux et transitions qualifiés | Transactions/savepoints et modes propres | Aucun nom de niveau commun ne vaut preuve d'effet identique |
+| Annulation et asynchronisme | Comportement du pilote et du serveur mesuré | Comportement spécifique du pilote | L'API async ne garantit pas une E/S asynchrone |
+| Espaces de noms et DDL | Schémas et migrations du moteur | Organisation physique différente | Mapping explicite ; pas de dépendance universelle à `schema.table` |
+| Tri, casse, accents et clés composées | Collations et version consignées | Collations disponibles et règles consignées | Les mêmes clés doivent donner l'ordre contractuel, ou un écart explicite |
+
+SQLite documente une seule transaction d'écriture simultanée, même si plusieurs lectures peuvent coexister ; cela impose un scénario de contention propre. [Transactions SQLite](https://www.sqlite.org/lang_transaction.html). Microsoft documente aussi l'exécution synchrone des méthodes ADO.NET async de `Microsoft.Data.Sqlite` : une façade uniforme ne doit pas masquer cette limite. [Limites async du pilote](https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/async).
+
+Pour les erreurs, conserver le code moteur et traduire vers les catégories de notre contrat. PostgreSQL recommande d'utiliser les codes SQLSTATE plutôt que les textes localisés. Le code historique WLangage n'est reproduit que lorsque sa correspondance est documentée pour le profil ; sinon il reste non qualifié. [Codes d'erreur PostgreSQL](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+
+### 7. Transactions, schéma et plusieurs bases
+
+Une transaction de compatibilité appartient à une session et à une connexion, avec moteur et isolation connus. Toutes les opérations qui en font partie doivent employer cette même transaction. Ouvrir une connexion indépendante par opération détruirait l'atomicité.
+
+Ne pas imposer au patrimoine source les frontières d'un ERP moderne : une transaction couvrant plusieurs tables du projet ne devient pas automatiquement plusieurs transactions par module. De même, une relation ou jointure valide dans le modèle source n'est pas supprimée pour satisfaire une convention de rangement des nouveaux packages.
+
+Le premier périmètre multi-moteur garantit les transactions **dans une seule base/moteur à la fois**. Une transaction atomique traversant deux moteurs est un besoin distinct, non pris en charge implicitement. Si le source l'exige, produire un blocage précis ou une évolution de spécification explicite. Une saga ou une outbox peut servir un nouveau processus, mais ne remplace pas silencieusement un engagement ACID existant.
+
+Séparer le schéma de fonctionnement de notre plateforme du modèle de données des applications importées. Les migrations de la plateforme, celles d'une application et celles de chaque moteur ont des catalogues identifiés et des préconditions propres. Une migration possède un identifiant stable, un checksum, une version attendue, une cible et une stratégie de reprise. Tester crash et reprise partielle ; ne pas présumer que toute commande DDL est annulable de la même façon.
+
+La restauration et le retour arrière concernent notre chaîne autonome et ses données. Aucun retour ou contrôle n'appelle un moteur, installateur ou service PC SOFT.
+
+### 8. Trois gates successives du multi-moteur réel
+
+Une interface implémentée par deux classes ne suffit pas. La preuve avance en trois étapes, sur **PostgreSQL réel et SQLite réel** :
+
+| Gate | Périmètre positif annoncé | Ce qu’elle ne valide pas encore |
+| --- | --- | --- |
+| `G-B08` | Providers C# V0 : schéma scalaire borné, paramètres, valeurs exactes, erreurs et cycle transactionnel | Fonctions H*, sources WLangage de gestion et migration complète |
+| `G-B09` | Sous-ensemble H* original et même source WLangage de gestion sur les deux moteurs | Toute surcharge H*, tous verrous historiques ou tous formats source |
+| `G-B10` | Chargement logique, marqueurs de reprise, réconciliation et restauration du V0 | Lecture de fichiers HFSQL opaques, réplication ou sauvegarde à chaud non qualifiées |
+
+Aucune branche conditionnelle ajoutée au code métier importé ne doit masquer une différence de fournisseur. Les cas ci-dessous sont répartis entre ces gates ; ils ne sont pas tous prérequis au premier provider de B08.
+
+Le lot de qualification couvre au minimum :
+
+1. Création du schéma, paramètres, insertion, lecture, modification et suppression.
+2. Valeurs NULL/vides/zéro, Unicode et valeurs monétaires limites de V0. Dates, buffers ou autres types demandent des tickets et preuves propres avant support.
+3. Clés simples V0, doublons, ordre déterministe, recherche et fin de parcours. Les clés composées demandent des sous-tickets et preuves supplémentaires avant annonce de support.
+4. Tampon courant et filtre après mutation ; annulation d'un parcours.
+5. Commit, rollback, erreur de contrainte, connexion interrompue et arrêt pendant transaction.
+6. Deux sessions concurrentes, conflit d'écriture et état final ; tester SQLite sur fichier temporaire, pas seulement une base mémoire attachée à une unique connexion.
+7. Codes d'erreur canoniques et détails conservés ; délai, annulation et libération des ressources.
+8. Migration du schéma, échec intermédiaire et reprise ; données vérifiées après redémarrage.
+
+Publier cas requis, exécutés, échoués, inconnus et non applicables justifiés. Exiger tous les cas nécessaires au contrat annoncé, zéro divergence métier critique, zéro capacité affirmée sans preuve et zéro logiciel PC SOFT détecté. Les outils, pilotes, binaires natifs et images de test doivent avoir leur admission par usage. Un test ignoré ou un moteur non lancé ne passe pas le gate.
+
+Les preuves comprennent versions/empreintes, profil, source WLangage, schéma, jeux, commandes exécutées, résultats, logs expurgés et origine des attendus. Ce gate démontre un sous-ensemble multi-moteur de notre implémentation ; il ne certifie pas la totalité des comportements historiques de WINDEV.
+
+### 9. Extension aux autres moteurs
+
+| Ordre proposé | Travail supplémentaire | Gate avant annonce de support |
+| --- | --- | --- |
+| PostgreSQL + SQLite | SPI, deux dialectes, types, transactions et suite commune | Gate initial complet sur les deux moteurs |
+| SQL Server | Fournisseur, dialecte, identifiants, erreurs, isolation, migrations et pilote admis | Même suite, scénarios spécifiques et régression des deux premiers moteurs |
+| MariaDB / MySQL | Qualification séparée des moteurs et versions, types, collations et SQL | Ne pas déduire le support de l'un du succès de l'autre |
+| Oracle | Fournisseur et conditions exactes, types, chaînes, identifiants, transactions et migrations | Suite commune plus différences propres au profil, sans fonctionnalités simulées annoncées natives |
+
+Les identifiants de fournisseurs peuvent être prévus tôt ; leurs capacités restent indisponibles tant que les implémentations et preuves manquent. L'extension n'exige pas une réécriture du compilateur, mais peut révéler qu'une opération IR ou un contrat de données est trop spécifique. Modifier alors le contrat avec tests de régression, plutôt qu'ajouter des tests de nom de moteur dans toutes les fonctions WLangage.
+
+### 10. Organisation compatible avec des tâches d'agents IA
+
+Chaque tâche doit livrer un résultat local : un contrat, une opération IR, un convertisseur de type, une règle de dialecte ou un scénario de données. Son dossier contient entrées, fichiers autorisés, dépendances de tâches, comportement attendu, cas d'erreur, commande de vérification et artefact de preuve.
+
+Pour les travaux parallèles, séparer propriétaire du contrat et propriétaire de chaque fournisseur. Une modification de SPI invalide les tâches consommatrices jusqu'à mise à jour explicite. Les agents ne changent pas simultanément signatures partagées, schémas et deux fournisseurs sans une tâche d'intégration identifiable.
+
+À la fin de chaque bloc : construire la solution pertinente, exécuter tests ciblés et négatifs, contrôler frontières/admission/exclusion, puis rejouer la tranche verticale concernée. Une mutation volontaire doit montrer que le gate détecte une conversion erronée, une dépendance interdite ou un moteur manquant. L'absence de verdict, une suite vide ou un contrôle non exécuté reste un échec de preuve.
+
+La granularité du plan doit permettre reprise par un autre agent : contrat stabilisé, diff borné, tests reproductibles et incertitudes explicites. La multiplication des fichiers ou classes ne suffit pas à rendre une tâche petite.
+
+### 11. Inspiration Liakern et options de réemploi
+
+L'utilisateur a nommé **Liakern** comme inspiration. Ce chapitre propose une architecture originale générique ; il ne publie aucun code, chemin, commit ou contenu interne d'un dépôt privé. Les constats privés éventuels restent hors du dépôt public. L'accès à un dépôt, y compris avec des droits d'administration, n'établit aucun droit de réemploi, de divulgation ou de relicenciement.
+
+Trois voies peuvent être évaluées, sans admission acquise :
+
+- **Conception originale** : reprendre les besoins et principes généraux pertinents, rédiger des contrats propres à la plateforme et écrire leur implémentation et leurs tests.
+- **Consommation d'un composant existant** : délimiter le paquet, sa version et ses actes d'usage ; vérifier droits, dépendances transitives, obligations et compatibilité avec la cible avant toute incorporation.
+- **Extraction ou adaptation ciblée** : identifier précisément les fichiers et titulaires, les contributions et autorisations, les parties tierces et la possibilité de distribution dans le support prévu ; documenter modifications et preuves. Aucun code privé ne passe dans un dépôt public sans droits de divulgation établis.
+
+#### Candidats à examiner avant de décider une récupération
+
+Ce tableau décrit les **besoins et critères de sélection de notre plateforme**. Il ne certifie ni la présence, ni l’exécution, ni les droits d’un composant particulier du dépôt consulté. Les constats fichier par fichier restent dans la revue privée.
+
+| Famille candidate | Usage possible ici | Adaptation ou refus à vérifier | Bloc |
+| --- | --- | --- | --- |
+| Contrats de modules et tests d’architecture | Empêcher le compilateur ou le runtime de dépendre d’un provider concret | Règles adaptées à un compilateur ; pas d’architecture ERP imposée au frontend | B01 |
+| Configuration et références de secrets | Séparer projet versionné, réglages locaux et identifiants sensibles | Aucun secret ni convention privée importé ; rôle runtime distinct du host web | B01 / B17 |
+| Fabriques de connexions et gestion de pools | Fournir une session nommée et libérer correctement ses ressources | Retirer tout couplage fournisseur du contrat ; deux moteurs réels ; limites/éviction de pools | B07 / B08 |
+| Contexte tenant et transaction | Isoler état, données et identité par exécution | Multi-tenant distinct du multi-moteur ; aucune réduction de l’atomicité des sources | B07 / B17 |
+| Catalogues et suivi de migrations | Identifier cible, version, préconditions et reprise | DDL différent selon moteur ; marqueur atomique ; restore prouvé avant repli | B10 |
+| Contrats d’orchestration et journaux | Suivre tentatives, preuves, intégration et reprise | État absent non assimilé à terminé ; preuve du SHA final ; implémentation originale ou composant admis | B01 |
+
+Pour chacun, le premier ticket de réemploi reste petit : examiner un artefact exact et ses dépendances, conclure « adapté », « à modifier », « à réécrire » ou « refusé », avec droits établis pour l’acte suivant. Ce diagnostic ne déclenche pas une extraction globale. Une réimplémentation originale répondant au même besoin permet de continuer lorsqu’aucune récupération n’est admise.
+
+Pour chaque candidat : fiche d'admission artefact/version/empreinte + usage/contexte, textes de droit applicables, obligations et satisfaction, réglementation pertinente ou non-applicabilité motivée, décision datée et déclencheurs de réexamen. Doute, permission absente ou obligation non remplie bloque l'acte concerné. Une déclaration générale de conformité dans un autre projet n'est pas transférable au nôtre.
+
+Un prototype entièrement original peut avancer sans avis juridique général automatique. L'admission des outils et matériaux tiers reste précise et documentée. La contrainte d'exclusion PC SOFT demeure prioritaire ; ni une inspiration ni une possibilité théorique de licence ne la lève.

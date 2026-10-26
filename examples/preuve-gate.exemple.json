@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "nature": "modele_vierge_non_execute",
+  "gate_id": "G-B08",
+  "status": "non_execute",
+  "task_attempt_ids": [],
+  "subject": {
+    "repository": null,
+    "base_sha": null,
+    "final_integrated_sha": null,
+    "git_tree_hash": null,
+    "working_tree_clean": null
+  },
+  "profile_hash": null,
+  "corpus_hashes": [],
+  "tool_versions": [],
+  "admission_decisions_for_actual_acts": [],
+  "engines": [],
+  "commands_and_results": [],
+  "test_discovery_and_execution": {
+    "discovered": null,
+    "executed": null,
+    "passed": null,
+    "failed": null,
+    "skipped": null,
+    "skip_reasons": []
+  },
+  "expected_results_provenance": [],
+  "criteria_results": [],
+  "no_pcsoft_evidence": {
+    "sbom_hash": null,
+    "processes_and_modules_report": null,
+    "services_and_destinations_report": null,
+    "clean_machine_run": null
+  },
+  "artifacts": [],
+  "unknowns_and_limits": [],
+  "implementation_agent": null,
+  "independent_reviewer": null,
+  "reviewed_revision": null,
+  "decision_authority": null,
+  "decision_date": null,
+  "on_failure": "bloquer_dependants_conserver_preuves_corriger_ou_replanifier",
+  "instruction": "Ne remplir qu’avec des observations réelles. Null et non_execute ne valent jamais réussite. Toute modification affectant les preuves impose une nouvelle vérification."
+}

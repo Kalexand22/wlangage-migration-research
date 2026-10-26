@@ -8,6 +8,8 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from check_execution_plan import validate as validate_execution_plan
+
 ROOT = Path(__file__).resolve().parents[1]
 LINK = re.compile(r"\[[^\]\n]+\]\(([^\s)]+)\)")
 REQUIRED = {
@@ -21,6 +23,7 @@ REQUIRED = {
 
 def main():
     errors = []
+    errors.extend(validate_execution_plan(ROOT))
     markdown = sorted(path for path in ROOT.rglob("*.md") if ".git" not in path.relative_to(ROOT).parts)
     for path in markdown:
         for target in LINK.findall(path.read_text(encoding="utf-8")):
